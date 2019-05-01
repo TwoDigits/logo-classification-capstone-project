@@ -1,0 +1,5 @@
+LogosInTheWild-v2
+datasets_and__models/
+*.zip
+*.gz
+*.tar.gz

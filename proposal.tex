@@ -1,0 +1,102 @@
+\documentclass{scrartcl}
+\usepackage{url,hyperref}
+\setkomafont{disposition}{\normalcolor\bfseries}
+\begin{document}
+
+\title{Machine Learning Engineer Nanodegree}
+\author{Ann-Kristin Juschka}
+\subtitle{Capstone Proposal}
+\maketitle
+
+%\begin{abstract}
+%The abstract text goes here.
+%\end{abstract}
+
+
+
+\section*{Proposal}
+%(approx. 2-3 pages)
+\subsection*{Domain Background}
+
+
+In this Nanodegree, \emph{Convolutional Neural Networks (CNNs)} are introduced that are most commonly used to analyze visual data.
+In the deep learning project of the Nanodegree, we train CNNs to detect dogs in images and to classify dog breeds.
+In general, object detection and classification is a classical task in machine learning. 
+
+The aim of this project is to use CNNs to detect and classify brands in images with logos. For this, usually CNNs are trained with the dataset \emph{FlickrLogos-27} \cite{flickrlogos27} and \emph{FlickrLogos-32} \cite{flickrlogos32}; e.g. in \cite{BIANCO201723,DBLP:journals/corr/IandolaSGK15}. We are also interested in this task as we later wish to \emph{analyze sentiments} in twitter tweeds with pictures where a given company's logo is detected.
+Due to time and size limits, we focus in this project on \emph{logo detection and classification}.
+
+
+
+\subsection*{Problem Statement}
+
+While most logo datasets like \emph{FlickrLogos-27} \cite{flickrlogos27} and \emph{FlickrLogos-32} \cite{flickrlogos32} contain raw original logo graphics, we want to train our CNN on the in-the-wild logo dataset \emph{Logos in the Wild} \cite{logosinthewild} whose images contain logos as natural part. As this dataset includes in total 11,054 images with 32,850 annotated logo bounding boxes of 871 brands, it should be possible to train a CNN that achieves a high  accuracy or mean average precision (map).
+This is a challenging task as the regions containg logos are small.
+
+\subsection*{Datasets and Inputs}
+
+To train our model, we want to use the recent logo dataset \emph{Logos in the Wild} \cite{logosinthewild}. As mentioned above, this the lastest version of this dataset (v2.0) contains 11,054 images with 32,850 annotated logo bounding boxes of 871 brands and it is collected by performing Google image searches with well-known brand and company names directly or in combination with a predefined set of search terms like ‘advertisement’, ‘building’, ‘poster’ or ‘store’.
+The logo annotations are in Pascal-VOC style.
+
+Moreover, this dataset has 4 to 608 images per searched brand, 
+238 of 871 brands occur at least 10 times, and there are up to 118 logos in one image. Unfortunately, the dataset provides only the links to the images, and some of these images already disappeared.
+As we want to later detect logos in arbitrary pictures from twitter tweeds, this large in-the-wild logo dataset still fits best to our goal. 
+
+\subsection*{Solution Statement}
+
+The main goal of this project is to use CNNs to \emph{classify the brand and company logos} from the Logos in the Wild dataset with high accuracy and mean average precision (map).
+For this, we first train an own CNN architecture as done in the dog breeds project of the Nanodegree.
+% with a convolutionary layer, a max-pooling layer, another convolutionary layer, a max-pooling layer, a global-average pooling layer and a final fully connected layer.
+Furthermore, to improve loss and accuracy we make use of the standard CNN architectures \emph{VGG19, Resnet50, InceptionV3, or Xception} that are already trained on the \emph{ImageNet} database \cite{kerasapplications}.
+Moreover, as the dataset comes with annotations in Pascal-VOC style, if time permits we will also train a \emph{Faster Region-based Convolutional Neural Network (Faster R-CNN)} \cite{DBLP:journals/corr/RenHG015} for two stages: First, an \emph{Region Proposal Network (RPN)} for \emph{logo detection}, and second, a classifier like VGG19 for logo classification of the candidate regions.
+ This Faster R-CNN will be evaluated using the \emph{mean average precision (map)} metric.
+
+
+\subsection*{Benchmark Model}
+
+The recent \emph{Logos in the Wild} dataset has not been studied much yet. When introduced in \cite{logosinthewild}, the focus is put on open set logo retrieval where only one sample image of a logo is available. 
+
+Instead we want to focus on a closed world assumption where we train and test on the Logos in the Wild dataset which has multiple images per brand. 
+Therefore, we can only compare our results with the ones of other models that were trained and tested on the popular closed dataset \emph{FlickrLogos-32} \cite{flickrlogos32}. As cited in \cite{logosinthewild}, the mean average precision (map) in state-of-the-art results is 0.811 achieved by Faster-RCNN \cite{DBLP:journals/corr/SuZG16}  where the training set is expanded with synthetically generated training images, and 0.842 using
+Fast-M \cite{Bao:2016:RCL:3007669.3007728} that is a multi-scale Fast R-CNN based-approach.
+
+\subsection*{Evaluation Metrics}
+
+For purely logo classification, we seek to achieve a high accuracy. \emph{Accuracy} is simply the number of correct predictions divided by the total number of predictions.
+
+For logo detection, we need a different metric: mean average precision (map) that is the mean over all classes, of the interpolated
+\emph{average precision} \cite{everingham2010pascal} for each class. Recall that
+\[
+\textup{precision}=\frac{\textup{true positives}}{\textup{true positives}+\textup{false positives}},\quad \textup{recall}=\frac{\textup{true positives}}{\textup{true positives}+\textup{false negatives}}.
+\]
+Considering the precision-recall curve for a given threshold, and the interpolated precision $\textup{precision}_\textup{interpolated}(\textup{recall}_i)=\max_{\tilde{r},\tilde{r}\geq \textup{recall}_i}\textup{precision}(\tilde{r})$ of the 11 values $\textup{recall}_i=\{0,0.1,0.2,\ldots,0.9,1.0\}$. Then
+\[
+\textup{average precision}=\frac{1}{11}\sum_{1}^{11}\textup{precision}_\textup{interpolated}(\textup{recall}_i)\qquad\cite[\S\,4.2]{everingham2010pascal}.
+\]
+
+\subsection*{Project Design}
+At first, we will collect the images through the provided urls in the Logos in Wild dataset.
+Probably we augment the training data to have more images per brand. 
+
+As mentioned before, we start by training an own CNN architecture to classify the logos as done in the dog breeds project of the Nanodegree. For this, 40\% of the dataset is forms the test set, and the remaining data is split into 80\% training set and 20\% validation set. Using Keras preprocessing, each image is converted into a 4D tensor with shape $(1,224,224,3)$
+This CNN may consist of a convolutionary layer, a max-pooling layer, another convolutionary layer, a max-pooling layer, a global-average pooling layer and a final fully connected layer. As optimizer we choose "RMSprop", as loss function "categorical cross entropy" and as metric "accuracy".
+Using Keras ModelCheckpoint, we save the model with the best validation loss.
+
+As a next step we train a popular CNN like VGG19 whose weights are pre-trained on ImageNet. We proceed similarly as in the first setting.
+
+Having tried CNNs for logo classification, we finally proceed to Faster R-CNNs for logo detection and classification.
+We first train a \emph{Region Proposal Network (RPN)} that proposes regions with logos in images.  The predicted region proposals are then reshaped using a \emph{Region of Interest (RoI)} pooling layer. This layer is next used to classify the image within the proposed region and predict the offset values for the bounding boxes. For the latter task, we again train a CNN like VGG19 that is pre-trained on ImageNet.
+As  explained above, here we use mean average precision as metric.
+
+
+%\nocite{*}
+\bibliography{capstone_project}
+\bibliographystyle{alpha}
+\end{document}
+
+
+
+
+
+
+

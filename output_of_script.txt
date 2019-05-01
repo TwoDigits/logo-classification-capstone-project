@@ -1,0 +1,1347 @@
+(py2) ajuschka@CPX-GM2ZTPHEFZG:/mnt/c/environment/Machine Learning/Machine Learning Engineer/capstone_project/LogosInTheWild-v2/scripts$ python create_clean_da
+taset.py --roi --in ../data --out ../cleaned-data
+Copying dataset
+Processing dataset files
+Deleted xml for unavailable image file ../cleaned-data/voc_format/abus/img000019.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/abus/img000022.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/abus/img000061.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/abus/img000062.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/accenture/img000087.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/accenture/img000114.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/adidas/img000008.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/adidas/img000015.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/adidas/img000023.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/adidas/img000028.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/adidas/img000050.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/adidas/img000123.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/adidas/img000172.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/adidas/img000186.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/adidas/img000207.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/adidas/img000218.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/adidas/img000226.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/adidas/img000228.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/adidas/img000232.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/adidas/img000238.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/adidas/img000242.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/adidas/img000246.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/adidas/img000248.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/adidas/img000249.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/adidas/img000256.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/adidas/img000258.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/adidas/img000272.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/adidas/img000273.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/adidas/img000278.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/adidas/img000285.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/adidas/img000296.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/adidas/img000299.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/adidas/img000300.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/adidas/img000303.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/adidas/img000309.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/adidas/img000326.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/adidas/img000332.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/adidas/img000339.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/adidas/img000353.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/adidas/img000411.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/adidas/img000412.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/adidas/img000425.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/adidas/img000427.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/airhawk/img000030.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/airhawk/img000040.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/aldi/img000008.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/aldi/img000009.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/aldi/img000023.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/aldi/img000035.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/aldi/img000039.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/aldi/img000057.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/aldi/img000072.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/aldi/img000077.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/aldi/img000085.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/aldi/img000088.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/aldi/img000091.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/aldi/img000103.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/aldi/img000115.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/aldi/img000124.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/aldi/img000130.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/aldi/img000139.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/aldi/img000143.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/aldi/img000160.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/aldi/img000168.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/aldi/img000171.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/aldi/img000183.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/aldi/img000185.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/aldi/img000218.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/aldi/img000221.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/aldi/img000225.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/aldi/img000234.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/aldi/img000238.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/allett/img000002.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/allett/img000025.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/allett/img000031.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/allianz/img000016.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/allianz/img000078.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/allianz/img000142.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/allianz/img000193.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/allianz/img000213.jpg
+Processed: 1000 images.
+Deleted xml for unavailable image file ../cleaned-data/voc_format/allianz/img000240.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/allianz/img000242.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/allianz/img000264.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/allianz/img000266.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/allianz/img000285.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/allianz/img000288.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/allianz/img000296.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/allianz/img000326.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/allianz/img000346.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/allianz/img000377.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/allianz/img000396.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/aluratek/img000006.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/aluratek/img000024.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/aluratek/img000033.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/amazon/img000008.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/amazon/img000087.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/amazon/img000093.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/amazon/img000127.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/amcrest/img000005.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/amcrest/img000027.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/amcrest/img000032.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/amcrest/img000036.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/amcrest/img000037.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/amcrest/img000038.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/amcrest/img000040.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/amcrest/img000065.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/amcrest/img000084.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/amcrest/img000091.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/American Express/img000028.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/American Express/img000100.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/American Express/img000163.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/American Express/img000186.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/apc/img000003.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/apc/img000012.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/apc/img000018.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/apc/img000020.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/apc/img000023.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/apc/img000027.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/ape/img000007.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/ape/img000047.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/ape/img000068.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/aquapac/img000002.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/aquapac/img000021.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/aral/img000000.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/aral/img000049.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/aral/img000074.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/aral/img000076.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/aral/img000081.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/aral/img000082.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/aral/img000123.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/aral/img000141.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/aral/img000155.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/armitron/img000001.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/armitron/img000003.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/armitron/img000004.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/armitron/img000008.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/armitron/img000011.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/armitron/img000014.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/armitron/img000015.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/armitron/img000021.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/armitron/img000032.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/armitron/img000044.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/armitron/img000049.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/armitron/img000057.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/armitron/img000059.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/armitron/img000073.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/armitron/img000096.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/armitron/img000098.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/armitron/img000105.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/armitron/img000114.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/armitron/img000115.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/armitron/img000133.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/armitron/img000147.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/aspirin/img000001.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/aspirin/img000010.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/aspirin/img000011.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/aspirin/img000042.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/athalon/img000019.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/athalon/img000020.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/athalon/img000022.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/athalon/img000024.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/athalon/img000029.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/athalon/img000033.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/audi/img000003.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/audi/img000010.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/audi/img000015.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/audi/img000018.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/audi/img000026.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/audi/img000046.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/audi/img000056.jpg
+Processed: 2000 images.
+Deleted xml for unavailable image file ../cleaned-data/voc_format/audi/img000092.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/audi/img000096.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/audi/img000100.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/audi/img000103.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/audi/img000119.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/audi/img000120.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/audi/img000123.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/audi/img000129.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/audi/img000231.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/audi/img000235.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/audi/img000236.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/audi/img000270.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/audi/img000277.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/audi/img000282.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/audi/img000288.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/audi/img000296.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/audi/img000305.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/audi/img000316.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/audi/img000349.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/audi/img000365.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/audi/img000408.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/audi/img000440.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/audi/img000449.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/axa/img000002.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/axa/img000019.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/axa/img000120.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/bank of america/img000058.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/bank of america/img000104.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/bank of america/img000128.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/BASF/img000011.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/BASF/img000129.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/bella taylor/img000000.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/bella taylor/img000002.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/bella taylor/img000011.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/bella taylor/img000015.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/bella taylor/img000021.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/bella taylor/img000027.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/bella taylor/img000033.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/bella taylor/img000038.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/bella taylor/img000039.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/bella taylor/img000042.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/bella taylor/img000044.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/bella taylor/img000045.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/bella taylor/img000052.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/bella taylor/img000070.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/bella taylor/img000074.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/bello digital/img000034.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/bem wireless/img000002.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/bem wireless/img000020.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/bem wireless/img000021.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/bem wireless/img000041.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/bem wireless/img000092.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/bem wireless/img000098.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/bem wireless/img000124.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/bem wireless/img000125.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/bem wireless/img000158.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/bem wireless/img000205.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/bem wireless/img000223.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/ben sherman/img000001.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/ben sherman/img000002.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/ben sherman/img000008.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/benrus/img000030.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/benrus/img000074.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/benrus/img000086.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/benrus/img000099.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/bertha watches/img000030.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/bertha watches/img000057.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/bertha watches/img000069.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/bertha watches/img000102.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/bionade/img000001.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/bionade/img000026.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/bionade/img000040.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/bionade/img000042.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/bionade/img000062.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/bionade/img000122.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/BMW/img000059.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/BMW/img000061.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/BMW/img000121.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/BMW/img000145.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/BMW/img000240.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/BMW/img000306.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/BMW/img000317.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/BMW/img000322.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/BMW/img000346.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/BMW/img000366.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/BMW/img000377.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/BMW/img000385.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/BMW/img000428.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/BMW/img000443.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/BMW/img000481.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/BMW/img000519.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/boeing/img000009.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/boeing/img000066.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/bosch/img000011.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/bosch/img000048.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/bosch/img000055.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/bosch/img000070.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/bosch/img000103.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/bosch/img000111.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/bosch/img000116.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/bosch/img000121.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/bosch/img000135.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/bosch/img000237.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/bosch/img000241.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/bosch/img000265.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/bosch/img000269.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/bosch/img000273.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/bosch/img000313.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/bosch/img000351.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/budweiser/img000001.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/budweiser/img000004.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/budweiser/img000009.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/budweiser/img000013.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/budweiser/img000023.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/budweiser/img000030.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/budweiser/img000041.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/budweiser/img000059.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/budweiser/img000061.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/budweiser/img000071.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/budweiser/img000095.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/budweiser/img000109.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/budweiser/img000126.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/budweiser/img000142.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/budweiser/img000157.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/budweiser/img000166.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/budweiser/img000229.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/budweiser/img000235.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/budweiser/img000241.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/budweiser/img000243.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/budweiser/img000260.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/budweiser/img000303.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/budweiser/img000375.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/burger king/img000005.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/burger king/img000042.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/burger king/img000072.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/burger king/img000080.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/burger king/img000090.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/burger king/img000112.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/burger king/img000131.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/burger king/img000144.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/burger king/img000162.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/burger king/img000188.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/burger king/img000190.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/burger king/img000195.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/burger king/img000205.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/burger king/img000207.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/burger king/img000235.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/burger king/img000245.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/burger king/img000257.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/burger king/img000271.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/burger king/img000289.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/burger king/img000294.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/burger king/img000298.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/burger king/img000301.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/burger king/img000306.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/burger king/img000316.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/burger king/img000318.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/burger king/img000337.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/burger king/img000355.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/burger king/img000369.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/burger king/img000379.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/burger king/img000409.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/burger king/img000416.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/burger king/img000418.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/burger king/img000426.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/burger king/img000427.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/burger king/img000436.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/burger king/img000440.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/burger king/img000474.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/canon/img000117.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/canon/img000148.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/canon/img000151.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/canon/img000156.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/canon/img000164.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/canon/img000168.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/canon/img000184.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/canon/img000217.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/canon/img000273.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/canon/img000299.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/canon/img000311.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/canon/img000324.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/canon/img000386.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/canon/img000388.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/canon/img000396.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/canon/img000397.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/canon/img000411.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/canon/img000415.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/canon/img000420.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/cartier/img000059.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/cartier/img000079.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/cartier/img000105.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/cartier/img000107.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/cartier/img000123.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/cartier/img000128.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/cartier/img000137.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/cartier/img000178.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/caterpillar/img000017.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/caterpillar/img000023.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/caterpillar/img000032.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/caterpillar/img000033.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/caterpillar/img000038.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/caterpillar/img000043.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/caterpillar/img000055.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/caterpillar/img000072.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/caterpillar/img000112.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/caterpillar/img000122.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/caterpillar/img000142.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/caterpillar/img000192.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/caterpillar/img000198.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/caterpillar/img000201.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/caterpillar/img000217.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/caterpillar/img000221.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/caterpillar/img000222.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/chanel/img000003.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/chanel/img000011.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/chanel/img000038.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/chanel/img000043.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/chanel/img000116.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/chanel/img000139.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/chanel/img000151.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/chanel/img000177.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/chanel/img000243.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/chanel/img000254.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/chanel/img000266.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/chanel/img000271.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/chanel/img000279.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/chanel/img000301.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/chanel/img000433.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/chanel/img000472.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/chanel/img000509.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/chevrolet/img000057.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/chevrolet/img000066.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/chevrolet/img000130.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/cisco/img000000.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/cisco/img000002.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/coca-cola/img000012.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/coca-cola/img000031.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/coca-cola/img000063.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/coca-cola/img000071.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/coca-cola/img000076.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/coca-cola/img000082.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/coca-cola/img000169.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/coca-cola/img000283.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/coca-cola/img000357.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/coca-cola/img000359.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/coca-cola/img000373.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/coca-cola/img000401.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/coca-cola/img000426.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/coca-cola/img000438.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/coca-cola/img000457.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/coca-cola/img000470.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/coca-cola/img000473.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/coca-cola/img000477.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/coca-cola/img000522.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/coca-cola/img000529.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/coca-cola/img000547.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/coca-cola/img000570.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/coca-cola/img000588.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/coca-cola/img000599.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/coca-cola/img000630.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/coca-cola/img000637.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/coca-cola/img000642.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/coca-cola/img000679.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/coca-cola/img000769.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/coca-cola/img000796.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/coca-cola/img000811.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/coca-cola/img000828.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/coca-cola/img000834.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/coca-cola/img000841.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/coca-cola/img000855.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/coca-cola/img000862.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/colgate/img000001.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/colgate/img000007.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/colgate/img000050.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/colgate/img000052.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/colgate/img000059.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/colgate/img000062.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/colgate/img000078.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/colgate/img000081.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/colgate/img000089.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/colgate/img000117.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/colgate/img000119.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/colgate/img000147.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/colgate/img000185.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/colgate/img000191.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/colgate/img000193.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/colgate/img000200.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/colgate/img000209.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/colgate/img000210.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/corona/img000007.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/corona/img000014.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/corona/img000037.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/corona/img000038.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/costco/img000010.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/costco/img000060.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/costco/img000068.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/costco/img000114.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/costco/img000159.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/CVS/img000000.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/CVS/img000002.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/CVS/img000003.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/CVS/img000007.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/CVS/img000012.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/CVS/img000029.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/CVS/img000034.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/CVS/img000036.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/CVS/img000043.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/CVS/img000051.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/CVS/img000056.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/CVS/img000065.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/CVS/img000072.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/CVS/img000110.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/CVS/img000120.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/CVS/img000127.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/CVS/img000132.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/CVS/img000138.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/CVS/img000157.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/danone/img000017.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/danone/img000021.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/esso/img000041.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/esso/img000057.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/esso/img000095.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/esso/img000125.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/esso/img000154.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/esso/img000209.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/FedEx/img000062.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/FedEx/img000077.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/FedEx/img000096.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/FedEx/img000097.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/FedEx/img000109.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/FedEx/img000119.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/FedEx/img000124.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/FedEx/img000135.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/FedEx/img000137.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/FedEx/img000138.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/FedEx/img000180.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/FedEx/img000181.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/FedEx/img000197.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/FedEx/img000198.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/FedEx/img000241.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/FedEx/img000249.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/FedEx/img000262.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/FedEx/img000263.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/FedEx/img000312.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/FedEx/img000323.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/FedEx/img000327.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/FedEx/img000336.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/FedEx/img000337.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/FedEx/img000344.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/FedEx/img000352.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/FedEx/img000366.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/FedEx/img000393.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/FedEx/img000439.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/ford/img000083.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/frito lays/img000002.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/frito lays/img000018.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/frito lays/img000023.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/frito lays/img000045.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/frito lays/img000051.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/frito lays/img000121.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/frito lays/img000125.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/frito lays/img000170.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/frito lays/img000176.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/gillette/img000158.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/gillette/img000183.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/gillette/img000217.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/gillette/img000219.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/gillette/img000238.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/gillette/img000244.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/gillette/img000248.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/gillette/img000269.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/gillette/img000292.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/gillette/img000307.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/gillette/img000316.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/gillette/img000319.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/gillette/img000368.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/gillette/img000374.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/gucci/img000007.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/gucci/img000077.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/gucci/img000111.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/H&M/img000011.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/H&M/img000035.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/H&M/img000039.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/H&M/img000058.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/H&M/img000059.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/H&M/img000104.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/H&M/img000113.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/H&M/img000116.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/H&M/img000125.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/H&M/img000143.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/H&M/img000154.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/H&M/img000155.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/H&M/img000163.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/H&M/img000205.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/H&M/img000327.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/H&M/img000357.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/heineken/img000015.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/heineken/img000017.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/heineken/img000040.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/heineken/img000072.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/heineken/img000086.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/heineken/img000089.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/heineken/img000090.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/heineken/img000099.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/heineken/img000113.jpg
+Processed: 9000 images.
+Deleted xml for unavailable image file ../cleaned-data/voc_format/heineken/img000139.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/heineken/img000153.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/heineken/img000167.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/heineken/img000192.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/heineken/img000197.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/heineken/img000200.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/heineken/img000201.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/heineken/img000206.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/heineken/img000207.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/heineken/img000208.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/heineken/img000239.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/heineken/img000240.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/heineken/img000265.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/heineken/img000280.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/heineken/img000282.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/heineken/img000284.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/heineken/img000294.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/heineken/img000305.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/heineken/img000314.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/heineken/img000326.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/heineken/img000330.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/heineken/img000334.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/heineken/img000337.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/heineken/img000338.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/heineken/img000340.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/heineken/img000345.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/heineken/img000349.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/heineken/img000372.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/heineken/img000385.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/heineken/img000390.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/heineken/img000403.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/heineken/img000416.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/heineken/img000429.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/heineken/img000432.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/heineken/img000442.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/heineken/img000447.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/heineken/img000450.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/heineken/img000455.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/heineken/img000457.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/heineken/img000467.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/heineken/img000485.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/heineken/img000493.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/heineken/img000517.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/heineken/img000541.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/heineken/img000547.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/heineken/img000548.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/heineken/img000556.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/heineken/img000566.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/heineken/img000607.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/hershey/img000007.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/hershey/img000024.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/hershey/img000028.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/hershey/img000048.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/hershey/img000059.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/hershey/img000064.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/hershey/img000067.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/hershey/img000074.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/home depot/img000000.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/home depot/img000001.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/home depot/img000002.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/home depot/img000005.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/home depot/img000013.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/home depot/img000014.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/home depot/img000016.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/home depot/img000041.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/home depot/img000049.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/honda/img000007.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/honda/img000026.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/honda/img000072.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/honda/img000085.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/honda/img000092.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/honda/img000094.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/honda/img000097.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/honda/img000106.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/honda/img000121.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/honda/img000129.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/honda/img000133.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/honda/img000145.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/honda/img000159.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/honda/img000173.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/honda/img000180.jpg
+Processed: 10000 images.
+Deleted xml for unavailable image file ../cleaned-data/voc_format/honda/img000208.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/honda/img000224.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/honda/img000233.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/honda/img000255.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/honda/img000262.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/honda/img000272.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/honda/img000285.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/hp/img000012.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/hp/img000024.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/hp/img000043.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/hp/img000048.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/hp/img000071.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/hp/img000131.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/hp/img000139.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/hsbc/img000002.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/hsbc/img000012.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/hsbc/img000026.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/hsbc/img000030.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/hsbc/img000034.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/hsbc/img000043.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/hsbc/img000053.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/hsbc/img000057.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/hsbc/img000069.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/hsbc/img000082.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/hsbc/img000113.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/hsbc/img000120.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/hsbc/img000130.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/hsbc/img000131.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/hsbc/img000144.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/hsbc/img000229.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/huawei/img000000.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/huawei/img000002.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/huawei/img000012.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/huawei/img000019.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/huawei/img000022.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/huawei/img000045.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/huawei/img000102.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/huawei/img000115.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/huawei/img000144.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/huawei/img000145.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/huawei/img000146.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/huawei/img000148.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/huawei/img000167.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/huawei/img000176.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/huawei/img000199.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/huawei/img000206.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/huawei/img000214.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/huawei/img000216.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/huawei/img000248.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/huawei/img000280.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/huawei/img000289.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/huawei/img000292.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/huawei/img000315.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/hyundai/img000010.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/hyundai/img000054.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/hyundai/img000099.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/hyundai/img000100.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/hyundai/img000147.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/hyundai/img000200.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/hyundai/img000226.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/hyundai/img000232.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/hyundai/img000253.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/hyundai/img000266.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/hyundai/img000276.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/hyundai/img000277.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/hyundai/img000286.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/hyundai/img000302.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/hyundai/img000315.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/hyundai/img000322.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/hyundai/img000323.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/hyundai/img000342.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/hyundai/img000350.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/hyundai/img000357.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/hyundai/img000360.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/hyundai/img000378.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/hyundai/img000393.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/hyundai/img000394.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/hyundai/img000400.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/hyundai/img000435.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/hyundai/img000480.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/hyundai/img000496.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/hyundai/img000512.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/hyundai/img000515.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/hyundai/img000519.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/hyundai/img000546.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/hyundai/img000556.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/hyundai/img000557.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/IKEA/img000001.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/IKEA/img000003.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/IKEA/img000074.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/IKEA/img000103.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/IKEA/img000172.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/intel/img000043.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/intel/img000080.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/intel/img000123.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/intel/img000127.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/kelloggs/img000014.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/kelloggs/img000019.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/kelloggs/img000026.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/kelloggs/img000030.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/kelloggs/img000042.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/kelloggs/img000080.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/kelloggs/img000104.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/kelloggs/img000112.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/kelloggs/img000137.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/kelloggs/img000166.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/kelloggs/img000172.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/kelloggs/img000274.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/kia/img000000.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/kia/img000005.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/kia/img000026.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/kia/img000029.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/kia/img000034.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/kia/img000041.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/kia/img000061.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/kia/img000149.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/kia/img000154.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/kia/img000160.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/kia/img000167.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/kia/img000190.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/kia/img000194.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/kia/img000197.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/kia/img000210.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/kia/img000235.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/kia/img000239.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/kia/img000257.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/kia/img000264.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/kia/img000267.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/kia/img000270.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/kia/img000273.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/kia/img000278.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/kia/img000282.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/kia/img000283.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/kia/img000284.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/kia/img000287.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/kia/img000291.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/kia/img000295.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/kia/img000296.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/kia/img000297.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/kia/img000305.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/kia/img000307.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/kia/img000308.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/kia/img000310.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/kia/img000317.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/kia/img000331.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/kraft/img000008.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/kraft/img000010.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/kraft/img000028.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/kraft/img000040.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/kraft/img000042.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/kraft/img000059.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/kraft/img000060.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/kraft/img000074.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/kraft/img000090.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/kraft/img000095.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/kraft/img000124.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/lego/img000025.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/lego/img000089.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/lego/img000094.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/lego/img000099.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/lego/img000104.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/lego/img000129.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/lego/img000149.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/lexus/img000001.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/lexus/img000005.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/lexus/img000035.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/lexus/img000067.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/lexus/img000106.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/lexus/img000126.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/lexus/img000130.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/lexus/img000136.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/lexus/img000142.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/lexus/img000153.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/LOreal/img000108.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/LOreal/img000118.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/LOreal/img000127.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/LOreal/img000133.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/louis vuitton/img000038.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/louis vuitton/img000046.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/louis vuitton/img000051.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/louis vuitton/img000068.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/louis vuitton/img000072.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/louis vuitton/img000074.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/louis vuitton/img000078.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/louis vuitton/img000083.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/louis vuitton/img000094.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/louis vuitton/img000116.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/louis vuitton/img000120.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/louis vuitton/img000129.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/louis vuitton/img000133.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/louis vuitton/img000141.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/louis vuitton/img000149.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/louis vuitton/img000161.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/louis vuitton/img000163.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/louis vuitton/img000167.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/louis vuitton/img000170.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/louis vuitton/img000179.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/louis vuitton/img000183.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/marlboro/img000001.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/marlboro/img000007.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/marlboro/img000008.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/marlboro/img000014.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/marlboro/img000030.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/marlboro/img000066.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/marlboro/img000292.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/marlboro/img000298.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/marlboro/img000387.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/marlboro/img000389.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/mastercard/img000005.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/mastercard/img000017.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/mastercard/img000059.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/McDonalds/img000209.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/McDonalds/img000212.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/McDonalds/img000222.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/McDonalds/img000230.jpg
+Processed: 13000 images.
+Deleted xml for unavailable image file ../cleaned-data/voc_format/McDonalds/img000274.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/McDonalds/img000301.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/McDonalds/img000304.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/McDonalds/img000317.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/McDonalds/img000321.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/McDonalds/img000365.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/McDonalds/img000397.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/McDonalds/img000400.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/McDonalds/img000476.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/McDonalds/img000484.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/McDonalds/img000503.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/McDonalds/img000522.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/McDonalds/img000689.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/McDonalds/img000765.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/McDonalds/img000766.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/mercedes benz/img000002.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/mercedes benz/img000003.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/mercedes benz/img000004.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/mercedes benz/img000005.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/mercedes benz/img000007.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/mercedes benz/img000011.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/mercedes benz/img000029.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/mercedes benz/img000040.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/mercedes benz/img000042.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/mercedes benz/img000066.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/mercedes benz/img000071.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/mercedes benz/img000091.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/mercedes benz/img000101.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/mercedes benz/img000151.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/mercedes benz/img000164.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/mercedes benz/img000169.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/mercedes benz/img000240.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/mercedes benz/img000303.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/mercedes benz/img000334.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/mercedes benz/img000342.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/mercedes benz/img000367.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/mercedes benz/img000386.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/mercedes benz/img000391.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/mercedes benz/img000395.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/mercedes benz/img000409.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/mercedes benz/img000425.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/mercedes benz/img000463.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/mercedes benz/img000465.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/mercedes benz/img000498.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/mercedes benz/img000589.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/mercedes benz/img000627.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/mercedes benz/img000635.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/mercedes benz/img000643.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/mercedes benz/img000659.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/nescafe/img000009.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/nescafe/img000052.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/nescafe/img000068.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/nescafe/img000085.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/nescafe/img000094.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/nescafe/img000107.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/nescafe/img000136.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/nescafe/img000144.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/nescafe/img000166.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/nescafe/img000168.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/nescafe/img000179.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/nescafe/img000185.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/nescafe/img000188.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/nescafe/img000204.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/nescafe/img000221.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/nestle/img000031.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/nestle/img000103.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/nestle/img000106.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/nestle/img000124.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/nestle/img000145.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/nestle/img000152.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/nestle/img000155.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/nestle/img000181.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/nestle/img000245.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/netflix/img000077.jpg
+Processed: 14000 images.
+Deleted xml for unavailable image file ../cleaned-data/voc_format/netflix/img000160.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/nike/img000196.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/nike/img000202.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/nike/img000213.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/nike/img000218.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/nike/img000224.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/nike/img000230.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/nike/img000231.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/nike/img000232.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/nissan/img000033.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/nissan/img000104.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/nissan/img000140.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/nissan/img000150.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/nissan/img000157.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/nissan/img000176.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/nissan/img000178.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/nissan/img000183.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/nissan/img000186.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/nissan/img000188.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/nissan/img000191.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/nissan/img000265.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/nissan/img000275.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/nissan/img000278.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/nissan/img000327.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/nissan/img000338.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/nissan/img000367.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/nissan/img000371.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/nissan/img000396.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/nivea/img000000.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/nivea/img000005.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/nivea/img000027.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/nivea/img000030.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/nivea/img000037.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/nivea/img000068.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/nivea/img000070.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/nivea/img000072.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/nivea/img000077.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/nivea/img000084.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/nivea/img000090.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/nivea/img000092.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/nivea/img000123.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/nivea/img000151.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/nivea/img000161.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/nivea/img000170.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/nivea/img000201.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/nivea/img000209.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/nivea/img000233.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/nivea/img000255.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/nivea/img000299.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/nivea/img000344.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/nivea/img000363.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/nivea/img000366.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/Pampers/img000038.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/Pampers/img000044.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/Pampers/img000064.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/Pampers/img000074.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/Pampers/img000094.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/Pampers/img000097.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/Pampers/img000107.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/Pampers/img000119.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/Pampers/img000156.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/Pampers/img000174.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/Pampers/img000194.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/panasonic/img000010.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/panasonic/img000143.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/panasonic/img000177.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/panasonic/img000183.jpg
+1612.5Deleted xml for unavailable image file ../cleaned-data/voc_format/pepsi/img000035.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/pepsi/img000103.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/pepsi/img000260.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/pepsi/img000297.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/pepsi/img000303.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/pepsi/img000309.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/pepsi/img000338.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/pepsi/img000360.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/pepsi/img000388.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/pepsi/img000407.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/philips/img000043.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/philips/img000051.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/philips/img000061.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/philips/img000073.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/philips/img000092.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/philips/img000094.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/philips/img000098.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/philips/img000100.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/philips/img000115.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/philips/img000122.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/philips/img000123.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/philips/img000126.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/philips/img000155.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/philips/img000183.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/pizza hut/img000009.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/pizza hut/img000026.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/pizza hut/img000031.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/pizza hut/img000033.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/pizza hut/img000055.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/pizza hut/img000060.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/pizza hut/img000063.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/pizza hut/img000065.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/pizza hut/img000073.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/pizza hut/img000083.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/pizza hut/img000094.jpg
+dDeleted xml for unavailable image file ../cleaned-data/voc_format/pizza hut/img000100.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/pizza hut/img000114.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/pizza hut/img000131.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/pizza hut/img000133.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/pizza hut/img000139.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/pizza hut/img000145.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/porsche/img000021.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/porsche/img000052.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/porsche/img000057.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/red bull/img000001.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/red bull/img000063.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/red bull/img000124.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/red bull/img000145.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/red bull/img000156.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/red bull/img000158.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/red bull/img000159.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/red bull/img000177.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/red bull/img000185.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/red bull/img000260.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/red bull/img000262.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/red bull/img000290.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/red bull/img000296.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/red bull/img000298.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/red bull/img000321.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/red bull/img000325.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/red bull/img000362.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/red bull/img000370.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/red bull/img000431.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/red bull/img000442.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/red bull/img000459.jpg
+Processed: 16000 images.
+Deleted xml for unavailable image file ../cleaned-data/voc_format/red bull/img000543.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/red bull/img000575.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/red bull/img000580.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/red bull/img000584.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/red bull/img000590.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/red bull/img000596.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/red bull/img000601.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/red bull/img000603.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/red bull/img000606.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/red bull/img000611.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/red bull/img000633.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/red bull/img000663.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/red bull/img000664.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/red bull/img000723.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/red bull/img000827.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/red bull/img000858.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/reebok/img000008.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/reebok/img000010.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/reebok/img000022.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/reebok/img000024.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/reebok/img000025.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/reebok/img000029.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/reebok/img000050.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/reebok/img000051.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/reebok/img000057.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/reebok/img000058.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/reebok/img000062.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/reebok/img000073.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/reebok/img000074.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/reebok/img000083.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/reebok/img000085.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/reebok/img000088.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/reebok/img000097.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/rolex/img000019.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/rolex/img000044.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/rolex/img000097.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/rolex/img000103.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/rolex/img000121.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/Samsung/img000005.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/Samsung/img000007.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/Samsung/img000031.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/Samsung/img000082.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/Samsung/img000129.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/Samsung/img000158.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/Samsung/img000245.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/santander/img000007.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/shell/img000026.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/shell/img000108.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/shell/img000110.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/shell/img000145.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/shell/img000188.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/shell/img000194.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/shell/img000196.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/shell/img000209.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/shell/img000215.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/shell/img000216.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/shell/img000238.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/shell/img000254.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/shell/img000261.jpg
+Processed: 17000 images.
+Deleted xml for unavailable image file ../cleaned-data/voc_format/shell/img000308.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/shell/img000362.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/shell/img000375.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/sony/img000000.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/starbucks/img000028.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/starbucks/img000037.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/starbucks/img000043.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/starbucks/img000053.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/starbucks/img000099.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/starbucks/img000107.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/starbucks/img000135.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/starbucks/img000140.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/starbucks/img000205.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/starbucks/img000213.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/starbucks/img000240.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/starbucks/img000257.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/starbucks/img000261.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/starbucks/img000262.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/starbucks/img000345.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/starbucks/img000350.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/starbucks/img000406.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/subway/img000001.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/subway/img000009.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/subway/img000013.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/subway/img000052.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/subway/img000060.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/subway/img000061.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/subway/img000100.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/subway/img000104.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/subway/img000111.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/subway/img000120.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/target/img000010.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/target/img000049.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/target/img000075.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/target/img000100.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/target/img000101.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/target/img000199.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/target/img000218.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/target/img000261.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/target/img000282.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/target/img000305.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/target/img000308.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/target/img000311.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/target/img000318.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/target/img000326.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/tmobile/img000001.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/tmobile/img000100.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/tmobile/img000154.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/toyota/img000073.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/toyota/img000082.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/toyota/img000129.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/toyota/img000132.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/toyota/img000138.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/toyota/img000142.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/toyota/img000154.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/toyota/img000162.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/toyota/img000172.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/toyota/img000189.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/toyota/img000190.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/toyota/img000237.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/toyota/img000247.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/toyota/img000257.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/toyota/img000269.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/toyota/img000275.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/toyota/img000300.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/toyota/img000302.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/toyota/img000309.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/toyota/img000313.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/toyota/img000318.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/toyota/img000346.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/toyota/img000388.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/toyota/img000434.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/toyota/img000458.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/toyota/img000459.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/toyota/img000493.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/toyota/img000498.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/toyota/img000514.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/toyota/img000520.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/toyota/img000521.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/toyota/img000524.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/toyota/img000556.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/toyota/img000573.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/toyota/img000580.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/uniqlo/img000000.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/uniqlo/img000002.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/uniqlo/img000020.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/uniqlo/img000024.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/uniqlo/img000052.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/uniqlo/img000065.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/uniqlo/img000075.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/uniqlo/img000082.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/uniqlo/img000129.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/UPS/img000019.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/UPS/img000022.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/UPS/img000042.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/UPS/img000051.jpg
+Processed: 19000 images.
+Deleted xml for unavailable image file ../cleaned-data/voc_format/UPS/img000053.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/UPS/img000062.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/UPS/img000080.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/UPS/img000089.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/verizon/img000026.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/visa/img000008.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/visa/img000025.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/visa/img000026.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/visa/img000065.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/volkswagen/img000032.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/volkswagen/img000033.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/volkswagen/img000091.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/volkswagen/img000141.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/volkswagen/img000202.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/volkswagen/img000203.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/volkswagen/img000206.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/volkswagen/img000211.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/volkswagen/img000214.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/volkswagen/img000215.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/volkswagen/img000220.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/volkswagen/img000222.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/volkswagen/img000228.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/volkswagen/img000239.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/volkswagen/img000240.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/volkswagen/img000241.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/volkswagen/img000252.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/volkswagen/img000264.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/volkswagen/img000269.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/volkswagen/img000276.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/volkswagen/img000280.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/volkswagen/img000286.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/volkswagen/img000295.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/volkswagen/img000300.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/volkswagen/img000320.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/volkswagen/img000323.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/volkswagen/img000325.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/volkswagen/img000329.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/volkswagen/img000332.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/volkswagen/img000334.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/volkswagen/img000342.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/volkswagen/img000344.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/volkswagen/img000346.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/volkswagen/img000351.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/volkswagen/img000352.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/volkswagen/img000372.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/volkswagen/img000377.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/volkswagen/img000381.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/volkswagen/img000385.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/volkswagen/img000394.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/volkswagen/img000437.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/volkswagen/img000444.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/volkswagen/img000454.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/volkswagen/img000458.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/volkswagen/img000466.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/volkswagen/img000468.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/volkswagen/img000482.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/volkswagen/img000495.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/volkswagen/img000515.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/volkswagen/img000516.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/volkswagen/img000520.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/volkswagen/img000527.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/volkswagen/img000530.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/volkswagen/img000531.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/volkswagen/img000537.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/volkswagen/img000539.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/volkswagen/img000542.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/volkswagen/img000547.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/volkswagen/img000552.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/volkswagen/img000553.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/volkswagen/img000575.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/volkswagen/img000582.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/volkswagen/img000626.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/volkswagen/img000637.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/volkswagen/img000638.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/volkswagen/img000655.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/volkswagen/img000672.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/volkswagen/img000696.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/volkswagen/img000707.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/volkswagen/img000713.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/volkswagen/img000739.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/volkswagen/img000768.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/volkswagen/img000787.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/Walmart/img000000.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/Walmart/img000066.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/Walmart/img000077.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/wells fargo/img000000.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/wells fargo/img000107.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/wells fargo/img000132.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/wells fargo/img000136.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/wells fargo/img000163.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/wells fargo/img000164.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/wells fargo/img000187.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/Zara/img000000.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/Zara/img000005.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/Zara/img000012.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/Zara/img000043.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/Zara/img000085.jpg
+Deleted xml for unavailable image file ../cleaned-data/voc_format/Zara/img000089.jpg
+Processed rois: 28007
+Processed images: 9428
+Processed brands: 821
+Unavailable image files: 1330
