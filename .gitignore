@@ -3,3 +3,4 @@ datasets_and__models/
 *.zip
 *.gz
 *.tar.gz
+*.tar

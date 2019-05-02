@@ -326,10 +326,8 @@ python object_detection/model_main.py --pipeline_config_path=${PIPELINE_CONFIG_P
 
 
 
-python object_detection/model_main.py --pipeline_config_path=C:\environment\Machine_Learning\Machine_Learning_Engineer\capstone_project\LogosInTheWild-v2\model\faster_rcnn_inception_logos.config --model_dir=C:\environment\Machine_Learning\Machine_Learning_Engineer\capstone_project\LogosInTheWild-v2\models\model\ --num_train_steps=10 --sample_1_of_n_eval_examples=1 --alsologtostderr
 
-
-python object_detection/legacy/train.py --logtostderr --train_dir=${TRAIN_DIR} --pipeline_config_path=${PIPELINE_CONFIG_PATH}  
+python object_detection/legacy/train.py --logtostderr --train_dir=${TRAIN_DIR} --pipeline_config_path=${PIPELINE_CONFIG_PATH}  --alsologtostderr
 
  python object_detection/legacy/eval.py  --logtostderr   --pipeline_config_path=${PIPELINE_CONFIG_PATH} --checkpoint_dir=${MODEL_DIR}  --eval_dir=${EVAL_DIR}
 
