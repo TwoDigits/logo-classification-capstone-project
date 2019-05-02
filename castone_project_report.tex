@@ -29,7 +29,7 @@
     tabsize=2
 }
  
-\lstset{style=mystyle}
+\lstset{style=mystyle,basicstyle=\ttfamily}
 \setkomafont{disposition}{\normalcolor\bfseries}
 \renewcommand{\thesection}{\Roman{section}} 
 \begin{document}
@@ -106,7 +106,7 @@ As we later want to detect logos in arbitrary pictures from twitter tweeds, this
 
 Instead of downloading ourselves the images from the different urls provided in the Logos in the Wild dataset, we download the \emph{QMUL-OpenLogo Dataset} \cite{DBLP:journals/corr/abs-1807-01964}, which contains Logos in the Wild as a subset including all available JPEG files.
 
-We run a simple Python script to analyze the downloaded JPEGs in the Logos in the Wild dataset, and we find that in fact there are in total 821 brands, where the maximal number of logos per given brand is 1,928 for Heineken, and the minimum number is 1. Moreover, the image heineken/img00042.jpg contains the maximum of 118 logos, while in general every image contains at least one logo.
+We run a simple Python script to analyze the downloaded JPEG images in the Logos in the Wild dataset, and we find that in fact there are in total 821 brands, where the maximal number of logos per given brand is 1,928 for Heineken, and the minimum number is 1. Moreover, the image heineken/img00042.jpg contains the maximum of 118 logos, while in general every image contains at least one logo.
 %
 %In this section, you will be expected to analyze the data you are using for the problem. This data can either be in the form of a dataset (or datasets), input data (or input files), or even an environment. The type of data should be thoroughly described and, if possible, have basic statistics and information presented (such as discussion of input features or defining characteristics about the input or environment). Any abnormalities or interesting qualities about the data that may need to be addressed have been identified (such as features that need to be transformed or the possibility of outliers). Questions to ask yourself when writing this section:
 %
@@ -122,7 +122,7 @@ We run a simple Python script to analyze the downloaded JPEGs in the Logos in th
 \end{center}
 \vspace*{-5mm}\captionof{figure}{\url{https://www.iosb.fraunhofer.de/servlet/is/78045/}}
 
-While the images on the right contain logos of a single brand, the image on the left shows a sample image that includes bounding boxed for logos of different brands. In particular, an image can contain different types of logos of a brand. The following are the annotations in the Pascal-VOC-style in the xml-file corresponding to the image on the left hand side:
+While the images on the right contain logos of a single brand, the image on the left shows a sample image that includes bounding boxed for logos of different brands. In particular, an image can contain different types of logos of a brand. The following are the annotations in the Pascal-VOC style in the xml-file corresponding to the image on the left hand side:
 
 \begin{minipage}{.45\textwidth}
 %<object>
@@ -271,59 +271,37 @@ Fast-M \cite{Bao:2016:RCL:3007669.3007728} that is a multi-scale Fast R-CNN base
 (approx. 3-5 pages)
 
 \subsection*{Data Preprocessing}
-As stated above, we obtain the JPEGs of the Logos in the Wild dataset by downloading the superset QMUL-OpenLogo Dataset \cite{DBLP:journals/corr/abs-1807-01964}. 
-We first write a script that moves these JPEGs in the correpsponding brand folder, and next 
+Having gained access, we download the Logos in the Wild dataset \cite{logosinthewild} that contains XML files with the bounding boxes, the URLs to the JPEG images, samples and a script to obtain a clean dataset.
+As stated above, we obtain the JPEG images of the Logos in the Wild dataset by downloading the superset QMUL-OpenLogo Dataset \cite{DBLP:journals/corr/abs-1807-01964}. 
+
+After setting the variable "oldpath" to the absolute path of our \path{LogosInTheWild-v2/data} directory and the variable "new path" to the absolute path of our \path{openlogo/JPEGImages} directoy in our script move\_JPEG\_images.sh from the Logo Capstone Project, we execute this script that moves the JPEG files from the \path{openlogo/JPEGImages} directory in the corresponding brand subdirectory in the \path{LogosInTheWild-v2/data} directory.
+
+Next we execute the Python script create\_clean\_dataset.py from the \path{LogosInTheWild-v2/scripts} directory that adjusts the brand names in the XML files and removes XML files without corresponding JPEG image.
+This outputs that 9,428 images and 821 brands were processed, while 1,330 JPEG files were unavailable.
+
+Finally, for Tensorflow's Object Detection API we need to convert our dataset with annotations in Pascal-VOC style to Tensorflow's TFRecord file format. For this, we copy their modified Python script \path{create_pascal_tf_record.py} from the Capstone project folder to the LogosInTheWild-v2 directory and run the following:
+%TODO
 %In this section, all of your preprocessing steps will need to be clearly documented, if any were necessary. From the previous section, any of the abnormalities or characteristics that you identified about the dataset will be addressed and corrected here. Questions to ask yourself when writing this section:
 
-If the algorithms chosen require preprocessing steps like feature selection or feature transformations, have they been properly documented?
-Based on the Data Exploration section, if there were abnormalities or characteristics that needed to be addressed, have they been properly corrected?
-If no preprocessing is needed, has it been made clear why?
-
-\begin{verbatim}
-bash rename_dataset_files.sh
-\end{verbatim}
-
-
-\url{https://github.com/tensorflow/models/blob/master/research/object_detection/g3doc/using_your_own_dataset.md}
-
-\begin{verbatim}
-(py2) python object_detection/dataset_tools/create_pascal_tf_record.py --data_dir=/mnt/c/environment/Machine_Learning/Machine_Learning_Engineer/capstone_project/LogosInTheWild-v2/data/voc_format --year=VOC2012  --label_map_path=/mnt/c/environment/Machine_Learning/Machine_Learning_Engineer/capstone_project/LogosInTheWild-v2/data/pascal_label_map.pbtxt --output_path=/mnt/c/environment/Machine_Learning/Machine_Learning_Engineer/
-capstone_project/LogosInTheWild-v2/data/
-
-(py2) cd /mnt/c/ProgramData/anaconda3/envs/tensorflow/models/research
-python object_detection/dataset_tools/analyze_pascal_tf_record.py --data_dir=/m
-nt/c/environment/Machine_Learning/Machine_Learning_Engineer/capstone_project/LogosInTheWild-v2/data/voc_format --year=VOC2012  --label_map_path=/mnt/c/environment/Machine_L
-earning/Machine_Learning_Engineer/capstone_project/LogosInTheWild-v2/data/pascal_label_map.pbtxt --output_path=/mnt/c/environment/Machine_Learning/Machine_Learning_Engineer
-/
-\end{verbatim}
-On image %d of %d 7500 7542
-On image %d of %d 0 1886
-On image %d of %d 100 1886
-On image %d of %d 200 1886
-On image %d of %d 300 1886
-On image %d of %d 400 1886
-On image %d of %d 500 1886
-On image %d of %d 600 1886
-On image %d of %d 700 1886
-On image %d of %d 800 1886
-On image %d of %d 900 1886
-On image %d of %d 1000 1886
-On image %d of %d 1100 1886
-On image %d of %d 1200 1886
-On image %d of %d 1300 1886
-On image %d of %d 1400 1886
-On image %d of %d 1500 1886
-On image %d of %d 1600 1886
-On image %d of %d 1700 1886
-On image %d of %d 1800 1886
+%TODO
+%If the algorithms chosen require preprocessing steps like feature selection or feature transformations, have they been properly documented?
+%Based on the Data Exploration section, if there were abnormalities or characteristics that needed to be addressed, have they been properly corrected?
+%If no preprocessing is needed, has it been made clear why?
+\begin{lstlisting}[language=bash]
+# From LogosInTheWild-v2 directory
+python create_pascal_tf_record.py --data_dir=./data/voc_format --year=VOC2012  --label_map_path=./data/pascal_label_map.pbtxt --output_path=./data/
+%
+%(py2) python object_detection/dataset_tools/create_pascal_tf_record.py --data_dir=/mnt/c/environment/Machine_Learning/Machine_Learning_Engineer/capstone_project/LogosInTheWild-v2/data/voc_format --year=VOC2012  --label_map_path=/mnt/c/environment/Machine_Learning/Machine_Learning_Engineer/capstone_project/LogosInTheWild-v2/data/pascal_label_map.pbtxt --output_path=/mnt/c/environment/Machine_Learning/Machine_Learning_Engineer/
+\end{lstlisting}
+\begin{lstlisting}[language=bash]
+# From LogosInTheWild-v2 directory
+python analyze_pascal_tf_record.py --data_dir=./data/voc_format --year=VOC2012  --label_map_path=./data/pascal_label_map.pbtxt --output_path=./data/
+%
+%(py2) cd /mnt/c/ProgramData/anaconda3/envs/tensorflow/models/research
+%python object_detection/dataset_tools/analyze_pascal_tf_record.py --data_dir=/mnt/c/environment/Machine_Learning/Machine_Learning_Engineer/capstone_project/LogosInTheWild-v2/data/voc_format --year=VOC2012  --label_map_path=/mnt/c/environment/Machine_Learning/Machine_Learning_Engineer/capstone_project/LogosInTheWild-v2/data/pascal_label_map.pbtxt --output_path=/mnt/c/environment/Machine_Learning/Machine_Learning_Engineer/
+\end{lstlisting}
 
 
-conda install  Cython
-conda install contextlib2
-conda install pillow
-conda install lxml
-conda install jupyter
-conda install matplotlib
 
 \begin{verbatim}cd /mnt/c/ProgramData/anaconda3/envs/tensorflow/models/research
 source ~/.bashrc
@@ -335,6 +313,17 @@ SAMPLE_1_OF_N_EVAL_EXAMPLES=1
 TRAIN_DIR=/mnt/c/environment/Machine_Learning/Machine_Learning_Engineer/capstone_project/LogosInTheWild-v2/models/model/train
 EVAL_DIR=/mnt/c/environment/Machine_Learning/Machine_Learning_Engineer/capstone_project/LogosInTheWild-v2/models/model/eval
 python object_detection/model_main.py --pipeline_config_path=${PIPELINE_CONFIG_PATH} --model_dir=${MODEL_DIR} --num_train_steps=${NUM_TRAIN_STEPS} --sample_1_of_n_eval_examples=$SAMPLE_1_OF_N_EVAL_EXAMPLES --alsologtostderr
+
+
+export PYTHONPATH=$PYTHONPATH:`pwd`:`pwd`/slim
+PIPELINE_CONFIG_PATH=/data/Machine_Learning/Machine_Learning_Engineer/capstone_project/logo-bucket-europe-west1/LogosInTheWild-v2/models/model/faster_rcnn_inception_logos-locally-on-ubuntu.config
+MODEL_DIR=/data/Machine_Learning/Machine_Learning_Engineer/capstone_project/logo-bucket-europe-west1/LogosInTheWild-v2/models/model/
+NUM_TRAIN_STEPS=20000
+SAMPLE_1_OF_N_EVAL_EXAMPLES=1
+TRAIN_DIR=/data/Machine_Learning/Machine_Learning_Engineer/capstone_project/logo-bucket-europe-west1/LogosInTheWild-v2/models/model/train
+EVAL_DIR=/data/Machine_Learning/Machine_Learning_Engineer/capstone_project/logo-bucket-europe-west1/LogosInTheWild-v2/models/model/eval
+python object_detection/model_main.py --pipeline_config_path=${PIPELINE_CONFIG_PATH} --model_dir=${MODEL_DIR} --num_train_steps=${NUM_TRAIN_STEPS} --sample_1_of_n_eval_examples=$SAMPLE_1_OF_N_EVAL_EXAMPLES --alsologtostderr
+
 
 
 python object_detection/model_main.py --pipeline_config_path=C:\environment\Machine_Learning\Machine_Learning_Engineer\capstone_project\LogosInTheWild-v2\model\faster_rcnn_inception_logos.config --model_dir=C:\environment\Machine_Learning\Machine_Learning_Engineer\capstone_project\LogosInTheWild-v2\models\model\ --num_train_steps=10 --sample_1_of_n_eval_examples=1 --alsologtostderr
