@@ -117,6 +117,7 @@ We run a simple Python script to analyze the downloaded JPEG images in the Logos
 %
 \subsection*{Exploratory Visualization}
 \begin{center}
+\label{sampleImage}
 \includegraphics[width=\textwidth]{samples.jpg}
 %\caption[Bildbeschreibung]{Image from }
 \end{center}
@@ -279,30 +280,35 @@ After setting the variable "oldpath" to the absolute path of our \path{LogosInTh
 Next we execute the Python script create\_clean\_dataset.py from the \path{LogosInTheWild-v2/scripts} directory that adjusts the brand names in the XML files and removes XML files without corresponding JPEG image.
 This outputs that 9,428 images and 821 brands were processed, while 1,330 JPEG files were unavailable.
 
+For our first logo classification task with a standard CNN architecture in Keras, we can load the image files with the \verbatim{load_files} function from skearn.datasets since the Logos in the Wild dataset is organized in directories with corresponding brand names. Of course, some images like 
+
 Finally, for Tensorflow's Object Detection API we need to convert our dataset with annotations in Pascal-VOC style to Tensorflow's TFRecord file format. For this, we copy their modified Python script \path{create_pascal_tf_record.py} from the Capstone project folder to the LogosInTheWild-v2 directory and run the following:
-%TODO
+%
 %In this section, all of your preprocessing steps will need to be clearly documented, if any were necessary. From the previous section, any of the abnormalities or characteristics that you identified about the dataset will be addressed and corrected here. Questions to ask yourself when writing this section:
 
-%TODO
+
 %If the algorithms chosen require preprocessing steps like feature selection or feature transformations, have they been properly documented?
 %Based on the Data Exploration section, if there were abnormalities or characteristics that needed to be addressed, have they been properly corrected?
 %If no preprocessing is needed, has it been made clear why?
 \begin{lstlisting}[language=bash]
 # From LogosInTheWild-v2 directory
 python create_pascal_tf_record.py --data_dir=./data/voc_format --year=VOC2012  --label_map_path=./data/pascal_label_map.pbtxt --output_path=./data/
+\end{lstlisting}
 %
 %(py2) python object_detection/dataset_tools/create_pascal_tf_record.py --data_dir=/mnt/c/environment/Machine_Learning/Machine_Learning_Engineer/capstone_project/LogosInTheWild-v2/data/voc_format --year=VOC2012  --label_map_path=/mnt/c/environment/Machine_Learning/Machine_Learning_Engineer/capstone_project/LogosInTheWild-v2/data/pascal_label_map.pbtxt --output_path=/mnt/c/environment/Machine_Learning/Machine_Learning_Engineer/
-\end{lstlisting}
-\begin{lstlisting}[language=bash]
-# From LogosInTheWild-v2 directory
-python analyze_pascal_tf_record.py --data_dir=./data/voc_format --year=VOC2012  --label_map_path=./data/pascal_label_map.pbtxt --output_path=./data/
-%
-%(py2) cd /mnt/c/ProgramData/anaconda3/envs/tensorflow/models/research
-%python object_detection/dataset_tools/analyze_pascal_tf_record.py --data_dir=/mnt/c/environment/Machine_Learning/Machine_Learning_Engineer/capstone_project/LogosInTheWild-v2/data/voc_format --year=VOC2012  --label_map_path=/mnt/c/environment/Machine_Learning/Machine_Learning_Engineer/capstone_project/LogosInTheWild-v2/data/pascal_label_map.pbtxt --output_path=/mnt/c/environment/Machine_Learning/Machine_Learning_Engineer/
-\end{lstlisting}
+%\begin{lstlisting}[language=bash]
+%# From LogosInTheWild-v2 directory
+%python analyze_pascal_tf_record.py --data_dir=./data/voc_format --year=VOC2012  --label_map_path=./data/pascal_label_map.pbtxt --output_path=./data/
+%%
+%%(py2) cd /mnt/c/ProgramData/anaconda3/envs/tensorflow/models/research
+%%python object_detection/dataset_tools/analyze_pascal_tf_record.py --data_dir=/mnt/c/environment/Machine_Learning/Machine_Learning_Engineer/capstone_project/LogosInTheWild-v2/data/voc_format --year=VOC2012  --label_map_path=/mnt/c/environment/Machine_Learning/Machine_Learning_Engineer/capstone_project/LogosInTheWild-v2/data/pascal_label_map.pbtxt --output_path=/mnt/c/environment/Machine_Learning/Machine_Learning_Engineer/
+%\end{lstlisting}
+%TODO Modify create to analyze and remove 2 in pascal
+After completion we see that we converted 7,542 images with annotations into the 10 training TFRecord files \path{pascal_train.record-0000i-of-00010}, and 1,886 images with annotations into the 10 validation TFrecord files \path{pascal_val.record-0000i-of-00010} for $i=0,\ldots,9$.
 
-
-
+Among other parameters for our Faster R-CNN, we choose in our configuration file \path{faster_rcnn_inception_logos.config} by the Capstone Project as data\_augmentation\_options random\_horizontal\_flip, random\_vertical\_flip and random\_rotation90.
+    
+\subsection*{Implementation}
 \begin{verbatim}cd /mnt/c/ProgramData/anaconda3/envs/tensorflow/models/research
 source ~/.bashrc
 export PYTHONPATH=$PYTHONPATH:`pwd`:`pwd`/slim
@@ -374,12 +380,12 @@ tensorboard --logdir=${YOUR_CLOUD_BUCKET}
 
 tensorboard --logdir=${MODEL_DIR}
 \end{verbatim}
-\subsection*{Implementation}
-In this section, the process for which metrics, algorithms, and techniques that you implemented for the given data will need to be clearly documented. It should be abundantly clear how the implementation was carried out, and discussion should be made regarding any complications that occurred during this process. Questions to ask yourself when writing this section:
-
-Is it made clear how the algorithms and techniques were implemented with the given datasets or input data?
-Were there any complications with the original metrics or techniques that required changing prior to acquiring a solution?
-Was there any part of the coding process (e.g., writing complicated functions) that should be documented?
+%
+%In this section, the process for which metrics, algorithms, and techniques that you implemented for the given data will need to be clearly documented. It should be abundantly clear how the implementation was carried out, and discussion should be made regarding any complications that occurred during this process. Questions to ask yourself when writing this section:
+%
+%Is it made clear how the algorithms and techniques were implemented with the given datasets or input data?
+%Were there any complications with the original metrics or techniques that required changing prior to acquiring a solution?
+%Was there any part of the coding process (e.g., writing complicated functions) that should be documented?
 \subsection*{Refinement}
 In this section, you will need to discuss the process of improvement you made upon the algorithms and techniques you used in your implementation. For example, adjusting parameters for certain models to acquire improved solutions would fall under the refinement category. Your initial and final solutions should be reported, as well as any significant intermediate results as necessary. Questions to ask yourself when writing this section:
 
@@ -448,9 +454,6 @@ DONE (t=52.51s).
 Accumulating evaluation results...
 Segmentation fault (core dumped)
 
-%#traing 7542
-%#val 1886
-
 %\nocite{*}
 \bibliography{capstone_project}
 \bibliographystyle{alpha}
@@ -462,3 +465,4 @@ Segmentation fault (core dumped)
 
 
 
+%Hi @danyfang! You meant --model_dir, right? I specify that for tensorboard but still it shows no new results from model_main.py, only the old logs from /legacy/train.py and /legacy/eval.py. I corrected now the num_classes to 
