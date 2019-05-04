@@ -1,0 +1,590 @@
+\documentclass{scrartcl}
+\usepackage{url,hyperref}
+\usepackage{listings}
+\usepackage{color,float,caption}
+\usepackage{graphicx} 
+\usepackage{booktabs}
+\usepackage{longtable}
+ 
+\definecolor{codegreen}{rgb}{0,0.6,0}
+\definecolor{codegray}{rgb}{0.5,0.5,0.5}
+\definecolor{codepurple}{rgb}{0.58,0,0.82}
+\definecolor{backcolour}{rgb}{0.95,0.95,0.92}
+ 
+\lstdefinestyle{mystyle}{
+    backgroundcolor=\color{backcolour},   
+    commentstyle=\color{codegreen},
+    keywordstyle=\color{magenta},
+    numberstyle=\tiny\color{codegray},
+    stringstyle=\color{codepurple},
+    basicstyle=\small,
+    breakatwhitespace=false,         
+    breaklines=true,                 
+    captionpos=b,                    
+    keepspaces=true,                 
+    numbers=left,                    
+    numbersep=5pt,                  
+    showspaces=false,                
+    showstringspaces=false,
+    showtabs=false,                  
+    tabsize=2
+}
+ 
+\lstset{style=mystyle,basicstyle=\small\ttfamily}
+\setkomafont{disposition}{\normalcolor\bfseries}
+\renewcommand{\thesection}{\Roman{section}} 
+\begin{document}
+
+\title{Machine Learning Engineer Nanodegree}
+\author{Ann-Kristin Juschka}
+\subtitle{Capstone Project}
+\maketitle
+
+%\begin{abstract}
+%The abstract text goes here.m
+%\end{abstract}
+
+
+\section{Definition}
+%(approx. 1-2 pages)
+%\begin{lstlisting}[language=Python]
+%test
+%\end{lstlisting}
+
+\subsection*{Project Overview}
+In this Nanodegree, \emph{Convolutional Neural Networks (CNNs)} are introduced that are most commonly used to analyze visual data.
+In the deep learning project of the Nanodegree, we train CNNs to detect dogs in images and to classify dog breeds.
+In general, object detection and classification is a classical task in machine learning. 
+
+The aim of this project is to use CNNs to detect and classify brands in images with logos. For this, usually CNNs are trained with the dataset \emph{FlickrLogos-27} \cite{flickrlogos27} and \emph{FlickrLogos-32} \cite{flickrlogos32}; e.g. in \cite{BIANCO201723,DBLP:journals/corr/IandolaSGK15}. We are also interested in this task as we later wish to \emph{analyze sentiments} in twitter tweeds with pictures where a given company's logo is detected.
+Due to time and size limits, we focus in this project on \emph{logo detection and classification}.
+%In this section, look to provide a high-level overview of the project in layman’s terms. Questions to ask yourself when writing this section:
+%
+%Has an overview of the project been provided, such as the problem domain, project origin, and related datasets or input data?
+%Has enough background information been given so that an uninformed reader would understand the problem domain and following problem statement?
+\subsection*{Problem Statement}
+While most logo datasets like \emph{FlickrLogos-27} \cite{flickrlogos27} and \emph{FlickrLogos-32} \cite{flickrlogos32} contain raw original logo graphics, we want to train our CNN on the in-the-wild logo dataset \emph{Logos in the Wild} \cite{logosinthewild} whose images contain logos as natural part. As this dataset includes in total 11,054 images with 32,850 annotated logo bounding boxes of 871 brands, it should be possible to train a CNN that achieves a high  accuracy or mean average precision (map).
+This is a challenging task as the regions containg logos are small.
+
+
+The main goal of this project is to use CNNs to \emph{classify the brand and company logos} from the Logos in the Wild dataset with high accuracy and mean average precision (map).
+For this, we first train an own CNN architecture as done in the dog breeds project of the Nanodegree.
+% with a convolutionary layer, a max-pooling layer, another convolutionary layer, a max-pooling layer, a global-average pooling layer and a final fully connected layer.
+Furthermore, to improve loss and accuracy we make use of the standard CNN architectures \emph{VGG19, Resnet50, InceptionV3, or Xception} that are already trained on the \emph{ImageNet} database \cite{kerasapplications}.
+Moreover, as the dataset comes with annotations in Pascal-VOC style, if time permits we will also train a \emph{Faster Region-based Convolutional Neural Network (Faster R-CNN)} \cite{DBLP:journals/corr/RenHG015} for two stages: First, an \emph{Region Proposal Network (RPN)} for \emph{logo detection}, and second, a classifier like VGG19 for logo classification of the candidate regions.
+ This Faster R-CNN will be evaluated using the \emph{mean average precision (map)} metric.
+%In this section, you will want to clearly define the problem that you are trying to solve, including the strategy (outline of tasks) you will use to achieve the desired solution. You should also thoroughly discuss what the intended solution will be for this problem. Questions to ask yourself when writing this section:
+%
+%Is the problem statement clearly defined? Will the reader understand what you are expecting to solve?
+%Have you thoroughly discussed how you will attempt to solve the problem?
+%Is an anticipated solution clearly defined? Will the reader understand what results you are looking for?
+\subsection*{Metrics}
+For purely logo classification, we seek to achieve a high accuracy. \emph{Accuracy} is simply the number of correct predictions divided by the total number of predictions.
+
+For logo detection, we need a different metric: \emph{mean average precision (map)} that is the mean over all classes, of the interpolated
+\emph{average precision} \cite{everingham2010pascal} for each class. Recall that
+\[
+\textup{precision}=\frac{\textup{true positives}}{\textup{true positives}+\textup{false positives}},\quad \textup{recall}=\frac{\textup{true positives}}{\textup{true positives}+\textup{false negatives}}.
+\]
+Considering the precision-recall curve for a given threshold, and the interpolated precision $\textup{precision}_\textup{interpolated}(\textup{recall}_i)=\max_{\tilde{r},\tilde{r}\geq \textup{recall}_i}\textup{precision}(\tilde{r})$ of the 11 values $\textup{recall}_i=\{0,0.1,0.2,\ldots,0.9,1.0\}$. Then
+\[
+\textup{average precision}=\frac{1}{11}\sum_{1}^{11}\textup{precision}_\textup{interpolated}(\textup{recall}_i)\qquad\cite[\S\,4.2]{everingham2010pascal}.
+\]
+%In this section, you will need to clearly define the metrics or calculations you will use to measure performance of a model or result in your project. These calculations and metrics should be justified based on the characteristics of the problem and problem domain. Questions to ask yourself when writing this section:
+%
+%Are the metrics you’ve chosen to measure the performance of your models clearly discussed and defined?
+%Have you provided reasonable justification for the metrics chosen based on the problem and solution?
+\section{Analysis}
+%(approx. 2-4 pages)
+
+\subsection*{Data Exploration}
+To train our model, we want to use the recent logo dataset \emph{Logos in the Wild} \cite{logosinthewild}. As mentioned above, the lastest version of this dataset (v2.0) contains 11,054 images with 32,850 annotated logo bounding boxes of 871 brands and it is collected by performing Google image searches with well-known brand and company names directly or in combination with a predefined set of search terms like ‘advertisement’, ‘building’, ‘poster’ or ‘store’.
+The logo annotations are in Pascal-VOC style.
+
+As stated by the creators of the Logo in the Wild dataset, this dataset has 4 to 608 images per searched brand, 
+238 of 871 brands occur at least 10 times, and there are up to 118 logos in one image. Unfortunately, the dataset provides only the links to the images, and some of these images already disappeared.
+As we later want to detect logos in arbitrary pictures from twitter tweeds, this large in-the-wild logo dataset still fits best to our goal. 
+
+Instead of downloading ourselves the images from the different urls provided in the Logos in the Wild dataset, we download the \emph{QMUL-OpenLogo Dataset} \cite{DBLP:journals/corr/abs-1807-01964}, which contains Logos in the Wild as a subset including all available JPEG files.
+
+We run a simple Python script to analyze the downloaded JPEG images in the Logos in the Wild dataset, and we find that in fact there are in total 821 brands, where the maximal number of logos per given brand is 1,928 for Heineken, and the minimum number is 1. Moreover, the image heineken/img00042.jpg contains the maximum of 118 logos, while in general every image contains at least one logo.
+%
+%In this section, you will be expected to analyze the data you are using for the problem. This data can either be in the form of a dataset (or datasets), input data (or input files), or even an environment. The type of data should be thoroughly described and, if possible, have basic statistics and information presented (such as discussion of input features or defining characteristics about the input or environment). Any abnormalities or interesting qualities about the data that may need to be addressed have been identified (such as features that need to be transformed or the possibility of outliers). Questions to ask yourself when writing this section:
+%
+%If a dataset is present for this problem, have you thoroughly discussed certain features about the dataset? Has a data sample been provided to the reader?
+%If a dataset is present for this problem, are statistics about the dataset calculated and reported? Have any relevant results from this calculation been discussed?
+%If a dataset is not present for this problem, has discussion been made about the input space or input data for your problem?
+%Are there any abnormalities or characteristics about the input space or dataset that need to be addressed? (categorical variables, missing values, outliers, etc.)
+%
+\subsection*{Exploratory Visualization}
+\begin{figure}[h!]
+\includegraphics[width=\textwidth]{samples.jpg}
+\caption[Bildbeschreibung]{\url{https://www.iosb.fraunhofer.de/servlet/is/78045/}}
+\label{sampleImage}
+\end{figure}
+%\vspace*{-3em}%\captionof{figure}{\url{https://www.iosb.fraunhofer.de/servlet/is/78045/}}
+
+While the images on the right contain logos of a single brand, the image on the left shows a sample image that includes bounding boxed for logos of different brands. In particular, an image can contain different types of logos of a brand. The following are the annotations in the Pascal-VOC style in the XML file corresponding to the image on the left hand side:
+
+\begin{minipage}{.45\textwidth}
+%<object>
+%  <name>six</name>
+%  <pose>Unspecified</pose>
+%  <truncated>0</truncated>
+%  <difficult>0</difficult>
+%  <bndbox>
+%    <xmin>633</xmin>
+%    <ymin>327</ymin>
+%    <xmax>671</xmax>
+%    <ymax>365</ymax>
+%  </bndbox>
+%</object>
+\begin{lstlisting}[basicstyle=\fontsize{7.5}{8}\ttfamily,language=xml]
+<annotation>
+  <folder>0samples</folder>
+  <filename>img000009</filename>
+  <path>\0samples\img000009.jpg</path>
+  <source>
+    <database>Unknown</database>
+  </source>
+  <size>
+    <width>718</width>
+    <height>535</height>
+    <depth>3</depth>
+  </size>
+  <segmented>0</segmented>
+  <object>
+    <name>starbuckscoffee</name>
+    <pose>Unspecified</pose>
+    <truncated>0</truncated>
+    <difficult>0</difficult>
+    <bndbox>
+      <xmin>466</xmin>
+      <ymin>133</ymin>
+      <xmax>709</xmax>
+      <ymax>287</ymax>
+    </bndbox>
+  </object>
+  <object>
+    <name>starbucks-symbol</name>
+    <pose>Unspecified</pose>
+    <truncated>0</truncated>
+    <difficult>0</difficult>
+    <bndbox>
+      <xmin>193</xmin>
+      <ymin>270</ymin>
+      <xmax>261</xmax>
+      <ymax>360</ymax>
+    </bndbox>
+  </object>
+\end{lstlisting}
+\end{minipage}\hfill
+\noindent\begin{minipage}{.45\textwidth}
+%<object>
+%  <name>tchibo</name>
+%  <pose>Unspecified</pose>
+%  <truncated>0</truncated>
+%  <difficult>0</difficult>
+%  <bndbox>
+%    <xmin>8</xmin>
+%    <ymin>312</ymin>
+%    <xmax>34</xmax>
+%    <ymax>351</ymax>
+%  </bndbox>
+%</object>
+\begin{lstlisting}[basicstyle=\fontsize{7.5}{8}\ttfamily,language=xml,firstnumber=38]
+  <object>
+    <name>starbucks-symbol</name>
+    <pose>Unspecified</pose>
+    <truncated>0</truncated>
+    <difficult>0</difficult>
+    <bndbox>
+      <xmin>420</xmin>
+      <ymin>423</ymin>
+      <xmax>464</xmax>
+      <ymax>513</ymax>
+    </bndbox>
+  </object>
+  <object>
+    <name>six</name>
+    <pose>Unspecified</pose>
+    <truncated>0</truncated>
+    <difficult>0</difficult>
+    <bndbox>
+      <xmin>633</xmin>
+      <ymin>327</ymin>
+      <xmax>671</xmax>
+      <ymax>365</ymax>
+    </bndbox>
+  </object>
+  <object>
+    <name>tchibo</name>
+    <pose>Unspecified</pose>
+    <truncated>0</truncated>
+    <difficult>0</difficult>
+    <bndbox>
+      <xmin>8</xmin>
+      <ymin>312</ymin>
+      <xmax>34</xmax>
+      <ymax>351</ymax>
+    </bndbox>
+  </object>
+</annotation>
+\end{lstlisting}
+\end{minipage}
+%
+%In this section, you will need to provide some form of visualization that summarizes or extracts a relevant characteristic or feature about the data. The visualization should adequately support the data being used. Discuss why this visualization was chosen and how it is relevant. Questions to ask yourself when writing this section:
+%
+%Have you visualized a relevant characteristic or feature about the dataset or input data?
+%Is the visualization thoroughly analyzed and discussed?
+%If a plot is provided, are the axes, title, and datum clearly defined?
+\subsection*{Algorithms and Techniques}
+%Probably we augment the training data to have more images per brand. 
+As mentioned before, we start by training an own CNN architecture to classify the logos as done in the dog breeds project of the Nanodegree. For this, 40\% of the dataset forms the test set, and the remaining data is split into 80\% training set and 20\% validation set. Using Keras preprocessing, each image is converted into a 4D tensor with shape $(1,224,224,3)$.
+This CNN consists of a convolutionary layer, a max-pooling layer, another convolutionary layer, a max-pooling layer, a global-average pooling layer and a final fully connected layer. As optimizer we choose "RMSprop", as loss function "categorical cross entropy" and as metric "accuracy".
+Using Keras ModelCheckpoint, we save the model with the best validation loss.
+
+As a next step we train a popular CNN like VGG19 whose weights are pre-trained on ImageNet. We proceed similarly as in the first setting.
+
+Having tried CNNs for logo classification, we finally proceed to Faster R-CNNs for logo detection and classification.
+We first train a \emph{Region Proposal Network (RPN)} that proposes regions with logos in images.  The predicted region proposals are then reshaped using a \emph{Region of Interest (RoI)} pooling layer. This layer is next used to classify the image within the proposed region and predict the offset values for the bounding boxes. For the latter task, we again train a CNN like VGG19 that is pre-trained on ImageNet.
+As  explained above, here we use mean average precision as metric.
+%
+%In this section, you will need to discuss the algorithms and techniques you intend to use for solving the problem. You should justify the use of each one based on the characteristics of the problem and the problem domain. Questions to ask yourself when writing this section:
+%
+%TODO
+%Are the algorithms you will use, including any default variables/parameters in the project clearly defined?
+%Are the techniques to be used thoroughly discussed and justified?
+%Is it made clear how the input data or datasets will be handled by the algorithms and techniques chosen?
+
+\subsection*{Benchmark}
+The recent \emph{Logos in the Wild} dataset has not been studied much yet. When introduced in \cite{logosinthewild}, the focus is put on open set logo retrieval where only one sample image of a logo is available. 
+
+Instead we want to focus on a closed world assumption where we train and test on the Logos in the Wild dataset which has multiple images per brand. 
+Therefore, we can only compare our results with the ones of other models that were trained and tested on the popular closed dataset \emph{FlickrLogos-32} \cite{flickrlogos32}. As cited in \cite{logosinthewild}, the mean average precision (map) in state-of-the-art results is 0.811 achieved by Faster-RCNN \cite{DBLP:journals/corr/SuZG16}  where the training set is expanded with synthetically generated training images, and 0.842 using
+Fast-M \cite{Bao:2016:RCL:3007669.3007728} that is a multi-scale Fast R-CNN based-approach.
+%
+%In this section, you will need to provide a clearly defined benchmark result or threshold for comparing across performances obtained by your solution. The reasoning behind the benchmark (in the case where it is not an established result) should be discussed. Questions to ask yourself when writing this section:
+%
+%Has some result or value been provided that acts as a benchmark for measuring performance?
+%Is it clear how this result or value was obtained (whether by data or by hypothesis)?
+\section{Methodology}
+%(approx. 3-5 pages)
+
+\subsection*{Data Preprocessing}
+Having gained access, we download the Logos in the Wild dataset \cite{logosinthewild} that contains XML files with the bounding boxes, the URLs to the JPEG images, samples and a script to obtain a clean dataset.
+As stated above, we obtain the JPEG images of the Logos in the Wild dataset by downloading the superset QMUL-OpenLogo Dataset \cite{DBLP:journals/corr/abs-1807-01964}. 
+
+After setting the variable "oldpath" to the absolute path of our \path{LogosInTheWild-v2/data} directory and the variable "new path" to the absolute path of our \path{openlogo/JPEGImages} directoy in our script move\_JPEG\_images.sh from the Logo Capstone Project, we execute this script that moves the JPEG files from the \path{openlogo/JPEGImages} directory in the corresponding brand subdirectory in the \path{LogosInTheWild-v2/data} directory.
+
+Next we remove the \path{0samples} folder from the \path{LogosInTheWild-v2/data} directory, and execute in a separate Conda environment with Python 2.7 and opencv-python%the Python script \path{create\_clean\_dataset.py} from the \path{LogosInTheWild-v2/scripts} directory 
+\begin{lstlisting}[language=bash]
+# From LogosInTheWild-v2/scripts directory
+python create_clean_dataset.py --roi --in ../data --out ../cleaned-data
+\end{lstlisting}
+that adjusts the brand names in the XML files and removes XML files without corresponding JPEG image.
+This outputs that 9,428 images and 821 brands were processed, while 1,330 JPEG files were unavailable. In addition, it created 28,007 ROI images in corresponding folders with logo names.
+
+
+For our first logo classification task with a standard CNN architecture in Keras and Python 3.6, we can load the image files with the \path{load_files} function from \path{sklearn.datasets} since the Logos in the Wild dataset is organized in directories with corresponding brand names. Of course, some images like the example in \autoref{sampleImage} contain logos of different brands so labelling them with the brand directory name may decrease accuracy.  Furthermore, we use the \path{image.load_img} and \path{image.img_to_array} functions from \path{keras.preprocessing} to convert the JPEG files to Keras' required 4D tensor format with shape $(1,224,224,3)$. As last preprocessing step for the first standard CNN architecture, we rescale the images by dividing every pixel in each image by 255.
+
+
+Finally, for Tensorflow's Object Detection API we need to convert the Logos in the Wild dataset with annotations in Pascal-VOC style to Tensorflow's TFRecord file format. For this, we copy the Python script \path{create_and_analyze_pascal_tf_record.py} from the Capstone project folder to the LogosInTheWild-v2 directory, rename the folder \path{LogosInTheWild-v2/cleaned_data} to \path{LogosInTheWild-v2/data}, enter "export PYTHONPATH=\$PYTHONPATH:`pwd`:`pwd`/slim
+" when in the \path{tensorflow/models/research} directory and run the following:
+%
+%In this section, all of your preprocessing steps will need to be clearly documented, if any were necessary. From the previous section, any of the abnormalities or characteristics that you identified about the dataset will be addressed and corrected here. Questions to ask yourself when writing this section:
+
+
+%If the algorithms chosen require preprocessing steps like feature selection or feature transformations, have they been properly documented?
+%Based on the Data Exploration section, if there were abnormalities or characteristics that needed to be addressed, have they been properly corrected?
+%If no preprocessing is needed, has it been made clear why?
+\begin{lstlisting}[language=bash]
+# From LogosInTheWild-v2 directory
+python create_and_analyze_pascal_tf_record.py --data_dir=./data/voc_format --label_map_path=./pascal_label_map.pbtxt --output_path=./data/
+\end{lstlisting}
+%
+%(py2) python object_detection/dataset_tools/create_pascal_tf_record.py --data_dir=/mnt/c/environment/Machine_Learning/Machine_Learning_Engineer/capstone_project/LogosInTheWild-v2/data/voc_format --year=VOC2012  --label_map_path=/mnt/c/environment/Machine_Learning/Machine_Learning_Engineer/capstone_project/LogosInTheWild-v2/data/pascal_label_map.pbtxt --output_path=/mnt/c/environment/Machine_Learning/Machine_Learning_Engineer/
+%\begin{lstlisting}[language=bash]
+%# From LogosInTheWild-v2 directory
+%python analyze_pascal_tf_record.py --data_dir=./data/voc_format --year=VOC2012  --label_map_path=./data/pascal_label_map.pbtxt --output_path=./data/
+%%
+%%(py2) cd /mnt/c/ProgramData/anaconda3/envs/tensorflow/models/research
+%%python object_detection/dataset_tools/analyze_pascal_tf_record.py --data_dir=/mnt/c/environment/Machine_Learning/Machine_Learning_Engineer/capstone_project/LogosInTheWild-v2/data/voc_format --year=VOC2012  --label_map_path=/mnt/c/environment/Machine_Learning/Machine_Learning_Engineer/capstone_project/LogosInTheWild-v2/data/pascal_label_map.pbtxt --output_path=/mnt/c/environment/Machine_Learning/Machine_Learning_Engineer/
+%\end{lstlisting}
+%TODO Modify create to analyze and remove 2 in pascal
+After completion we see that we converted 7,542 images with annotations into the 10 training TFRecord files \path{pascal_train.record-0000i-of-00010}, and 1,886 images with annotations into the 10 validation TFRecord files \path{pascal_val.record-0000i-of-00010} for $i=0,\ldots,9$.
+
+Among other parameters for our Faster R-CNN, we choose in our configuration file \path{faster_rcnn_inception_logos.config} by the Capstone Project as data\_augmentation\_options random\_horizontal\_flip, random\_vertical\_flip and random\_rotation90.
+    
+\subsection*{Implementation}
+For the logo classification task, we start to implement a standard Keras CNN architecture in the Jupyter notebook \path{logos.ipynb} located in the Capstone Project repository. Keras' model summary is as follows:
+%\begin{table}[htb!]
+%\centering
+%\caption{Architecture of VGG-like CNN from Keras\cite{chollet2015keras}.}
+%		\begin{tabular}{ccc}
+%		\toprule
+%		Layer (type) & Output Shape & Param \# \\
+%		\midrule
+%		conv2d\_1 (Conv2D) & (None, 14, 14, 32) & 320\\
+%		conv2d\_2 (Conv2D) & (None, 12, 12, 32) & 9248\\
+%		max\_pooling2d\_1 (MaxPooling2) & (None, 6, 6, 32) & 0\\
+%		dropout\_1 (Dropout) & (None, 6, 6, 32) & 0\\
+%		conv2d\_3 (Conv2D) & (None, 4, 4, 64) & 18496\\
+%		conv2d\_4 (Conv2D) & (None, 2, 2, 64) & 36928\\
+%		max\_pooling2d\_2 (MaxPooling2) & (None, 1, 1, 64) & 0\\
+%		dropout\_2 (Dropout) & (None, 1, 1, 64) & 0\\
+%		flatten\_1 (Flatten) & (None, 64) & 0\\
+%		dense\_1 (Dense) & (None, 256) & 16640\\
+%		dropout\_3 (Dropout) & (None, 256) & 0\\
+%		dense\_2 (Dense) & (None, 10) & 2570\\
+%		\bottomrule
+%		\end{tabular}\\
+%		\label{table:vgg}
+%\end{table}
+%
+\begin{longtable}{ccc}%[htb!]
+%\centering
+\caption{Architecture of a first CNN for logo classification from Keras \cite{chollet2015keras}.}\\
+    \hline
+    Layer (type) & Output Shape & Param \# \\
+    \hline
+    \endfirsthead
+    \multicolumn{3}{c}
+    {\tablename\ \thetable\ -- \textit{Continued from previous page}} \\
+%		\toprule
+%\hline
+%    Layer (type) & Output Shape & Param \# \\
+%    \hline
+\endhead
+%    \hline 
+    \multicolumn{3}{r}{\textit{Continued on next page}} \\
+    \endfoot
+%		\midrule
+\hline\endlastfoot
+conv2d\_3 (Conv2D)              &     (None, 223, 223, 32)    &   416       \\
+max\_pooling2d\_4 (MaxPooling2) &     (None, 111, 111, 32)    &    0        \\
+conv2d\_4 (Conv2D)              &     (None, 110, 110, 64)    &   8256      \\
+max\_pooling2d\_5 (MaxPooling2) &     (None, 55, 55, 64)      &    0        \\
+global\_average\_pooling2d\_2 (GAP2D\footnotemark)& (None, 64)&    0        \\ 
+dense\_2 (Dense)                &     (None, 109)             &  7085       %\\
+%		\bottomrule
+%		\end{multicolumn}\\
+		\label{table:modelFromScratch}
+\end{longtable}
+\footnotetext{GlobalAveragePooling2D}
+
+This model has in total 15,757 parameters that are all trainable. We compile the model with optimizer 'rmsprop' and loss 'categorical\_crossentropy', and choose as  metric 'accuracy'. For training, we set epochs to 100, validation\_split to 0.3 and define a \path{ModelCheckpoint} from \path{keras.callbacks} that saves the model with the best validation loss.
+
+After training and loading the model with the best weights, we compute the accuracy on the test images:
+\begin{lstlisting}[language=Python]
+brand_predictions = [np.argmax(model.predict(np.expand_dims(tensor, axis=0))) for tensor in test_tensors]
+
+test_accuracy = 100*np.sum(np.array(brand_predictions)==np.argmax(test_targets, axis=1))/len(brand_predictions)
+print('Test accuracy: %.4f%%' % test_accuracy)
+\end{lstlisting}
+This results in "Test accuracy: 22.9852\%". In the next section, we describe how we fine-tune our first model. 
+
+Now we continue to build a custom Keras CNN model on top of the well-known VGG16 architecture \cite{DBLP:journals/corr/SimonyanZ14a}: 
+from keras.applications.vgg16 import VGG16
+\begin{lstlisting}[language=Python]
+from keras.applications.vgg16 import VGG16
+VGG16_model = VGG16(include_top=True, weights='imagenet', input_shape=train_tensors.shape[1:])
+\end{lstlisting}
+Let us first summarize the VGG16 model:
+
+\begin{longtable}{ccc}%[htb!]
+\caption{Architecture of the VGG16 model  \cite{DBLP:journals/corr/SimonyanZ14a} from Keras \cite{chollet2015keras}.}\\
+    \hline
+    Layer (type) & Output Shape & Param \# \\
+    \hline
+    \endfirsthead
+    \multicolumn{3}{c}
+    {\tablename\ \thetable\ -- \textit{Continued from previous page}} \\
+%		\toprule
+%\hline
+%    Layer (type) & Output Shape & Param \# \\
+%    \hline
+\endhead
+%    \hline 
+    \multicolumn{3}{r}{\textit{Continued on next page}} \\
+    \endfoot
+%		\midrule
+\hline\endlastfoot
+input\_2 (InputLayer)         &(None, 224, 224, 3)       &0         \\
+block1\_conv1 (Conv2D)        &(None, 224, 224, 64)      &1792      \\
+block1\_conv2 (Conv2D)        &(None, 224, 224, 64)      &36928     \\
+block1\_pool (MaxPooling2D)   &(None, 112, 112, 64)      &0         \\
+block2\_conv1 (Conv2D)        &(None, 112, 112, 128)     &73856     \\
+block2\_conv2 (Conv2D)        &(None, 112, 112, 128)     &147584    \\
+block2\_pool (MaxPooling2D)   &(None, 56, 56, 128)       &0         \\
+block3\_conv1 (Conv2D)        &(None, 56, 56, 256)       &295168    \\
+block3\_conv2 (Conv2D)        &(None, 56, 56, 256)       &590080    \\
+block3\_conv3 (Conv2D)        &(None, 56, 56, 256)       &590080    \\
+block3\_pool (MaxPooling2D)   &(None, 28, 28, 256)       &0         \\
+block4\_conv1 (Conv2D)        &(None, 28, 28, 512)       &1180160   \\
+block4\_conv2 (Conv2D)        &(None, 28, 28, 512)       &2359808   \\
+block4\_conv3 (Conv2D)        &(None, 28, 28, 512)       &2359808   \\
+block4\_pool (MaxPooling2D)   &(None, 14, 14, 512)       &0         \\
+block5\_conv1 (Conv2D)        &(None, 14, 14, 512)       &2359808   \\
+block5\_conv2 (Conv2D)        &(None, 14, 14, 512)       &2359808   \\
+block5\_conv3 (Conv2D)        &(None, 14, 14, 512)       &2359808   \\
+block5\_pool (MaxPooling2D)   &(None, 7, 7, 512)         &0         \\
+flatten (Flatten)             &(None, 25088)             &0         \\
+fc1 (Dense)                   &(None, 4096)              &102764544 \\
+fc2 (Dense)                   &(None, 4096)              &16781312  \\
+predictions (Dense)           &(None, 1000)              &4097000   
+\label{table:vgg}
+\end{longtable}
+
+This model has a large number of 138,357,544 parameters that are all trainable.
+
+
+\begin{verbatim}cd /mnt/c/ProgramData/anaconda3/envs/tensorflow/models/research
+source ~/.bashrc
+export PYTHONPATH=$PYTHONPATH:`pwd`:`pwd`/slim
+PIPELINE_CONFIG_PATH=/mnt/c/environment/Machine_Learning/Machine_Learning_Engineer/capstone_project/LogosInTheWild-v2/models/model/faster_rcnn_inception_logos.config
+MODEL_DIR=/mnt/c/environment/Machine_Learning/Machine_Learning_Engineer/capstone_project/LogosInTheWild-v2/models/model/
+NUM_TRAIN_STEPS=20000
+SAMPLE_1_OF_N_EVAL_EXAMPLES=1
+TRAIN_DIR=/mnt/c/environment/Machine_Learning/Machine_Learning_Engineer/capstone_project/LogosInTheWild-v2/models/model/train
+EVAL_DIR=/mnt/c/environment/Machine_Learning/Machine_Learning_Engineer/capstone_project/LogosInTheWild-v2/models/model/eval
+python object_detection/model_main.py --pipeline_config_path=${PIPELINE_CONFIG_PATH} --model_dir=${MODEL_DIR} --num_train_steps=${NUM_TRAIN_STEPS} --sample_1_of_n_eval_examples=$SAMPLE_1_OF_N_EVAL_EXAMPLES --alsologtostderr
+
+cd ~/anaconda3/envs/tensorflow_cpu/lib/python3.6/site-packages/tensorflow/models/research
+export PYTHONPATH=$PYTHONPATH:`pwd`:`pwd`/slim
+PIPELINE_CONFIG_PATH=/data/Machine_Learning/Machine_Learning_Engineer/capstone_project/LogosInTheWild-v2/models/model/faster_rcnn_inception_logos-locally-on-ubuntu.config
+MODEL_DIR=/data/Machine_Learning/Machine_Learning_Engineer/capstone_project/LogosInTheWild-v2/models/model/
+NUM_TRAIN_STEPS=20000
+SAMPLE_1_OF_N_EVAL_EXAMPLES=1
+TRAIN_DIR=/data/Machine_Learning/Machine_Learning_Engineer/capstone_project/LogosInTheWild-v2/models/model/train
+EVAL_DIR=/data/Machine_Learning/Machine_Learning_Engineer/capstone_project/LogosInTheWild-v2/models/model/eval
+python object_detection/model_main.py --pipeline_config_path=${PIPELINE_CONFIG_PATH} --model_dir=${MODEL_DIR} --num_train_steps=${NUM_TRAIN_STEPS} --sample_1_of_n_eval_examples=$SAMPLE_1_OF_N_EVAL_EXAMPLES --alsologtostderr
+
+
+
+
+python object_detection/legacy/train.py --logtostderr --train_dir=${TRAIN_DIR} --pipeline_config_path=${PIPELINE_CONFIG_PATH}  --alsologtostderr
+
+ python object_detection/legacy/eval.py  --logtostderr   --pipeline_config_path=${PIPELINE_CONFIG_PATH} --checkpoint_dir=${MODEL_DIR}  --eval_dir=${EVAL_DIR}
+
+YOUR_CLOUD_BUCKET=gs://logo-bucket-europe-west1//
+PATH_TO_LOCAL_YAML_FILE=/mnt/c/environment/Machine_Learning/Machine_Learning_Engineer/capstone_project/LogosInTheWild-v2/standard_gpu.yaml
+GS_MODEL_DIR=logo-bucket-europe-west1/LogosInTheWild-v2/models/model
+GS_TRAIN_DIR=logo-bucket-europe-west1/LogosInTheWild-v2/models/model/train
+GS_EVAL_DIR=logo-bucket-europe-west1/LogosInTheWild-v2/models/model/eval
+GS_PIPELINE_CONFIG_PATH=logo-bucket-europe-west1/LogosInTheWild-v2/models/model/faster_rcnn_inception_logos-europe-west1.config
+# From tensorflow/models/research/
+gcloud ml-engine jobs submit training object_detection_`date +%m_%d_%Y_%H_%M_%S` --runtime-version 1.13 --job-dir=gs://${GS_MODEL_DIR} --packages dist/object_detection-0.1.tar.gz,slim/dist/slim-0.1.tar.gz,/tmp/pycocotools/pycocotools-2.0.tar.gz --module-name object_detection.model_main --region europe-west1 --config ${PATH_TO_LOCAL_YAML_FILE} -- --model_dir=gs://${GS_MODEL_DIR} --pipeline_config_path=gs://${GS_PIPELINE_CONFIG_PATH} 
+
+
+gcloud ml-engine jobs submit training object_detection_`date +%m_%d_%Y_%H_%M_%S` --runtime-version 1.13 --job-dir=gs://${GS_TRAIN_DIR} --packages dist/object_detection-0.1.tar.gz,slim/dist/slim-0.1.tar.gz,/tmp/pycocotools/pycocotools-2.0.tar.gz --module-name object_detection.legacy.train --region europe-west1 --config ${PATH_TO_LOCAL_YAML_FILE} -- --train_dir=gs://${GS_TRAIN_DIR} --pipeline_config_path=gs://${GS_PIPELINE_CONFIG_PATH}
+
+gcloud ml-engine jobs submit training object_detection_`date +%m_%d_%Y_%H_%M_%S` --runtime-version 1.13 --job-dir=gs://${GS_EVAL_DIR} --packages dist/object_detection-0.1.tar.gz,slim/dist/slim-0.1.tar.gz,/tmp/pycocotools/pycocotools-2.0.tar.gz --module-name object_detection.legacy.train --region europe-west1 --config ${PATH_TO_LOCAL_YAML_FILE} -- --eval_dir=gs://${GS_EVAL_DIR} --train_dir=gs://${GS_TRAIN_DIR} --pipeline_config_path=gs://${GS_PIPELINE_CONFIG_PATH}
+
+
+%train
+  $ gcloud ml-engine jobs describe object_detection_04_29_2019_20_38_31
+
+or continue streaming the logs with the command
+
+  $ gcloud ml-engine jobs stream-logs object_detection_04_29_2019_20_38_31
+
+ 
+ 
+ %eval
+
+
+
+Maybe overwriting eval_num_epochs: 1
+Maybe overwriting load_pretrained: True
+Ignoring config override key: load_pretrained
+Maybe overwriting train_steps: 10
+Maybe overwriting sample_1_of_n_eval_examples: 1
+Expected number of evaluation epochs is 1, but instead encountered `eval_on_train_input_config.num_e
+
+gcloud auth application-default login
+
+YOUR_CLOUD_BUCKET=gs://logo-bucket-europe-west1//
+tensorboard --logdir=${YOUR_CLOUD_BUCKET}
+
+
+tensorboard --logdir=${MODEL_DIR}
+\end{verbatim}
+%
+%In this section, the process for which metrics, algorithms, and techniques that you implemented for the given data will need to be clearly documented. It should be abundantly clear how the implementation was carried out, and discussion should be made regarding any complications that occurred during this process. Questions to ask yourself when writing this section:
+%
+%Is it made clear how the algorithms and techniques were implemented with the given datasets or input data?
+%Were there any complications with the original metrics or techniques that required changing prior to acquiring a solution?
+%Was there any part of the coding process (e.g., writing complicated functions) that should be documented?
+\subsection*{Refinement}
+In this section, you will need to discuss the process of improvement you made upon the algorithms and techniques you used in your implementation. For example, adjusting parameters for certain models to acquire improved solutions would fall under the refinement category. Your initial and final solutions should be reported, as well as any significant intermediate results as necessary. Questions to ask yourself when writing this section:
+
+Has an initial solution been found and clearly reported?
+Is the process of improvement clearly documented, such as what techniques were used?
+Are intermediate and final solutions clearly reported as the process is improved?
+\section{Results}
+(approx. 2-3 pages)
+
+\subsection*{Model Evaluation and Validation}
+In this section, the final model and any supporting qualities should be evaluated in detail. It should be clear how the final model was derived and why this model was chosen. In addition, some type of analysis should be used to validate the robustness of this model and its solution, such as manipulating the input data or environment to see how the model’s solution is affected (this is called sensitivity analysis). Questions to ask yourself when writing this section:
+
+Is the final model reasonable and aligning with solution expectations? Are the final parameters of the model appropriate?
+Has the final model been tested with various inputs to evaluate whether the model generalizes well to unseen data?
+Is the model robust enough for the problem? Do small perturbations (changes) in training data or the input space greatly affect the results?
+Can results found from the model be trusted?
+\subsection*{Justification}
+In this section, your model’s final solution and its results should be compared to the benchmark you established earlier in the project using some type of statistical analysis. You should also justify whether these results and the solution are significant enough to have solved the problem posed in the project. Questions to ask yourself when writing this section:
+
+Are the final results found stronger than the benchmark result reported earlier?
+Have you thoroughly analyzed and discussed the final solution?
+Is the final solution significant enough to have solved the problem?
+\section{Conclusion}
+(approx. 1-2 pages)
+
+\subsection*{Free-Form Visualization}
+In this section, you will need to provide some form of visualization that emphasizes an important quality about the project. It is much more free-form, but should reasonably support a significant result or characteristic about the problem that you want to discuss. Questions to ask yourself when writing this section:
+
+Have you visualized a relevant or important quality about the problem, dataset, input data, or results?
+Is the visualization thoroughly analyzed and discussed?
+If a plot is provided, are the axes, title, and datum clearly defined?
+\subsection*{Reflection}
+In this section, you will summarize the entire end-to-end problem solution and discuss one or two particular aspects of the project you found interesting or difficult. You are expected to reflect on the project as a whole to show that you have a firm understanding of the entire process employed in your work. Questions to ask yourself when writing this section:
+
+Have you thoroughly summarized the entire process you used for this project?
+Were there any interesting aspects of the project?
+Were there any difficult aspects of the project?
+Does the final model and solution fit your expectations for the problem, and should it be used in a general setting to solve these types of problems?
+\subsection*{Improvement}
+In this section, you will need to provide discussion as to how one aspect of the implementation you designed could be improved. As an example, consider ways your implementation can be made more general, and what would need to be modified. You do not need to make this improvement, but the potential solutions resulting from these changes are considered and compared/contrasted to your current solution. Questions to ask yourself when writing this section:
+
+Are there further improvements that could be made on the algorithms or techniques you used in this project?
+Were there algorithms or techniques you researched that you did not know how to implement, but would consider using if you knew how?
+If you used your final solution as the new benchmark, do you think an even better solution exists?
+%\subsection*{Before submitting, ask yourself...}
+%
+%Does the project report you’ve written follow a well-organized structure similar to that of the project template?
+%Is each section (particularly Analysis and Methodology) written in a clear, concise and specific fashion? Are there any ambiguous terms or phrases that need clarification?
+%Would the intended audience of your project be able to understand your analysis, methods, and results?
+%Have you properly proof-read your project report to assure there are minimal grammatical and spelling mistakes?
+%Are all the resources used for this project correctly cited and referenced?
+%Is the code that implements your solution easily readable and properly commented?
+%Does the code execute without error and produce results similar to those reported?
+
+
+
+WARNING:tensorflow:Ignoring ground truth with image id 53383224 since it was previously added
+WARNING:tensorflow:Ignoring detection with image id 53383224 since it was previously added
+creating index...
+index created!
+creating index...
+index created!
+Running per image evaluation...
+Evaluate annotation type *bbox*
+DONE (t=52.51s).
+Accumulating evaluation results...
+Segmentation fault (core dumped)
+
+%\nocite{*}
+\bibliography{capstone_project}
+\bibliographystyle{alpha}
+\end{document}
