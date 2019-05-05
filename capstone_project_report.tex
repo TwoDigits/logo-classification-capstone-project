@@ -272,6 +272,7 @@ Fast-M \cite{Bao:2016:RCL:3007669.3007728} that is a multi-scale Fast R-CNN base
 %(approx. 3-5 pages)
 
 \subsection*{Data Preprocessing}
+\label{dataPreprocessing}
 Having gained access, we download the Logos in the Wild dataset \cite{logosinthewild} that contains XML files with the bounding boxes, the URLs to the JPEG images, samples and a script to obtain a clean dataset.
 As stated above, we obtain the JPEG images of the Logos in the Wild dataset by downloading the superset QMUL-OpenLogo Dataset \cite{DBLP:journals/corr/abs-1807-01964}. 
 
@@ -289,7 +290,7 @@ This outputs that 9,428 images and 821 brands were processed, while 1,330 JPEG f
 For our first logo classification task with a standard CNN architecture in Keras and Python 3.6, we can load the image files with the \path{load_files} function from \path{sklearn.datasets} since the Logos in the Wild dataset is organized in directories with corresponding brand names. Of course, some images like the example in \autoref{sampleImage} contain logos of different brands so labelling them with the brand directory name may decrease accuracy.  Furthermore, we use the \path{image.load_img} and \path{image.img_to_array} functions from \path{keras.preprocessing} to convert the JPEG files to Keras' required 4D tensor format with shape $(1,224,224,3)$. As last preprocessing step for the first standard CNN architecture, we rescale the images by dividing every pixel in each image by 255.
 
 
-Finally, for Tensorflow's Object Detection API we need to convert the Logos in the Wild dataset with annotations in Pascal-VOC style to Tensorflow's TFRecord file format. For this, we copy the Python script \path{create_and_analyze_pascal_tf_record.py} from the Capstone project folder to the LogosInTheWild-v2 directory, rename the folder \path{LogosInTheWild-v2/cleaned_data} to \path{LogosInTheWild-v2/data}, enter "export PYTHONPATH=\$PYTHONPATH:`pwd`:`pwd`/slim
+Finally, for training a Faster R-CNN with Tensorflow's Object Detection API we need to convert the Logos in the Wild dataset with annotations in Pascal-VOC style to Tensorflow's TFRecord file format. For this, we copy the Python script \path{create_and_analyze_pascal_tf_record.py} from the Capstone project folder to the LogosInTheWild-v2 directory, rename the folder \path{LogosInTheWild-v2/cleaned_data} to \path{LogosInTheWild-v2/data}, enter "export PYTHONPATH=\$PYTHONPATH:`pwd`:`pwd`/slim
 " when in the \path{tensorflow/models/research} directory and run the following:
 %
 %In this section, all of your preprocessing steps will need to be clearly documented, if any were necessary. From the previous section, any of the abnormalities or characteristics that you identified about the dataset will be addressed and corrected here. Questions to ask yourself when writing this section:
@@ -313,10 +314,17 @@ python create_and_analyze_pascal_tf_record.py --data_dir=./data/voc_format --lab
 %\end{lstlisting}
 %TODO Modify create to analyze and remove 2 in pascal
 After completion we see that we converted 7,542 images with annotations into the 10 training TFRecord files \path{pascal_train.record-0000i-of-00010}, and 1,886 images with annotations into the 10 validation TFRecord files \path{pascal_val.record-0000i-of-00010} for $i=0,\ldots,9$.
-
+Further, we create a dictionary that maps our logo type to a unique id in form of a \path{pascal_label_map.pbtxt} containing 821 entries like the following:
+\begin{lstlisting}[language=Python]
+item {
+  id: 263
+  name: 'starbucks-text'
+}
+\end{lstlisting}
 Among other parameters for our Faster R-CNN, we choose in our configuration file \path{faster_rcnn_inception_logos.config} by the Capstone Project as data\_augmentation\_options random\_horizontal\_flip, random\_vertical\_flip and random\_rotation90.
     
 \subsection*{Implementation}
+\subsubsection*{A first CNN model from scratch in Keras \cite{chollet2015keras}}
 For the logo classification task, we start to implement a standard Keras CNN architecture in the Jupyter notebook \path{logos.ipynb} located in the Capstone Project repository. Keras' model summary is as follows:
 %\begin{table}[htb!]
 %\centering
@@ -344,7 +352,7 @@ For the logo classification task, we start to implement a standard Keras CNN arc
 %
 \begin{longtable}{ccc}%[htb!]
 %\centering
-\caption{Architecture of a first CNN for logo classification from Keras \cite{chollet2015keras}.}\\
+\caption{Architecture of a first CNN for logo classification from Keras.}\\
     \hline
     Layer (type) & Output Shape & Param \# \\
     \hline
@@ -383,9 +391,8 @@ test_accuracy = 100*np.sum(np.array(brand_predictions)==np.argmax(test_targets, 
 print('Test accuracy: %.4f%%' % test_accuracy)
 \end{lstlisting}
 This results in "Test accuracy: 22.9852\%". In the next section, we describe how we fine-tune our first model. 
-
-Now we continue to build a custom Keras CNN model on top of the well-known VGG16 architecture \cite{DBLP:journals/corr/SimonyanZ14a}: 
-from keras.applications.vgg16 import VGG16
+\subsubsection*{A Custom Model on top of the VGG16 model \cite{DBLP:journals/corr/SimonyanZ14a} in Keras}
+Now we continue to build a custom Keras CNN model on top of the well-known VGG16 architecture: 
 \begin{lstlisting}[language=Python]
 from keras.applications.vgg16 import VGG16
 VGG16_model = VGG16(include_top=True, weights='imagenet', input_shape=train_tensors.shape[1:])
@@ -393,7 +400,7 @@ VGG16_model = VGG16(include_top=True, weights='imagenet', input_shape=train_tens
 Let us first summarize the VGG16 model:
 
 \begin{longtable}{ccc}%[htb!]
-\caption{Architecture of the VGG16 model  \cite{DBLP:journals/corr/SimonyanZ14a} from Keras \cite{chollet2015keras}.}\\
+\caption{Architecture of the VGG16 model from Keras.}\\
     \hline
     Layer (type) & Output Shape & Param \# \\
     \hline
@@ -438,8 +445,276 @@ predictions (Dense)           &(None, 1000)              &4097000
 
 This model has a large number of 138,357,544 parameters that are all trainable.
 
+\subsubsection*{A custom Faster R-CNN with Tensorflow's Object Detection API \cite{DBLP:journals/corr/HuangRSZKFFWSG016}}
+Finally, we want to improve our model by using Tensorflow's Object Detection API. After the necessary preprocessing steps described in \autoref{dataPreprocessing}, we define our Faster R-CNN with the following configuration file \path{faster_rcnn_inception_logos-locally-on-ubuntu.config} that is located in the Logo Capstone Repository.
 
-\begin{verbatim}cd /mnt/c/ProgramData/anaconda3/envs/tensorflow/models/research
+\begin{minipage}{.45\textwidth}
+\begin{lstlisting}[basicstyle=\fontsize{7.5}{8}\ttfamily,language=Python]
+model {
+  faster_rcnn {
+    num_classes: 821
+    image_resizer {
+      keep_aspect_ratio_resizer {
+        min_dimension: 600
+        max_dimension: 1024
+      }
+    }
+    feature_extractor {
+      type: 'faster_rcnn_inception_v2'
+      first_stage_features_stride: 16
+    }
+    first_stage_anchor_generator {
+      grid_anchor_generator {
+        scales: [0.25, 0.5, 1.0, 2.0]
+        aspect_ratios: [0.5, 1.0, 2.0]
+        height_stride: 16
+        width_stride: 16
+      }
+    }
+    first_stage_box_predictor_conv_hyperparams {
+      op: CONV
+      regularizer {
+        l2_regularizer {
+          weight: 0.0
+        }
+      }
+      initializer {
+        truncated_normal_initializer {
+          stddev: 0.01
+        }
+      }
+    }
+    first_stage_nms_score_threshold: 0.0
+    first_stage_nms_iou_threshold: 0.7
+    first_stage_max_proposals: 300
+    first_stage_localization_loss_weight: 2.0
+    first_stage_objectness_loss_weight: 1.0
+    initial_crop_size: 14
+    maxpool_kernel_size: 2
+    maxpool_stride: 2
+    second_stage_box_predictor {
+      mask_rcnn_box_predictor {
+        use_dropout: false
+        dropout_keep_probability: 1.0
+        fc_hyperparams {
+          op: FC
+          regularizer {
+            l2_regularizer {
+              weight: 0.0
+            }
+          }
+          initializer {
+            variance_scaling_initializer {
+              factor: 1.0
+              uniform: true
+              mode: FAN_AVG
+            }
+          }
+        }
+      }
+    }
+    second_stage_post_processing {
+      batch_non_max_suppression {
+        score_threshold: 0.0
+        iou_threshold: 0.6
+        max_detections_per_class: 100
+        max_total_detections: 300
+      }
+\end{lstlisting}  
+\end{minipage}\hfill
+\noindent\begin{minipage}{.45\textwidth}    
+\begin{lstlisting}[basicstyle=\fontsize{7.5}{8}\ttfamily,language=Python,firstnumber=71]
+      score_converter: SOFTMAX
+    }
+    second_stage_localization_loss_weight: 2.0
+    second_stage_classification_loss_weight: 1.0
+  }
+}
+train_config: {
+  batch_size: 1
+  optimizer {
+    momentum_optimizer: {
+      learning_rate: {
+        manual_step_learning_rate {
+          initial_learning_rate: 0.0002
+          schedule {
+            step: 900000
+            learning_rate: .00002
+          }
+          schedule {
+            step: 1200000
+            learning_rate: .000002
+          }
+        }
+      }
+      momentum_optimizer_value: 0.9
+    }
+    use_moving_average: false
+  }
+  gradient_clipping_by_norm: 10.0
+  num_steps: 5000
+  
+  data_augmentation_options {
+    random_horizontal_flip {
+    }
+  }
+  data_augmentation_options {
+    random_vertical_flip {
+    }
+  }
+  data_augmentation_options {
+    random_rotation90 {
+    }
+  }
+}
+
+train_input_reader {
+  label_map_path: "PATH_TO/LogosInTheWild-v2/data/pascal_label_map.pbtxt"
+  tf_record_input_reader {
+    input_path:"PATH_TO/LogosInTheWild-v2/data/pascal_train.record-?????-of-00010"
+  }
+}
+eval_config {
+  num_examples: 1886
+  max_evals: 1886
+  #use_moving_averages: false
+  metrics_set: "pascal_voc_detection_metrics"
+}
+eval_input_reader {
+  label_map_path:  "PATH_TO/LogosInTheWild-v2/data/pascal_label_map.pbtxt"
+  shuffle: false
+  num_readers: 10
+  tf_record_input_reader {
+    input_path: "PATH_TO/LogosInTheWild-v2/data/pascal_val.record-?????-of-00010"
+  }
+}
+\end{lstlisting}
+\end{minipage}
+%  #fine_tune_checkpoint: "PATH_TO/LogosInTheWild-v2/models/model/model.ckpt"
+%  #from_detection_checkpoint: true
+%  #load_all_detection_checkpoint_vars: true
+
+We make sure that the directory structure is as recommended in \href{https://github.com/tensorflow/models/blob/master/research/object_detection/g3doc/running_locally.md}{running\_locally.md}:
+\begin{verbatim}
++ "data" directory
+  - pascal_label_map.pbtxt
+  - 10 files pascal_train.record-0000i-of-00010 for i = 0,...,9
+  - 10 files pascal_val.record-0000i-of-00010 i = 0,...,9
++ "models" directory
+  + "model" directory
+    - faster_rcnn_inception_logos-locally-on-ubuntu.config
+    + "train" directory
+    + "eval" directory,
+\end{verbatim}
+and train our model by running the following Python script:
+\begin{lstlisting}[language=bash]
+# From tensorflow/models/research directory
+export PYTHONPATH=$PYTHONPATH:`pwd`:`pwd`/slim
+python object_detection/model_main.py \
+    --model_dir=PATH_TO/LogosInTheWild-v2/models/model/ \
+    --pipeline_config_path=PATH_TO/LogosInTheWild-v2/models/model/faster_rcnn_inception_logos-locally-on-ubuntu.config \
+    --num_train_steps=50000 --alsologtostderr
+\end{lstlisting}
+We monitor statistics with \path{tensorboard --logdir=PATH_TO/LogosInTheWild-v2/models/model/}.
+After training finishes, we can export our model checkpoint:
+\begin{lstlisting}[language=bash]
+# From tensorflow/models/research/ directory
+CHECKPOINT_NUMBER= Number from "model.ckpt-${CHECKPOINT_NUMBER}.meta"
+python object_detection/export_inference_graph.py \
+    --input_type=image_tensor \
+    --pipeline_config_path=PATH_TO/LogosInTheWild-v2/models/model/faster_rcnn_inception_logos-locally-on-ubuntu.config \
+    --trained_checkpoint_prefix=PATH_TO/LogosInTheWild-v2/models/model/model.ckpt-${CHECKPOINT_NUMBER} \
+    --output_directory=PATH_TO/LogosInTheWild-v2/export
+\end{lstlisting}
+%
+By opening \path{Logo Capstone Project/adjusted_object_detection_tutorial.ipynb} in a jupyter notebook, adjusting the paths and executing the cells we can explore the results on the sample images.
+
+\textbf{\textcolor{red}{Unfortunately the Faster R-CNN does not detect any logos, please help me with Feedback!}}
+%In this section, the process for which metrics, algorithms, and techniques that you implemented for the given data will need to be clearly documented. It should be abundantly clear how the implementation was carried out, and discussion should be made regarding any complications that occurred during this process. Questions to ask yourself when writing this section:
+%
+%Is it made clear how the algorithms and techniques were implemented with the given datasets or input data?
+%Were there any complications with the original metrics or techniques that required changing prior to acquiring a solution?
+%Was there any part of the coding process (e.g., writing complicated functions) that should be documented?
+\subsection*{Refinement}
+%In this section, you will need to discuss the process of improvement you made upon the algorithms and techniques you used in your implementation. For example, adjusting parameters for certain models to acquire improved solutions would fall under the refinement category. Your initial and final solutions should be reported, as well as any significant intermediate results as necessary. Questions to ask yourself when writing this section:
+%
+%Has an initial solution been found and clearly reported?
+%Is the process of improvement clearly documented, such as what techniques were used?
+%Are intermediate and final solutions clearly reported as the process is improved?
+\section{Results}
+%TODO
+%(approx. 2-3 pages)
+
+\subsection*{Model Evaluation and Validation}
+%In this section, the final model and any supporting qualities should be evaluated in detail. It should be clear how the final model was derived and why this model was chosen. In addition, some type of analysis should be used to validate the robustness of this model and its solution, such as manipulating the input data or environment to see how the model’s solution is affected (this is called sensitivity analysis). Questions to ask yourself when writing this section:
+%
+%Is the final model reasonable and aligning with solution expectations? Are the final parameters of the model appropriate?
+%Has the final model been tested with various inputs to evaluate whether the model generalizes well to unseen data?
+%Is the model robust enough for the problem? Do small perturbations (changes) in training data or the input space greatly affect the results?
+%Can results found from the model be trusted?
+\subsection*{Justification}
+%In this section, your model’s final solution and its results should be compared to the benchmark you established earlier in the project using some type of statistical analysis. You should also justify whether these results and the solution are significant enough to have solved the problem posed in the project. Questions to ask yourself when writing this section:
+%
+%Are the final results found stronger than the benchmark result reported earlier?
+%Have you thoroughly analyzed and discussed the final solution?
+%Is the final solution significant enough to have solved the problem?
+\section{Conclusion}
+%TODO
+%(approx. 1-2 pages)
+
+\subsection*{Free-Form Visualization}
+%In this section, you will need to provide some form of visualization that emphasizes an important quality about the project. It is much more free-form, but should reasonably support a significant result or characteristic about the problem that you want to discuss. Questions to ask yourself when writing this section:
+%
+%Have you visualized a relevant or important quality about the problem, dataset, input data, or results?
+%Is the visualization thoroughly analyzed and discussed?
+%If a plot is provided, are the axes, title, and datum clearly defined?
+%\subsection*{Reflection}
+%In this section, you will summarize the entire end-to-end problem solution and discuss one or two particular aspects of the project you found interesting or difficult. You are expected to reflect on the project as a whole to show that you have a firm understanding of the entire process employed in your work. Questions to ask yourself when writing this section:
+%
+%Have you thoroughly summarized the entire process you used for this project?
+%Were there any interesting aspects of the project?
+%Were there any difficult aspects of the project?
+%Does the final model and solution fit your expectations for the problem, and should it be used in a general setting to solve these types of problems?
+\subsection*{Improvement}
+%In this section, you will need to provide discussion as to how one aspect of the implementation you designed could be improved. As an example, consider ways your implementation can be made more general, and what would need to be modified. You do not need to make this improvement, but the potential solutions resulting from these changes are considered and compared/contrasted to your current solution. Questions to ask yourself when writing this section:
+%
+%Are there further improvements that could be made on the algorithms or techniques you used in this project?
+%Were there algorithms or techniques you researched that you did not know how to implement, but would consider using if you knew how?
+%If you used your final solution as the new benchmark, do you think an even better solution exists?
+%\subsection*{Before submitting, ask yourself...}
+%
+%Does the project report you’ve written follow a well-organized structure similar to that of the project template?
+%Is each section (particularly Analysis and Methodology) written in a clear, concise and specific fashion? Are there any ambiguous terms or phrases that need clarification?
+%Would the intended audience of your project be able to understand your analysis, methods, and results?
+%Have you properly proof-read your project report to assure there are minimal grammatical and spelling mistakes?
+%Are all the resources used for this project correctly cited and referenced?
+%Is the code that implements your solution easily readable and properly commented?
+%Does the code execute without error and produce results similar to those reported?
+
+
+
+%\nocite{*}
+\bibliography{capstone_project}
+\bibliographystyle{alpha}
+\end{document}
+%
+%     Your key must not be publicly viewable for SSH to work. Use this command if needed:
+%
+%    chmod 400 BasicE2.pem
+%
+%    Connect to your instance using its Public DNS:
+%
+%    ec2-3-120-244-179.eu-central-1.compute.amazonaws.com
+%
+%Example:
+%
+%ssh -i "BasicE2.pem" ec2-user@ec2-18-195-165-55.eu-central-1.compute.amazonaws.com  -L 8889:127.0.0.1:8889
+
+%scp -r -i "BasicE2.pem" /data/Machine_Learning/Machine_Learning_Engineer/capstone_project/LogosInTheWild-v2/data/ ec2-user@ec2-3-120-244-179.eu-central-1.compute.amazonaws.com:capstone_project/LogosInTheWild-v2/data/ 
+
+
+%\begin{verbatim}
+cd /mnt/c/ProgramData/anaconda3/envs/tensorflow/models/research
 source ~/.bashrc
 export PYTHONPATH=$PYTHONPATH:`pwd`:`pwd`/slim
 PIPELINE_CONFIG_PATH=/mnt/c/environment/Machine_Learning/Machine_Learning_Engineer/capstone_project/LogosInTheWild-v2/models/model/faster_rcnn_inception_logos.config
@@ -502,89 +777,25 @@ Maybe overwriting train_steps: 10
 Maybe overwriting sample_1_of_n_eval_examples: 1
 Expected number of evaluation epochs is 1, but instead encountered `eval_on_train_input_config.num_e
 
-gcloud auth application-default login
 
-YOUR_CLOUD_BUCKET=gs://logo-bucket-europe-west1//
-tensorboard --logdir=${YOUR_CLOUD_BUCKET}
 
 
 tensorboard --logdir=${MODEL_DIR}
-\end{verbatim}
-%
-%In this section, the process for which metrics, algorithms, and techniques that you implemented for the given data will need to be clearly documented. It should be abundantly clear how the implementation was carried out, and discussion should be made regarding any complications that occurred during this process. Questions to ask yourself when writing this section:
-%
-%Is it made clear how the algorithms and techniques were implemented with the given datasets or input data?
-%Were there any complications with the original metrics or techniques that required changing prior to acquiring a solution?
-%Was there any part of the coding process (e.g., writing complicated functions) that should be documented?
-\subsection*{Refinement}
-In this section, you will need to discuss the process of improvement you made upon the algorithms and techniques you used in your implementation. For example, adjusting parameters for certain models to acquire improved solutions would fall under the refinement category. Your initial and final solutions should be reported, as well as any significant intermediate results as necessary. Questions to ask yourself when writing this section:
-
-Has an initial solution been found and clearly reported?
-Is the process of improvement clearly documented, such as what techniques were used?
-Are intermediate and final solutions clearly reported as the process is improved?
-\section{Results}
-(approx. 2-3 pages)
-
-\subsection*{Model Evaluation and Validation}
-In this section, the final model and any supporting qualities should be evaluated in detail. It should be clear how the final model was derived and why this model was chosen. In addition, some type of analysis should be used to validate the robustness of this model and its solution, such as manipulating the input data or environment to see how the model’s solution is affected (this is called sensitivity analysis). Questions to ask yourself when writing this section:
-
-Is the final model reasonable and aligning with solution expectations? Are the final parameters of the model appropriate?
-Has the final model been tested with various inputs to evaluate whether the model generalizes well to unseen data?
-Is the model robust enough for the problem? Do small perturbations (changes) in training data or the input space greatly affect the results?
-Can results found from the model be trusted?
-\subsection*{Justification}
-In this section, your model’s final solution and its results should be compared to the benchmark you established earlier in the project using some type of statistical analysis. You should also justify whether these results and the solution are significant enough to have solved the problem posed in the project. Questions to ask yourself when writing this section:
-
-Are the final results found stronger than the benchmark result reported earlier?
-Have you thoroughly analyzed and discussed the final solution?
-Is the final solution significant enough to have solved the problem?
-\section{Conclusion}
-(approx. 1-2 pages)
-
-\subsection*{Free-Form Visualization}
-In this section, you will need to provide some form of visualization that emphasizes an important quality about the project. It is much more free-form, but should reasonably support a significant result or characteristic about the problem that you want to discuss. Questions to ask yourself when writing this section:
-
-Have you visualized a relevant or important quality about the problem, dataset, input data, or results?
-Is the visualization thoroughly analyzed and discussed?
-If a plot is provided, are the axes, title, and datum clearly defined?
-\subsection*{Reflection}
-In this section, you will summarize the entire end-to-end problem solution and discuss one or two particular aspects of the project you found interesting or difficult. You are expected to reflect on the project as a whole to show that you have a firm understanding of the entire process employed in your work. Questions to ask yourself when writing this section:
-
-Have you thoroughly summarized the entire process you used for this project?
-Were there any interesting aspects of the project?
-Were there any difficult aspects of the project?
-Does the final model and solution fit your expectations for the problem, and should it be used in a general setting to solve these types of problems?
-\subsection*{Improvement}
-In this section, you will need to provide discussion as to how one aspect of the implementation you designed could be improved. As an example, consider ways your implementation can be made more general, and what would need to be modified. You do not need to make this improvement, but the potential solutions resulting from these changes are considered and compared/contrasted to your current solution. Questions to ask yourself when writing this section:
-
-Are there further improvements that could be made on the algorithms or techniques you used in this project?
-Were there algorithms or techniques you researched that you did not know how to implement, but would consider using if you knew how?
-If you used your final solution as the new benchmark, do you think an even better solution exists?
-%\subsection*{Before submitting, ask yourself...}
-%
-%Does the project report you’ve written follow a well-organized structure similar to that of the project template?
-%Is each section (particularly Analysis and Methodology) written in a clear, concise and specific fashion? Are there any ambiguous terms or phrases that need clarification?
-%Would the intended audience of your project be able to understand your analysis, methods, and results?
-%Have you properly proof-read your project report to assure there are minimal grammatical and spelling mistakes?
-%Are all the resources used for this project correctly cited and referenced?
-%Is the code that implements your solution easily readable and properly commented?
-%Does the code execute without error and produce results similar to those reported?
+%\end{verbatim}
 
 
 
-WARNING:tensorflow:Ignoring ground truth with image id 53383224 since it was previously added
-WARNING:tensorflow:Ignoring detection with image id 53383224 since it was previously added
-creating index...
-index created!
-creating index...
-index created!
-Running per image evaluation...
-Evaluate annotation type *bbox*
-DONE (t=52.51s).
-Accumulating evaluation results...
-Segmentation fault (core dumped)
+### Setting up Google Bucket Storage (instead of creating TFRecord files in Step 10)
 
-%\nocite{*}
-\bibliography{capstone_project}
-\bibliographystyle{alpha}
-\end{document}
+-- Install [gsutil](https://cloud.google.com/storage/docs/gsutil_install#sdk-install)
+
+-- Run gcloud init and gcloud auth application-default login
+
+-- Download dataset from Google bucket 
+``` bash
+# From Logo Capstone Project directory
+gsutil cp -r gs://logo-bucket-europe-west1 .
+```
+
+-- YOUR_CLOUD_BUCKET=gs://logo-bucket-europe-west1//
+tensorboard --logdir=${YOUR_CLOUD_BUCKET}

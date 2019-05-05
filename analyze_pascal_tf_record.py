@@ -170,7 +170,7 @@ def dict_to_tf_example(data,
   }))
   if (examples_list_number_classes_text[os.path.splitext(full_path)[0]]!=examples_list_number_classes[os.path.splitext(full_path)[0]]):
       print(full_path,example)
-  if ((data['folder']+'/'+data['filename']=='nike/img000105') or (len(classes_text) ==0)):
+  if (len(classes_text) ==0):
     #logging.info(example)
     #print(full_path,example)
     print(full_path,examples_list_number_classes_text[os.path.splitext(full_path)[0]],examples_list_number_classes[os.path.splitext(full_path)[0]])
@@ -214,8 +214,8 @@ data_dir = FLAGS.data_dir
 #if FLAGS.year != 'merged':
 #  years = [FLAGS.year]
 
-output_train_path = os.path.join(FLAGS.output_path,"pascal3_train.record")
-output_val_path = os.path.join(FLAGS.output_path,"pascal3_val.record")
+output_train_path = os.path.join(FLAGS.output_path,"pascal_train.record")
+output_val_path = os.path.join(FLAGS.output_path,"pascal_val.record")
 #writer = tf.python_io.TFRecordWriter(FLAGS.output_path)
 writer_train = tf.python_io.TFRecordWriter(output_train_path)
 writer_val = tf.python_io.TFRecordWriter(output_val_path)
@@ -257,7 +257,7 @@ examples_list_number_classes_text= {}.fromkeys(examples_list,0)
 annotations_dir = os.path.join(data_dir)#(data_dir, year, FLAGS.annotations_dir)
 #examples_list = dataset_util.read_examples_list(examples_path)
 #print("examples_list", examples_list)
-print('#traing',len(examples_list_train))
+print('#training',len(examples_list_train))
 print('#val',len(examples_list_val))
 
 
@@ -285,7 +285,7 @@ with contextlib2.ExitStack() as tf_record_close_stack:
    #print("tf_example.SerializeToString())",tf_example.SerializeToString())
    #writer.write(tf_example.SerializeToString())
    output_shard_index = idx % num_shards
-   #output_tfrecords[output_shard_index].write(tf_example.SerializeToString())
+   output_tfrecords[output_shard_index].write(tf_example.SerializeToString())
   writer_train.close()
 
   with contextlib2.ExitStack() as tf_record_close_stack:
@@ -310,7 +310,7 @@ with contextlib2.ExitStack() as tf_record_close_stack:
      #print("tf_example.SerializeToString())",tf_example.SerializeToString())
      #writer.write(tf_example.SerializeToString())
      output_shard_index = idx % num_shards
-     #output_tfrecords[output_shard_index].write(tf_example.SerializeToString())
+     output_tfrecords[output_shard_index].write(tf_example.SerializeToString())
   writer_val.close()
   
   print("BRANDS",brands)

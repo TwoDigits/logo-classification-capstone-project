@@ -1,0 +1,26 @@
+<annotation>
+  <folder>0samples</folder>
+  <filename>img000014</filename>
+  <path>LogoDataset\0samples\img000014.jpg</path>
+  <source>
+    <database>Unknown</database>
+  </source>
+  <size>
+    <width>557</width>
+    <height>438</height>
+    <depth>3</depth>
+  </size>
+  <segmented>0</segmented>
+  <object>
+    <name>aldi</name>
+    <pose>Unspecified</pose>
+    <truncated>0</truncated>
+    <difficult>0</difficult>
+    <bndbox>
+      <xmin>398</xmin>
+      <ymin>255</ymin>
+      <xmax>530</xmax>
+      <ymax>409</ymax>
+    </bndbox>
+  </object>
+</annotation>

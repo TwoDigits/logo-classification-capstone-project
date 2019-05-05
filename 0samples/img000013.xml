@@ -1,0 +1,26 @@
+<annotation>
+  <folder>0samples</folder>
+  <filename>img000013</filename>
+  <path>LogoDataset\0samples\img000013.jpg</path>
+  <source>
+    <database>Unknown</database>
+  </source>
+  <size>
+    <width>635</width>
+    <height>462</height>
+    <depth>3</depth>
+  </size>
+  <segmented>0</segmented>
+  <object>
+    <name>IKEA</name>
+    <pose>Unspecified</pose>
+    <truncated>0</truncated>
+    <difficult>0</difficult>
+    <bndbox>
+      <xmin>48</xmin>
+      <ymin>18</ymin>
+      <xmax>245</xmax>
+      <ymax>101</ymax>
+    </bndbox>
+  </object>
+</annotation>
