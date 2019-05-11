@@ -241,7 +241,14 @@ While the images on the right contain logos of a single brand, the image on the 
 \subsection*{Algorithms and Techniques}
 %Probably we augment the training data to have more images per brand. 
 As mentioned before, we start by training an own CNN architecture to classify the logos as done in the dog breeds project of the Nanodegree. For this, 40\% of the dataset forms the test set, and the remaining data is split into 80\% training set and 20\% validation set. Using Keras preprocessing, each image is converted into a 4D tensor with shape $(1,224,224,3)$.
-This CNN consists of a convolutionary layer, a max-pooling layer, another convolutionary layer, a max-pooling layer, a global-average pooling layer and a final fully connected layer. As optimizer we choose "RMSprop", as loss function "categorical cross entropy" and as metric "accuracy".
+This CNN consists of a convolutionary layer, a max-pooling layer, another convolutionary layer, a max-pooling layer, a global-average pooling layer and a final fully connected layer. 
+
+The theory behind selecting these layer is that at first nodes in \emph{convolutionary layers} help to detect patterns in single small regions in the image by "filtering" images that are interpreted as 3D arrays (height, width and color).
+In order to reduce overfitting caused by the high-dimensionality of the filter stack in the convolutionary layers we further use the following two types of \emph{pooling layers}:
+Nodes in the first type \emph{max-pooling layer} contain the maximum value of the corresponding region in the filter stack of the previous layer. 
+\emph{Global average pooling layers} reduce dimensionality more drastically by taking the average of the entries of each of the three 2D arrays, which constitute the image as 3D array, to produce a 3D vector. 
+
+As gradient descent optimizer algorithm we choose "RMSprop", as loss function for our categorization problem "categorical cross entropy" and as metric "accuracy".
 Using Keras ModelCheckpoint, we save the model with the best validation loss.
 
 As a next step we train a popular CNN like VGG19 whose weights are pre-trained on ImageNet. We proceed similarly as in the first setting.
@@ -301,7 +308,7 @@ Finally, for training a Faster R-CNN with Tensorflow's Object Detection API we n
 %If no preprocessing is needed, has it been made clear why?
 \begin{lstlisting}[language=bash]
 # From LogosInTheWild-v2 directory
-python create_and_analyze_pascal_tf_record.py --data_dir=./data/voc_format --label_map_path=./pascal_label_map.pbtxt --output_path=./data/
+python create_and_analyze_pascal_tf_record.py --data_dir=./data/voc_format --label_map_path=./data/pascal_label_map.pbtxt --output_path=./data/
 \end{lstlisting}
 %
 %(py2) python object_detection/dataset_tools/create_pascal_tf_record.py --data_dir=/mnt/c/environment/Machine_Learning/Machine_Learning_Engineer/capstone_project/LogosInTheWild-v2/data/voc_format --year=VOC2012  --label_map_path=/mnt/c/environment/Machine_Learning/Machine_Learning_Engineer/capstone_project/LogosInTheWild-v2/data/pascal_label_map.pbtxt --output_path=/mnt/c/environment/Machine_Learning/Machine_Learning_Engineer/
@@ -313,15 +320,15 @@ python create_and_analyze_pascal_tf_record.py --data_dir=./data/voc_format --lab
 %%python object_detection/dataset_tools/analyze_pascal_tf_record.py --data_dir=/mnt/c/environment/Machine_Learning/Machine_Learning_Engineer/capstone_project/LogosInTheWild-v2/data/voc_format --year=VOC2012  --label_map_path=/mnt/c/environment/Machine_Learning/Machine_Learning_Engineer/capstone_project/LogosInTheWild-v2/data/pascal_label_map.pbtxt --output_path=/mnt/c/environment/Machine_Learning/Machine_Learning_Engineer/
 %\end{lstlisting}
 %TODO Modify create to analyze and remove 2 in pascal
-After completion we see that we converted 7,542 images with annotations into the 10 training TFRecord files \path{pascal_train.record-0000i-of-00010}, and 1,886 images with annotations into the 10 validation TFRecord files \path{pascal_val.record-0000i-of-00010} for $i=0,\ldots,9$.
-Further, we create a dictionary that maps our logo type to a unique id in form of a \path{pascal_label_map.pbtxt} containing 821 entries like the following:
+After completion we see that we converted 6,034 images with annotations into the 10 training TFRecord files \path{pascal_train.record-0000i-of-00010}, and 1,508 images with annotations into the 10 validation TFRecord files \path{pascal_val.record-0000i-of-00010} for $i=0,\ldots,9$.
+Further, in \path{LogosInTheWild-v2/data} this created \path{test_images.txt} containing the absolute path of the 1,886 images in the test set, and \path{pascal_label_map.pbtxt} containing 821 entries like the following:
 \begin{lstlisting}[language=Python]
 item {
-  id: 263
+  id: 262
   name: 'starbucks-text'
 }
 \end{lstlisting}
-Among other parameters for our Faster R-CNN, we choose in our configuration file \path{faster_rcnn_inception_logos.config} by the Capstone Project as data\_augmentation\_options random\_horizontal\_flip, random\_vertical\_flip and random\_rotation90.
+Among other parameters for our Faster R-CNN, we choose in our pipeline configuration file \path{faster_rcnn_inception_logos-locally-on-ubuntu.config} by the Capstone Project as data\_augmentation\_options random\_horizontal\_flip, random\_vertical\_flip and random\_rotation90.
     
 \subsection*{Implementation}
 \subsubsection*{A first CNN model from scratch in Keras \cite{chollet2015keras}}
@@ -390,9 +397,10 @@ brand_predictions = [np.argmax(model.predict(np.expand_dims(tensor, axis=0))) fo
 test_accuracy = 100*np.sum(np.array(brand_predictions)==np.argmax(test_targets, axis=1))/len(brand_predictions)
 print('Test accuracy: %.4f%%' % test_accuracy)
 \end{lstlisting}
-This results in "Test accuracy: 22.9852\%". In the next section, we describe how we fine-tune our first model. 
+After training for 20 epochs, this results in "Test accuracy: 22.9852\%". Finally, continuing to train for 2000 epochs leads to "Test accuracy: 32.608\%". However, the weights with the best validation loss of 2.97862 are already achieved in epoch 557.
+In the next section, we describe how we fine-tune our first model. 
 \subsubsection*{A Custom Model on top of the VGG16 model \cite{DBLP:journals/corr/SimonyanZ14a} in Keras}
-Now we continue to build a custom Keras CNN model on top of the well-known VGG16 architecture: 
+Now we build a custom Keras CNN model on top of the well-known VGG16 architecture: 
 \begin{lstlisting}[language=Python]
 from keras.applications.vgg16 import VGG16
 VGG16_model = VGG16(include_top=True, weights='imagenet', input_shape=train_tensors.shape[1:])
@@ -442,8 +450,56 @@ fc2 (Dense)                   &(None, 4096)              &16781312  \\
 predictions (Dense)           &(None, 1000)              &4097000   
 \label{table:vgg}
 \end{longtable}
-
 This model has a large number of 138,357,544 parameters that are all trainable.
+
+On top of this VGG16 model, we add some custom layers leading to the following architecture:
+\begin{longtable}{ccc}%[htb!]
+\caption{Our custom Architecture on top of the above VGG16 model.}\\
+    \hline
+    Layer (type) & Output Shape & Param \# \\
+    \hline
+    \endfirsthead
+    \multicolumn{3}{c}
+    {\tablename\ \thetable\ -- \textit{Continued from previous page}} \\
+%		\toprule
+%\hline
+%    Layer (type) & Output Shape & Param \# \\
+%    \hline
+\endhead
+%    \hline 
+    \multicolumn{3}{r}{\textit{Continued on next page}} \\
+    \endfoot
+%		\midrule
+\hline\endlastfoot
+input\_2 (InputLayer)         &(None, 224, 224, 3)       &0         \\
+block1\_conv1 (Conv2D)        &(None, 224, 224, 64)      &1792      \\
+block1\_conv2 (Conv2D)        &(None, 224, 224, 64)      &36928     \\
+block1\_pool (MaxPooling2D)   &(None, 112, 112, 64)      &0         \\
+block2\_conv1 (Conv2D)        &(None, 112, 112, 128)     &73856     \\
+block2\_conv2 (Conv2D)        &(None, 112, 112, 128)     &147584    \\
+block2\_pool (MaxPooling2D)   &(None, 56, 56, 128)       &0         \\
+block3\_conv1 (Conv2D)        &(None, 56, 56, 256)       &295168    \\
+block3\_conv2 (Conv2D)        &(None, 56, 56, 256)       &590080    \\
+block3\_conv3 (Conv2D)        &(None, 56, 56, 256)       &590080    \\
+block3\_pool (MaxPooling2D)   &(None, 28, 28, 256)       &0         \\
+block4\_conv1 (Conv2D)        &(None, 28, 28, 512)       &1180160   \\
+block4\_conv2 (Conv2D)        &(None, 28, 28, 512)       &2359808   \\
+block4\_conv3 (Conv2D)        &(None, 28, 28, 512)       &2359808   \\
+block4\_pool (MaxPooling2D)   &(None, 14, 14, 512)       &0         \\
+block5\_conv1 (Conv2D)        &(None, 14, 14, 512)       &2359808   \\
+block5\_conv2 (Conv2D)        &(None, 14, 14, 512)       &2359808   \\
+block5\_conv3 (Conv2D)        &(None, 14, 14, 512)       &2359808   \\
+block5\_pool (MaxPooling2D)   &(None, 7, 7, 512)         &0         \\
+conv2d\_3 (Conv2D)            &(None, 5, 5, 64)          &294976    \\
+max\_pooling2d\_4 (MaxPooling2D)&(None, 2, 2, 64)         &0        \\
+global\_average\_pooling2d\_2 (GAP2D\footnotemark)&(None, 64)&0     \\
+dropout\_1 (Dropout)          &(None, 64)                &0         \\
+dense\_2 (Dense)              &(None, 109)               &7085      
+\label{table:vgg_custom}
+\end{longtable}
+Since we only set our custom layers as trainable, out of the 15,016,749 total parameters, only  302,061 are trainable.
+We train this model for 50 epochs but the validation loss does not improve anymore after 11 epochs. In fact, our model is overfitting as the accuracy on the trainings set keeps increasing up to 47.09\% in epoch 50. Accuracy on the validation set is rather decreasing to 28.83\% in epoch 50. Finally, on the test set we get an accuracy of 30.9650\%, which is similar to our first model from scratch.
+
 
 \subsubsection*{A custom Faster R-CNN with Tensorflow's Object Detection API \cite{DBLP:journals/corr/HuangRSZKFFWSG016}}
 Finally, we want to improve our model by using Tensorflow's Object Detection API. After the necessary preprocessing steps described in \autoref{dataPreprocessing}, we define our Faster R-CNN with the following configuration file \path{faster_rcnn_inception_logos-locally-on-ubuntu.config} that is located in the Logo Capstone Repository.
@@ -615,7 +671,10 @@ python object_detection/model_main.py \
     --pipeline_config_path=PATH_TO/LogosInTheWild-v2/models/model/faster_rcnn_inception_logos-locally-on-ubuntu.config \
     --num_train_steps=50000 --alsologtostderr
 \end{lstlisting}
-We monitor statistics with \path{tensorboard --logdir=PATH_TO/LogosInTheWild-v2/models/model/}.
+We monitor statistics with 
+\begin{lstlisting}[language=bash]
+tensorboard --logdir=PATH_TO/LogosInTheWild-v2/models/model/.
+\end{lstlisting}
 After training finishes, we can export our model checkpoint:
 \begin{lstlisting}[language=bash]
 # From tensorflow/models/research/ directory
@@ -629,18 +688,21 @@ python object_detection/export_inference_graph.py \
 %
 By opening \path{Logo Capstone Project/adjusted_object_detection_tutorial.ipynb} in a jupyter notebook, adjusting the paths and executing the cells we can explore the results on the sample images.
 
-\textbf{\textcolor{red}{Unfortunately the Faster R-CNN does not detect any logos, please help me with Feedback!}}
+Unfortunately, neither when evaluating nor when making predictions with the frozen model any logos are detected (see \url{https://github.com/tensorflow/models/issues/6748}). 
 %In this section, the process for which metrics, algorithms, and techniques that you implemented for the given data will need to be clearly documented. It should be abundantly clear how the implementation was carried out, and discussion should be made regarding any complications that occurred during this process. Questions to ask yourself when writing this section:
 %
 %Is it made clear how the algorithms and techniques were implemented with the given datasets or input data?
 %Were there any complications with the original metrics or techniques that required changing prior to acquiring a solution?
 %Was there any part of the coding process (e.g., writing complicated functions) that should be documented?
 \subsection*{Refinement}
+\subsubsection*{Refinements for our first CNN model from scratch}
+As a first step, we use Keras Data Augmentation to 
 %In this section, you will need to discuss the process of improvement you made upon the algorithms and techniques you used in your implementation. For example, adjusting parameters for certain models to acquire improved solutions would fall under the refinement category. Your initial and final solutions should be reported, as well as any significant intermediate results as necessary. Questions to ask yourself when writing this section:
 %
 %Has an initial solution been found and clearly reported?
 %Is the process of improvement clearly documented, such as what techniques were used?
 %Are intermediate and final solutions clearly reported as the process is improved?
+\subsubsection*{Refinements for our Custom Model on top of the VGG16 model}
 \section{Results}
 %TODO
 %(approx. 2-3 pages)
@@ -708,9 +770,24 @@ By opening \path{Logo Capstone Project/adjusted_object_detection_tutorial.ipynb}
 %
 %Example:
 %
-%ssh -i "BasicE2.pem" ec2-user@ec2-18-195-165-55.eu-central-1.compute.amazonaws.com  -L 8889:127.0.0.1:8889
+%ssh -i "BasicE2.pem" ec2-user@ec2-52-59-207-104.eu-central-1.compute.amazonaws.com -L 8889:127.0.0.1:8889
 
-%scp -r -i "BasicE2.pem" /data/Machine_Learning/Machine_Learning_Engineer/capstone_project/LogosInTheWild-v2/data/ ec2-user@ec2-3-120-244-179.eu-central-1.compute.amazonaws.com:capstone_project/LogosInTheWild-v2/data/ 
+ssh -i "IrelandKey.pem" ubuntu@ec2-34-241-125-193.eu-west-1.compute.amazonaws.com -L 8889:127.0.0.1:8889
+
+rsync -av -progress -e "ssh -i IrelandKey.pem" /data/Machine_Learning/Machine_Learning_Engineer/capstone_project/LogosInTheWild-v2/data/voc_format ubuntu@ec2-34-241-125-193.eu-west-1.compute.amazonaws.com:~/capstone_project/LogosInTheWild-v2/data/voc_format
+
+
+source activate tensorflow_p36
+
+%    RUN sudo /etc/init.d/ssh start
+
+%rsync -azvv -e ssh -i "IrelandKey.pem" /data/Machine_Learning/Machine_Learning_Engineer/capstone_project/LogosInTheWild-v2/data ec2-user@ec2-34-241-125-193.eu-west-1.compute.amazonaws.com:~/capstone_project/LogosInTheWild-v2/data 
+
+rsync -azvv -e  ssh -i ~/.ssh/google_compute_engine /data/Machine_Learning/Machine_Learning_Engineer/capstone_project/LogosInTheWild-v2/data/ ajuschka@34.76.173.78:capstone_project/LogosInTheWild-v2/data
+
+
+
+%scp -r -i "BasicE2.pem" /data/Machine_Learning/Machine_Learning_Engineer/capstone_project/LogosInTheWild-v2/ ec2-user@ec2-52-59-207-104.eu-central-1.compute.amazonaws.com :capstone_project/LogosInTheWild-v2/ 
 
 
 %\begin{verbatim}
@@ -730,7 +807,7 @@ export PYTHONPATH=$PYTHONPATH:`pwd`:`pwd`/slim
 PIPELINE_CONFIG_PATH=/data/Machine_Learning/Machine_Learning_Engineer/capstone_project/LogosInTheWild-v2/models/model/faster_rcnn_inception_logos-locally-on-ubuntu.config
 MODEL_DIR=/data/Machine_Learning/Machine_Learning_Engineer/capstone_project/LogosInTheWild-v2/models/model/
 NUM_TRAIN_STEPS=20000
-SAMPLE_1_OF_N_EVAL_EXAMPLES=1
+SAMPLE_1_OF_N_EVAL_EXAMPLES=1508
 TRAIN_DIR=/data/Machine_Learning/Machine_Learning_Engineer/capstone_project/LogosInTheWild-v2/models/model/train
 EVAL_DIR=/data/Machine_Learning/Machine_Learning_Engineer/capstone_project/LogosInTheWild-v2/models/model/eval
 python object_detection/model_main.py --pipeline_config_path=${PIPELINE_CONFIG_PATH} --model_dir=${MODEL_DIR} --num_train_steps=${NUM_TRAIN_STEPS} --sample_1_of_n_eval_examples=$SAMPLE_1_OF_N_EVAL_EXAMPLES --alsologtostderr
@@ -765,20 +842,10 @@ or continue streaming the logs with the command
   $ gcloud ml-engine jobs stream-logs object_detection_04_29_2019_20_38_31
 
  
- 
- %eval
 
 
-
-Maybe overwriting eval_num_epochs: 1
-Maybe overwriting load_pretrained: True
-Ignoring config override key: load_pretrained
-Maybe overwriting train_steps: 10
-Maybe overwriting sample_1_of_n_eval_examples: 1
-Expected number of evaluation epochs is 1, but instead encountered `eval_on_train_input_config.num_e
-
-
-
+sudo apt-get install ssh
+sudo /etc/init.d/ssh start
 
 tensorboard --logdir=${MODEL_DIR}
 %\end{verbatim}
@@ -797,5 +864,16 @@ tensorboard --logdir=${MODEL_DIR}
 gsutil cp -r gs://logo-bucket-europe-west1 .
 ```
 
+gsutil -m cp -r gs://logo-bucket-europe-west1/LogosInTheWild-v2/data capstone_project/
+
 -- YOUR_CLOUD_BUCKET=gs://logo-bucket-europe-west1//
 tensorboard --logdir=${YOUR_CLOUD_BUCKET}
+
+%gcloud compute ssh gpu-deep-learner --zone europe-west1-d
+ann-kristin@gpu-deep-learner:~$ exit
+logout
+Connection to 34.76.173.78 closed.
+
+ssh -i .ssh/google_compute_engine ajuschka@34.76.173.78 -L 8899:localhost:8888
+
+

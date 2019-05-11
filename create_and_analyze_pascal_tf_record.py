@@ -48,6 +48,7 @@ import cv2
 import matplotlib
 matplotlib.use('TkAgg')
 import matplotlib.pyplot as plt  
+import csv
 
                               
 
@@ -152,12 +153,12 @@ def dict_to_tf_example(data,
       'image/height': dataset_util.int64_feature(height),
       'image/width': dataset_util.int64_feature(width),
       'image/filename': dataset_util.bytes_feature(
-          str.encode(data['folder']+'/'+data['filename'],'utf-8')),
+          str.encode(data['folder']+'/'+data['filename'],'utf8')),
       'image/source_id': dataset_util.bytes_feature(
-          str.encode(data['folder']+'/'+data['filename'],'utf-8')),
-      'image/key/sha256': dataset_util.bytes_feature(str.encode(key,'utf-8')),
+          str.encode(data['folder']+'/'+data['filename'],'utf8')),
+      'image/key/sha256': dataset_util.bytes_feature(str.encode(key,'utf8')),
       'image/encoded': dataset_util.bytes_feature(encoded_jpg),
-      'image/format': dataset_util.bytes_feature(str.encode('jpeg','utf-8')),
+      'image/format': dataset_util.bytes_feature(str.encode('jpeg','utf8')),
       'image/object/bbox/xmin': dataset_util.float_list_feature(xmin),
       'image/object/bbox/xmax': dataset_util.float_list_feature(xmax),
       'image/object/bbox/ymin': dataset_util.float_list_feature(ymin),
@@ -172,7 +173,7 @@ def dict_to_tf_example(data,
       print(full_path,example)
   if (len(classes_text) ==0):
     #logging.info(example)
-    #print(full_path,example)
+    print(full_path,example)
     print(full_path,examples_list_number_classes_text[os.path.splitext(full_path)[0]],examples_list_number_classes[os.path.splitext(full_path)[0]])
     # extract pre-trained face detector
     #face_cascade = cv2.CascadeClassifier('haarcascades/haarcascade_frontalface_alt.xml')
@@ -198,8 +199,8 @@ def dict_to_tf_example(data,
     cv_rgb = cv2.cvtColor(img, cv2.COLOR_BGR2RGB)
     #cv2.imshow("Image",cv_rgb)
     # display the image, along with bounding box
-    #plt.imshow(cv_rgb)
-    #plt.show()
+    plt.imshow(cv_rgb)
+    plt.show()
   return example
 
 
@@ -220,7 +221,23 @@ output_val_path = os.path.join(FLAGS.output_path,"pascal_val.record")
 writer_train = tf.python_io.TFRecordWriter(output_train_path)
 writer_val = tf.python_io.TFRecordWriter(output_val_path)
 
+
+
+with open(os.path.join(FLAGS.output_path, "brands.txt"), newline = '') as brands: 
+    brands_reader = csv.reader(brands, delimiter='\n')
+    index=0
+    with open(FLAGS.label_map_path, 'wb') as handle:
+        for brand in brands_reader:
+            index=index+1
+            print(index,brand[0])
+            handle.write(str.encode('item {\n','utf8'))
+            handle.write(str.encode('  id: '+str(index)+'\n','utf8'))
+            handle.write(str.encode('  name: \''+brand[0]+'\'\n','utf8'))
+            handle.write(str.encode('}'+'\n\n','utf8'))
+
+
 label_map_dict = label_map_util.get_label_map_dict(FLAGS.label_map_path)
+print(label_map_dict)
 brands= {}.fromkeys(label_map_dict.keys(),0)
 
 print('Reading from PASCAL dataset.')
@@ -233,17 +250,30 @@ examples_list=[os.path.splitext(os.path.join(root, name))[0]
 print(len(examples_list),examples_list)
 
 indices = list(range(len(examples_list)))
-num_training_instances = int(0.8 * len(examples_list))
+num_train_and_val_instances = int(0.8 * len(examples_list))
+num_val_instances = int(0.2 * num_train_and_val_instances)
+
 random_state=1234567890
 rs = np.random.RandomState(random_state)
 rs.shuffle(indices)
-train_indices = indices[:num_training_instances]
-val_indices = indices[num_training_instances:]
+val_indices = indices[:num_val_instances]
+train_indices = indices[num_val_instances:num_train_and_val_instances]
+test_indices = indices[num_train_and_val_instances:]
 #print("indices",indices)
+print("number val_indices",len(val_indices))
+print("number train_indices",len(train_indices))
+print("number test_indices",len(test_indices))
+print("number total",len(val_indices)+len(test_indices)+len(train_indices),", should be: ",len(indices))
 
 # split the actual data
 
-examples_list_train, examples_list_val = list(pd.DataFrame(examples_list).iloc[train_indices].values.flatten()), list(pd.DataFrame(examples_list).iloc[val_indices].values.flatten())
+examples_list_train, examples_list_val, examples_list_test  = list(pd.DataFrame(examples_list).iloc[train_indices].values.flatten()), list(pd.DataFrame(examples_list).iloc[val_indices].values.flatten()),list(pd.DataFrame(examples_list).iloc[test_indices].values.flatten())
+
+
+with open(os.path.join(FLAGS.output_path,'test_images.txt'), 'wb') as handle:
+  for example_test in examples_list_test:
+    handle.write(str.encode(example_test+'\n'))   
+
 
 examples_list_number_classes= {}.fromkeys(examples_list,0)
 examples_list_number_classes_text= {}.fromkeys(examples_list,0)
@@ -328,13 +358,13 @@ with contextlib2.ExitStack() as tf_record_close_stack:
   key_max = max(examples_list_number_classes_text.keys(), key=(lambda k: examples_list_number_classes_text[k]))
   key_min = min(examples_list_number_classes_text.keys(), key=(lambda k: examples_list_number_classes_text[k]))
 
-  print('Maximum Value no classes text: ',examples_list_number_classes_text[key_max],'at key',key_max)
-  print('Minimum Value: ',examples_list_number_classes_text[key_min],'at key',key_min)
+  print('Maximum Value number classes text: ',examples_list_number_classes_text[key_max],'at key',key_max)
+  print('Minimum Value number classes text: : ',examples_list_number_classes_text[key_min],'at key',key_min)
   key_max = max(examples_list_number_classes.keys(), key=(lambda k: examples_list_number_classes[k]))
   key_min = min(examples_list_number_classes.keys(), key=(lambda k: examples_list_number_classes[k]))
 
-  print('Maximum Value no classes: ',examples_list_number_classes[key_max],'at key',key_max)
-  print('Minimum Value: ',examples_list_number_classes[key_min],'at key',key_min)
+  print('Maximum Value number classes: ',examples_list_number_classes[key_max],'at key',key_max)
+  print('Minimum Value number classes: ',examples_list_number_classes[key_min],'at key',key_min)
 
 if __name__ == '__main__':
   tf.app.run()

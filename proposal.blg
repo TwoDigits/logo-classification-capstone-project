@@ -1,5 +1,48 @@
-This is BibTeX, Version 0.99dThe top-level auxiliary file: proposal.aux
+This is BibTeX, Version 0.99d (TeX Live 2017/Debian)
+Capacity: max_strings=100000, hash_size=100000, hash_prime=85009
+The top-level auxiliary file: proposal.aux
 The style file: alpha.bst
-Database file #1: proposal.bib
+Database file #1: capstone_project.bib
 Warning--to sort, need author or key in kerasapplications
+You've used 10 entries,
+            2543 wiz_defined-function locations,
+            622 strings with 6587 characters,
+and the built_in function-call counts, 4626 in all, are:
+= -- 456
+> -- 286
+< -- 2
++ -- 109
+- -- 108
+* -- 353
+:= -- 782
+add.period$ -- 32
+call.type$ -- 10
+change.case$ -- 78
+chr.to.int$ -- 10
+cite$ -- 12
+duplicate$ -- 165
+empty$ -- 294
+format.name$ -- 114
+if$ -- 933
+int.to.chr$ -- 1
+int.to.str$ -- 0
+missing$ -- 9
+newline$ -- 54
+num.names$ -- 27
+pop$ -- 75
+preamble$ -- 1
+purify$ -- 88
+quote$ -- 0
+skip$ -- 138
+stack$ -- 0
+substring$ -- 190
+swap$ -- 31
+text.length$ -- 2
+text.prefix$ -- 0
+top$ -- 0
+type$ -- 80
+warning$ -- 1
+while$ -- 36
+width$ -- 13
+write$ -- 136
 (There was 1 warning)

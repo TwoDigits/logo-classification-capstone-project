@@ -44,15 +44,20 @@ This outputs that 9,428 images and 821 brands were processed, while 1,330 JPEG f
 
 ### Creating TFRecord files for Tensorflow's Object Dectection API
 
-10. For [this necessary conversion of our dataset to Tensorflow's TFRecord file format](https://github.com/tensorflow/models/blob/master/research/object_detection/g3doc/preparing_inputs.md), copy the following from the Logo Capstone Project:
--- pascal_label_map.pbtxt to the LogosInTheWild-v2/data directoy, 
--- create_pascal_tf_record.py to the LogosInTheWild-v2 directoy,
--- analyze_pascal_tf_record.py to the LogosInTheWild-v2 directoy.
+10. For [this necessary conversion of our dataset to Tensorflow's TFRecord file format](https://github.com/tensorflow/models/blob/master/research/object_detection/g3doc/preparing_inputs.md), copy our adaption of Tensorflow's [create_pascal_tf_record.py](https://github.com/tensorflow/models/blob/master/research/object_detection/dataset_tools/create_pascal_tf_record.py) script create_and_analyze_pascal_tf_record.py from the Logo Capstone Project to the LogosInTheWild-v2 directoy.
 
-11.  Execute our adaption of Tensorflow's [create_pascal_tf_record.py](https://github.com/tensorflow/models/blob/master/research/object_detection/dataset_tools/create_pascal_tf_record.py) script to convert the Logos in the Wild dataset to TFRecord files:
+11.  In order to convert the Logos in the Wild dataset to TFRecord files, we run
 ``` bash
 # From LogosInTheWild-v2 directory
-$ python create_pascal_tf_record.py --data_dir=./data/voc_format --year=VOC2012  --label_map_path=./data/pascal_label_map.pbtxt --output_path=./data/
+$ python create_and_analyze_pascal_tf_record.py --data_dir=./data/voc_format --label_map_path=./data/pascal_label_map.pbtxt --output_path=./data/
+```
+This converts 6,034 images with annotations into the 10 training TFRecord files \path{pascal_train.record-0000i-of-00010}, and 1,508 images with annotations into the 10 validation TFRecord files \path{pascal_val.record-0000i-of-00010} for i=0,...,9.
+Further, in LogosInTheWild-v2/data this created \path{test_images.txt} containing the absolute path of the 1,886 images in the test set, and pascal_label_map.pbtxt containing 821 entries like the following:
+``` python
+item {
+  id: 262
+  name: 'starbucks-text'
+}
 ```
 
 ### Training a custom Faster R-CNN with Tensorflow's Object Dectection API
@@ -68,7 +73,7 @@ $ python create_pascal_tf_record.py --data_dir=./data/voc_format --year=VOC2012 
     + "train" directory
     + "eval" directory,
 
-11. Train the Faster R-CNN on our dataset by running the following Python script:
+13. Train the Faster R-CNN on our dataset by running the following Python script:
 ``` bash
 # From tensorflow/models/research directory
 export PYTHONPATH=$PYTHONPATH:`pwd`:`pwd`/slim
@@ -78,7 +83,7 @@ python object_detection/model_main.py \
     --num_train_steps=50000 --alsologtostderr
 ```
 
-12. Monitor statistics with "tensorboard --logdir=PATH_TO/LogosInTheWild-v2/models/model/ 
+14. Monitor statistics with "tensorboard --logdir=PATH_TO/LogosInTheWild-v2/models/model/ 
 
 ### Export the trained Faster R-CNN and test Logo detection
 
@@ -92,4 +97,4 @@ python object_detection/export_inference_graph.py \
     --output_directory=PATH_TO/LogosInTheWild-v2/export
 ```
 
-13. Open Logo Capstone Project/adjusted_object_detection_tutorial.ipynb in a jupyter notebook, adjust the paths and execute the cells.
+15. Open Logo Capstone Project/adjusted_object_detection_tutorial.ipynb in a jupyter notebook, adjust the paths and execute the cells.
