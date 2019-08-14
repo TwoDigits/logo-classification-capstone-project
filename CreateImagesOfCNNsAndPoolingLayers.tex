@@ -1,0 +1,921 @@
+\documentclass{article}
+
+\usepackage{tikz}
+\usetikzlibrary{shapes,arrows,calc,matrix}
+\begin{document}
+\pagestyle{empty}
+
+\def\layersep{2.5cm}
+
+\begin{tikzpicture}[shorten >=1pt,->,draw=black!50, node distance=\layersep]
+    \tikzstyle{every pin edge}=[<-,shorten <=1pt]
+    \tikzstyle{neuron}=[circle,fill=black!25,minimum size=17pt,inner sep=0pt]
+    \tikzstyle{input neuron}=[neuron, fill=green!50];
+    \tikzstyle{output neuron}=[neuron, fill=red!50];
+    \tikzstyle{hidden neuron}=[neuron, fill=blue!50];
+    \tikzstyle{annot} = [text width=4em, text centered]
+
+    % Draw the input layer nodes
+    \foreach \name / \y in {1,...,4}
+    % This is the same as writing \foreach \name / \y in {1/1,2/2,3/3,4/4}
+        \node[input neuron, pin=left:Input \#\y] (I-\name) at (0,-\y) {};
+
+    % Draw the first hidden layer nodes
+    \foreach \name / \y in {1,...,5}
+        \path[yshift=0.5cm]
+            node[hidden neuron] (H1-\name) at (\layersep,-\y cm) {};
+            
+    % Draw the second hidden layer nodes
+    \foreach \name / \y in {1,...,3}
+        \path[yshift=0.5cm]
+            node[hidden neuron] (H2-\name) at (2*\layersep,-\y cm) {};        
+
+    % Draw the output layer node
+    \foreach \name / \y in {1,...,2}
+    	\path[yshift=0.5cm]
+    		node[output neuron,pin={[pin edge={->}]right:Output \#\y}] (O-\name) at (3*\layersep,-\y) {};
+
+    % Connect every node in the input layer with every node in the
+    % first hidden layer.
+    \foreach \source in {1,...,4}
+        \foreach \dest in {1,...,5}
+            \path (I-\source) edge (H1-\dest);
+            
+    % Connect every node in the first hidden layer with every node in the
+    % second hidden layer.
+    \foreach \source in {1,...,5}
+        \foreach \dest in {1,...,3}
+            \path (H1-\source) edge (H2-\dest);
+
+    % Connect every node in the second hidden layer with the output layer
+    \foreach \source in {1,...,3}
+    	\foreach \dest in {1,...,2}
+        	\path (H2-\source) edge (O-\dest);
+
+    % Annotate the layers
+    \node[annot,above of=H1-1, node distance=1cm] (h1) {Hidden layer};
+    \node[annot,above of=H2-1, node distance=1cm] (h2) {Hidden layer};
+    \node[annot,left of=h1] {Input layer};
+    \node[annot,right of=h2] {Output layer};
+\end{tikzpicture}
+% End of code
+
+
+
+
+
+\begin{tikzpicture}[shorten >=1pt,->,draw=black!50, node distance=\layersep]
+    \tikzstyle{every pin edge}=[<-,shorten <=1pt]
+    \tikzstyle{neuron}=[circle,fill=black!25,minimum size=17pt,inner sep=5pt]
+    \tikzstyle{input neuron}=[neuron, fill=green!50];
+    \tikzstyle{output neuron}=[neuron, fill=red!50];
+    \tikzstyle{hidden neuron}=[neuron, fill=blue!50];
+    \tikzstyle{annot} = [text width=4em, text centered]
+
+    % Draw the input layer nodes
+    %\foreach \name / \y in {1,...,4}
+    % This is the same as writing \foreach \name / \y in {1/1,2/2,3/3,4/4}
+    %   \node[input neuron, pin=left:Input \#\y] (I-\name) at (0,-\y) {};
+
+	\begin{scope}[yshift=0cm]
+        \matrix[nodes={draw,ball}]{
+            \node[input neuron, pin=left:Input \#1] (I-1) {}; \\
+            \node[input neuron, pin=left:Input \#2] (I-2) {}; \\
+            \node[input neuron, pin=left:Input \#3] (I-3) {}; \\
+            \node[input neuron, pin=left:Input \#4] (I-4) {}; \\
+            };
+    \end{scope}   
+
+
+    % Draw the first hidden layer nodes
+    %\foreach \name / \y in {1,...,5}
+    %    \path[yshift=0.5cm]
+    %        node[hidden neuron] (H1-\name) at (\layersep,-\y cm) {};
+    \begin{scope}[yshift=0cm,xshift=2.5cm]
+        \matrix[nodes={draw,ball}]{
+            \node[hidden neuron] (H1-1) {}; \\
+            \node[hidden neuron] (H1-2) {}; \\
+            \node[hidden neuron] (H1-3) {}; \\
+            \node[hidden neuron] (H1-4) {}; \\
+            \node[hidden neuron] (H1-5) {}; \\
+            };
+    \end{scope}   
+         
+            
+    % Draw the second hidden layer nodes
+    %\foreach \name / \y in {1,...,3}
+    %    \path[yshift=0.5cm]
+    %        node[hidden neuron] (H2-\name) at (2*\layersep,-\y cm) {};        
+	\begin{scope}[yshift=0cm,xshift=4cm]
+        \matrix[nodes={draw,ball}]{
+            \node[hidden neuron] (H2-1) {}; \\
+            \node[hidden neuron] (H2-2) {}; \\
+            \node[hidden neuron] (H2-3) {}; \\
+            };
+    \end{scope} 
+    % Draw the output layer node
+    %\foreach \name / \y in {1,...,2}
+    %	\path[yshift=0.5cm]
+    %		node[output neuron,pin={[pin edge={->}]right:Output \#\y}] (O-\name) at (3*\layersep,-\y) {};
+	\begin{scope}[yshift=0cm,xshift=6.5cm]
+        \matrix[nodes={draw,ball}]{
+            \node[output neuron,pin={[pin edge={->}]right:Output \#1}] (O-1) {}; \\
+            \node[output neuron,pin={[pin edge={->}]right:Output \#2}] (O-2) {}; \\
+            };
+    \end{scope} 
+    % Connect every node in the input layer with every node in the
+    % first hidden layer.
+    \foreach \source in {1,...,4}
+        \foreach \dest in {1,...,5}
+            \path (I-\source) edge (H1-\dest);
+            
+    % Connect every node in the first hidden layer with every node in the
+    % second hidden layer.
+    \foreach \source in {1,...,5}
+        \foreach \dest in {1,...,3}
+            \path (H1-\source) edge (H2-\dest);
+
+    % Connect every node in the second hidden layer with the output layer
+    \foreach \source in {1,...,3}
+    	\foreach \dest in {1,...,2}
+        	\path (H2-\source) edge (O-\dest);
+
+    % Annotate the layers
+%    \node[annot,above of=H1-1, node distance=1cm] (h1) {Hidden layer};
+%    \node[annot,above of=H2-1, node distance=1cm] (h2) {Hidden layer};
+%    \node[annot,left of=h1] {Input layer};
+%    \node[annot,right of=h2] {Output layer};
+	\node[annot,above of=O-1, node distance=1.71cm] (o1) {Output layer};
+    \node[annot,above of=H1-1, node distance=0.8cm]  (h1) {Hidden layer};
+    \node[annot,above of=H2-1, node distance=1.41cm]  (h2) {Hidden layer};
+    \node[annot,above of=I-1, node distance=1.1cm]  (i1) {Input layer};
+\end{tikzpicture}
+% End of code
+
+
+
+
+
+
+
+
+
+
+\\
+\\
+\\
+\\
+\\
+\begin{tikzpicture}[shorten >=1pt,->,draw=black!50, node distance=\layersep]
+    \tikzstyle{every pin edge}=[<-,shorten <=1pt]
+    \tikzstyle{neuron}=[circle,fill=black,minimum size=17pt,inner sep=0pt]
+	\tikzstyle{act neuron}=[neuron, fill=white!50];    
+    
+    \tikzstyle{filter1act neuron}=[neuron, fill=white, draw=green!50, ultra thick];
+    \tikzstyle{filter1deact neuron}=[neuron, draw=green!50, ultra thick];
+    \tikzstyle{filter1 neuron}=[neuron, fill=green!50];
+    \tikzstyle{filter2act neuron}=[neuron, fill=white, draw=blue!50, ultra thick];
+    \tikzstyle{filter2deact neuron}=[neuron, draw=blue!50, ultra thick];
+    \tikzstyle{filter2 neuron}=[neuron, fill=blue!50];
+    \tikzstyle{filter3act neuron}=[neuron, fill=white, draw=yellow!50, ultra thick];
+    \tikzstyle{filter3deact neuron}=[neuron, draw=yellow!50, ultra thick];
+    \tikzstyle{filter3 neuron}=[neuron, fill=yellow!50];
+    \tikzstyle{filter4act neuron}=[neuron, fill=white, draw=red!50, ultra thick];
+    \tikzstyle{filter4deact neuron}=[neuron, draw=red!50, ultra thick];
+    \tikzstyle{filter4 neuron}=[neuron, fill=red!50];
+    
+    \tikzstyle{annot} = [text width=15em, text centered]
+
+    % Draw the first filter
+    %\foreach \name / \y in {1,...,4}
+    % This is the same as writing \foreach \name / \y in {1/1,2/2,3/3,4/4}
+    
+	\begin{scope}[yshift=1.5cm]
+        \matrix[nodes={draw,ball}]{
+            \node[filter1deact neuron] (F1-1) {}; &
+            \node[filter1act neuron] (F1-2) {}; \\
+            \node[filter1deact neuron] (F1-3) {}; &
+            \node[filter1deact neuron] (F1-4) {}; \\
+            };
+    \end{scope}    
+    \begin{scope}[yshift=1.5cm,xshift=1.5cm]
+        \matrix[nodes={draw,ball}]{
+            \node[filter2act neuron] (F2-1) {}; &
+            \node[filter2act neuron] (F2-2) {}; \\
+            \node[filter2deact neuron] (F2-3) {}; &
+            \node[filter2act neuron] (F2-4) {}; \\
+            };
+    \end{scope}    
+    
+    \begin{scope}[]
+        \matrix[nodes={draw,ball}]{
+            \node[filter3deact neuron] (F3-1) {}; &
+            \node[filter3deact neuron] (F3-2) {}; \\
+            \node[filter3deact neuron] (F3-3) {} ; &
+            \node[filter3act neuron] (F3-4) {}; \\
+            };
+    \end{scope}    
+    \begin{scope}[xshift=1.5cm]
+        \matrix[nodes={draw,ball}]{
+            \node[filter4act neuron] (F4-1) {}; &
+            \node[filter4deact neuron] (F4-2) {}; \\
+            \node[filter4deact neuron] (F4-3) {}; &
+            \node[filter4deact neuron] (F4-4) {}; \\
+            };
+    \end{scope}    
+    
+    
+   
+
+	\begin{scope}[yshift=-0.75cm,xshift=4cm]
+        \matrix[nodes={ball}]{
+            \node[filter1 neuron] (H1-1) {}; &
+            \node[filter2 neuron] (H1-2) {}; \\
+            \node[filter3 neuron] (H1-3) {}; &
+            \node[filter4 neuron] (H1-4) {}; \\
+            };
+    \end{scope}  
+    
+    \begin{scope}[yshift=0.75cm,xshift=4cm]
+        \matrix[nodes={ball}]{
+            \node[filter1 neuron] (H2-1) {}; &
+            \node[filter2 neuron] (H2-2) {}; \\
+            \node[filter3 neuron] (H2-3) {}; &
+            \node[filter4 neuron] (H2-4) {}; \\
+            };
+    \end{scope}  
+        
+    \begin{scope}[yshift=2.25cm,xshift=4cm]
+        \matrix[nodes={ball}]{
+            \node[filter1 neuron] (H3-1) {}; &
+            \node[filter2 neuron] (H3-2) {}; \\
+            \node[filter3 neuron] (H3-3) {}; &
+            \node[filter4 neuron] (H3-4) {}; \\
+            };
+    \end{scope}  
+    
+    
+    
+    
+    % Draw the output layer node
+    \begin{scope}[xshift=7.5cm,yshift=0.5cm]
+        \matrix[nodes={draw,ball}]{
+            \node[neuron] (O-1) {}; \\
+            \node[neuron] (O-2) {}; \\
+            \node[neuron] (O-3) {}; \\
+            \node[neuron] (O-4) {}; \\
+            \node[neuron] (O-5) {}; \\
+            \node[neuron] (O-6) {}; \\
+            \node[act neuron, pin={[pin edge={->}]right:It is a 7!}] (O-7) {}; \\
+            \node[neuron] (O-8) {}; \\
+            \node[neuron] (O-9) {}; \\
+            };
+    \end{scope}  
+
+
+
+    % Draw the first hidden layer nodes
+    %\foreach \name / \y in {1,...,5}
+    %    \path[yshift=0.5cm]
+    %        node[hidden neuron] (H1-\name) at (\layersep,-\y cm) {};
+            
+    % Draw the second hidden layer nodes
+    %\foreach \name / \y in {1,...,3}
+    %    \path[yshift=0.5cm]
+    %        node[hidden neuron] (H2-\name) at (2*\layersep,-\y cm) {};        
+
+    % Draw the output layer node
+    %\foreach \name / \y in {1,...,2}
+   % 	\path[yshift=0.5cm]
+    %		node[output neuron,pin={[pin edge={->}]right:Output \#\y}] (O-\name) at (3*\layersep,-\y) {};
+
+    % Connect every node in the input layer with every node in the
+    % first hidden layer.
+    \foreach \source in {1,...,4}
+            \path[color=green!50] (F1-\source) edge (H1-1);
+            
+     \foreach \source in {1,...,4}
+            \path[color=blue!50] (F2-\source) edge (H1-2);
+            
+     \foreach \source in {1,...,4}
+            \path[color=yellow!50] (F3-\source) edge (H1-3);
+            
+     \foreach \source in {1,...,4}
+            \path[color=red!50] (F4-\source) edge (H1-4);
+            
+            
+     \foreach \source in {1,...,4}
+            \path[color=green!50] (F1-\source) edge (H2-1);
+            
+     \foreach \source in {1,...,4}
+            \path[color=blue!50] (F2-\source) edge (H2-2);
+            
+     \foreach \source in {1,...,4}
+            \path[color=yellow!50] (F3-\source) edge (H2-3);
+            
+     \foreach \source in {1,...,4}
+            \path[color=red!50] (F4-\source) edge (H2-4);
+     
+     
+      \foreach \source in {1,...,4}
+            \path[color=green!50] (F1-\source) edge (H3-1);
+            
+     \foreach \source in {1,...,4}
+            \path[color=blue!50] (F2-\source) edge (H3-2);
+            
+     \foreach \source in {1,...,4}
+            \path[color=yellow!50] (F3-\source) edge (H3-3);
+            
+     \foreach \source in {1,...,4}
+            \path[color=red!50] (F4-\source) edge (H3-4);
+            
+    % Connect every node in the first hidden layer with every node in the
+    % second hidden layer.
+    %\foreach \source in {1,...,5}
+    %    \foreach \dest in {1,...,3}
+    %        \path (H1-\source) edge (H2-\dest);
+
+    % Connect every node in the second hidden layer with the output layer
+    \foreach \source in {1,...,4}
+    	\foreach \dest in {1,...,9}
+    	{
+        	\path (H1-\source) edge (O-\dest);
+       		\path (H2-\source) edge (O-\dest);
+       		\path (H3-\source) edge (O-\dest);
+       		}
+    %   	\path (H1-1) edge (O-1);
+    %   	\path (H1-1) edge (O-2);
+    %   	\path (H1-1) -- (O-3);
+    %   	\path (H1-1) -- (O-4);
+    %   	\path (H1-1) -- (O-5);
+    %   	\path (H1-1) -- (O-6);
+    %   	\path (H1-1) -- (O-7);
+    %   	\path (H1-1) -- (O-8);
+    %   	\path (H1-1) -- (O-9);
+
+    % Annotate the layers
+   
+    \node[annot,above of=O-1, node distance=0.75cm] (o1) {Output layer};
+    \node[annot,above of=H3-1, node distance=1.15cm]  (h1) {Convolutional layer};
+    \node[annot,above of=F1-2, node distance=1.9cm]  (i1) {Input layer};
+\end{tikzpicture}
+
+
+\\
+\\
+\\
+\\
+\\
+\begin{tikzpicture}[shorten >=1pt,->,draw=black!50, node distance=\layersep]
+    \tikzstyle{every pin edge}=[<-,shorten <=1pt]
+    \tikzstyle{neuron}=[circle,fill=black,minimum size=17pt,inner sep=0pt]
+	\tikzstyle{act neuron}=[neuron, fill=white!50];    
+    
+    \tikzstyle{filter1act neuron}=[neuron, fill=white, draw=green!50, ultra thick];
+    \tikzstyle{filter1deact neuron}=[neuron, draw=green!50, ultra thick];
+    \tikzstyle{filter1 neuron}=[neuron, fill=green!50];
+    \tikzstyle{filter2act neuron}=[neuron, fill=white, draw=blue!50, ultra thick];
+    \tikzstyle{filter2deact neuron}=[neuron, draw=blue!50, ultra thick];
+    \tikzstyle{filter2 neuron}=[neuron, fill=blue!50];
+    \tikzstyle{filter3act neuron}=[neuron, fill=white, draw=yellow!50, ultra thick];
+    \tikzstyle{filter3deact neuron}=[neuron, draw=yellow!50, ultra thick];
+    \tikzstyle{filter3 neuron}=[neuron, fill=yellow!50];
+    \tikzstyle{filter4act neuron}=[neuron, fill=white, draw=red!50, ultra thick];
+    \tikzstyle{filter4deact neuron}=[neuron, draw=red!50, ultra thick];
+    \tikzstyle{filter4 neuron}=[neuron, fill=red!50];
+    
+    \tikzstyle{annot} = [text width=15em, text centered]
+
+    % Draw the first filter
+    %\foreach \name / \y in {1,...,4}
+    % This is the same as writing \foreach \name / \y in {1/1,2/2,3/3,4/4}
+    
+	\begin{scope}[yshift=1.5cm]
+        \matrix[nodes={draw,ball}]{
+            \node[filter1act neuron] (F1-1) {}; &
+            \node[filter1deact neuron] (F1-2) {}; \\
+            \node[filter1act neuron] (F1-3) {}; &
+            \node[filter1deact neuron] (F1-4) {}; \\
+            };
+    \end{scope}    
+    \begin{scope}[yshift=1.5cm,xshift=1.5cm]
+        \matrix[nodes={draw,ball}]{
+            \node[filter2deact neuron] (F2-1) {}; &
+            \node[filter2deact neuron] (F2-2) {}; \\
+            \node[filter2act neuron] (F2-3) {}; &
+            \node[filter2deact neuron] (F2-4) {}; \\
+            };
+    \end{scope}    
+    
+    \begin{scope}[]
+        \matrix[nodes={draw,ball}]{
+            \node[filter3act neuron] (F3-1) {}; &
+            \node[filter3act neuron] (F3-2) {}; \\
+            \node[filter3deact neuron] (F3-3) {} ; &
+            \node[filter3deact neuron] (F3-4) {}; \\
+            };
+    \end{scope}    
+    \begin{scope}[xshift=1.5cm]
+        \matrix[nodes={draw,ball}]{
+            \node[filter4act neuron] (F4-1) {}; &
+            \node[filter4act neuron] (F4-2) {}; \\
+            \node[filter4act neuron] (F4-3) {}; &
+            \node[filter4deact neuron] (F4-4) {}; \\
+            };
+    \end{scope}    
+    
+    
+   
+
+	\begin{scope}[yshift=-0.75cm,xshift=4cm]
+        \matrix[nodes={ball}]{
+            \node[filter1 neuron] (H1-1) {}; &
+            \node[filter2 neuron] (H1-2) {}; \\
+            \node[filter3 neuron] (H1-3) {}; &
+            \node[filter4 neuron] (H1-4) {}; \\
+            };
+    \end{scope}  
+    
+    \begin{scope}[yshift=0.75cm,xshift=4cm]
+        \matrix[nodes={ball}]{
+            \node[filter1 neuron] (H2-1) {}; &
+            \node[filter2 neuron] (H2-2) {}; \\
+            \node[filter3 neuron] (H2-3) {}; &
+            \node[filter4 neuron] (H2-4) {}; \\
+            };
+    \end{scope}  
+        
+    \begin{scope}[yshift=2.25cm,xshift=4cm]
+        \matrix[nodes={ball}]{
+            \node[filter1 neuron] (H3-1) {}; &
+            \node[filter2 neuron] (H3-2) {}; \\
+            \node[filter3 neuron] (H3-3) {}; &
+            \node[filter4 neuron] (H3-4) {}; \\
+            };
+    \end{scope}  
+    
+    
+    % Draw the output layer node
+    \begin{scope}[xshift=7.5cm,yshift=0.5cm]
+        \matrix[nodes={draw,ball}]{
+            \node[neuron] (O-1) {}; \\
+            \node[neuron] (O-2) {}; \\
+            \node[neuron] (O-3) {}; \\
+            \node[act neuron, pin={[pin edge={->}]right:It is a 4!}] (O-4) {}; \\
+            \node[neuron] (O-5) {}; \\
+            \node[neuron] (O-6) {}; \\
+            \node[neuron] (O-7) {}; \\
+            \node[neuron] (O-8) {}; \\
+            \node[neuron] (O-9) {}; \\
+            };
+    \end{scope} 
+
+    % Draw the first hidden layer nodes
+    %\foreach \name / \y in {1,...,5}
+    %    \path[yshift=0.5cm]
+    %        node[hidden neuron] (H1-\name) at (\layersep,-\y cm) {};
+            
+    % Draw the second hidden layer nodes
+    %\foreach \name / \y in {1,...,3}
+    %    \path[yshift=0.5cm]
+    %        node[hidden neuron] (H2-\name) at (2*\layersep,-\y cm) {};        
+
+    % Draw the output layer node
+    %\foreach \name / \y in {1,...,2}
+   % 	\path[yshift=0.5cm]
+    %		node[output neuron,pin={[pin edge={->}]right:Output \#\y}] (O-\name) at (3*\layersep,-\y) {};
+
+    % Connect every node in the input layer with every node in the
+    % first hidden layer.
+    \foreach \source in {1,...,4}
+            \path[color=green!50] (F1-\source) edge (H1-1);
+            
+     \foreach \source in {1,...,4}
+            \path[color=blue!50] (F2-\source) edge (H1-2);
+            
+     \foreach \source in {1,...,4}
+            \path[color=yellow!50] (F3-\source) edge (H1-3);
+            
+     \foreach \source in {1,...,4}
+            \path[color=red!50] (F4-\source) edge (H1-4);
+            
+            
+     \foreach \source in {1,...,4}
+            \path[color=green!50] (F1-\source) edge (H2-1);
+            
+     \foreach \source in {1,...,4}
+            \path[color=blue!50] (F2-\source) edge (H2-2);
+            
+     \foreach \source in {1,...,4}
+            \path[color=yellow!50] (F3-\source) edge (H2-3);
+            
+     \foreach \source in {1,...,4}
+            \path[color=red!50] (F4-\source) edge (H2-4);
+     
+     
+      \foreach \source in {1,...,4}
+            \path[color=green!50] (F1-\source) edge (H3-1);
+            
+     \foreach \source in {1,...,4}
+            \path[color=blue!50] (F2-\source) edge (H3-2);
+            
+     \foreach \source in {1,...,4}
+            \path[color=yellow!50] (F3-\source) edge (H3-3);
+            
+     \foreach \source in {1,...,4}
+            \path[color=red!50] (F4-\source) edge (H3-4);
+            
+    % Connect every node in the first hidden layer with every node in the
+    % second hidden layer.
+    %\foreach \source in {1,...,5}
+    %    \foreach \dest in {1,...,3}
+    %        \path (H1-\source) edge (H2-\dest);
+
+    % Connect every node in the second hidden layer with the output layer
+    \foreach \source in {1,...,4}
+    	\foreach \dest in {1,...,9}
+    	{
+        	\path (H1-\source) edge (O-\dest);
+       		\path (H2-\source) edge (O-\dest);
+       		\path (H3-\source) edge (O-\dest);
+       		}
+    %   	\path (H1-1) edge (O-1);
+    %   	\path (H1-1) edge (O-2);
+    %   	\path (H1-1) -- (O-3);
+    %   	\path (H1-1) -- (O-4);
+    %   	\path (H1-1) -- (O-5);
+    %   	\path (H1-1) -- (O-6);
+    %   	\path (H1-1) -- (O-7);
+    %   	\path (H1-1) -- (O-8);
+    %   	\path (H1-1) -- (O-9);
+
+    % Annotate the layers
+   
+    \node[annot,above of=O-1, node distance=0.75cm] (o1) {Output layer};
+    \node[annot,above of=H3-1, node distance=1.15cm]  (h1) {Convolutional layer};
+    \node[annot,above of=F1-2, node distance=1.9cm]  (i1) {Input layer};
+\end{tikzpicture}
+
+
+
+
+
+\begin{tikzpicture}[shorten >=1pt,->,draw=black!50, node distance=\layersep]
+    \tikzstyle{every pin edge}=[<-,shorten <=1pt]
+    \tikzstyle{neuron}=[circle,fill=black,minimum size=17pt,inner sep=0pt]
+	\tikzstyle{act neuron}=[neuron, fill=white!50];    
+    
+    \tikzstyle{filter1act neuron}=[neuron, fill=white, draw=green!50, ultra thick];
+    \tikzstyle{filter1deact neuron}=[neuron, draw=green!50, ultra thick];
+    \tikzstyle{filter1 neuron}=[neuron, fill=green!50];
+    \tikzstyle{filter2act neuron}=[neuron, fill=white, draw=blue!50, ultra thick];
+    \tikzstyle{filter2deact neuron}=[neuron, draw=blue!50, ultra thick];
+    \tikzstyle{filter2 neuron}=[neuron, fill=blue!50];
+    \tikzstyle{filter3act neuron}=[neuron, fill=white, draw=red!50, ultra thick];
+    \tikzstyle{filter3deact neuron}=[neuron, draw=red!50, ultra thick];
+    \tikzstyle{filter3 neuron}=[neuron, fill=red!50];
+    \tikzstyle{filter4act neuron}=[neuron, fill=white, draw=yellow!50, ultra thick];
+    \tikzstyle{filter4deact neuron}=[neuron, draw=yellow!50, ultra thick];
+    \tikzstyle{filter4 neuron}=[neuron, fill=yellow!50];
+    
+    \tikzstyle{annot} = [text width=15em, text centered]
+
+    % Draw the first filter
+    %\foreach \name / \y in {1,...,4}
+    % This is the same as writing \foreach \name / \y in {1/1,2/2,3/3,4/4}
+    
+	\begin{scope}[yshift=1.4cm]
+        \matrix[nodes={draw,ball}]{
+            \node[filter1act neuron] (F1-1) {0.1}; &
+            \node[filter1act neuron] (F1-2) {0.7}; \\
+            \node[filter1act neuron] (F1-3) {-0.3}; &
+            \node[filter1act neuron] (F1-4) {-0.1}; \\
+            };
+    \end{scope}    
+    \begin{scope}[yshift=1.4cm,xshift=1.4cm]
+        \matrix[nodes={draw,ball}]{
+            \node[filter2act neuron] (F2-1) {-0.3}; &
+            \node[filter2act neuron] (F2-2) {-0.2}; \\
+            \node[filter2act neuron] (F2-3) {-0.1}; &
+            \node[filter2act neuron] (F2-4) {-0.3}; \\
+            };
+    \end{scope}    
+    
+    \begin{scope}[]
+        \matrix[nodes={draw,ball}]{
+            \node[filter3act neuron] (F3-1) {-0.3}; &
+            \node[filter3act neuron] (F3-2) {0.4}; \\
+            \node[filter3act neuron] (F3-3) {0.2}; &
+            \node[filter3act neuron] (F3-4) {-0.9}; \\
+            };
+    \end{scope}    
+    \begin{scope}[xshift=1.4cm]
+        \matrix[nodes={draw,ball}]{
+            \node[filter4act neuron] (F4-1) {-0.5}; &
+            \node[filter4act neuron] (F4-2) {-0.6}; \\
+            \node[filter4act neuron] (F4-3) {0}; &
+            \node[filter4act neuron] (F4-4) {-0.2}; \\
+            };
+    \end{scope}    
+    
+    \begin{scope}[yshift=4.4cm]
+        \matrix[nodes={draw,ball}]{
+            \node[filter1act neuron] (F1-5) {-0.7}; &
+            \node[filter1act neuron] (F1-6) {0.6}; \\
+            \node[filter1act neuron] (F1-7) {0.2}; &
+            \node[filter1act neuron] (F1-8) {-0.5}; \\
+            };
+    \end{scope}    
+    \begin{scope}[yshift=4.4cm,xshift=1.4cm]
+        \matrix[nodes={draw,ball}]{
+            \node[filter2act neuron] (F2-5) {0.1}; &
+            \node[filter2act neuron] (F2-6) {0}; \\
+            \node[filter2act neuron] (F2-7) {0.5}; &
+            \node[filter2act neuron] (F2-8) {-0.2}; \\
+            };
+    \end{scope}    
+    
+    \begin{scope}[yshift=3cm]
+        \matrix[nodes={draw,ball}]{
+            \node[filter3act neuron] (F3-5) {0}; &
+            \node[filter3act neuron] (F3-6) {-0.3}; \\
+            \node[filter3act neuron] (F3-7) {0.8}; &
+            \node[filter3act neuron] (F3-8) {0.9}; \\
+            };
+    \end{scope}    
+    \begin{scope}[yshift=3cm,xshift=1.4cm]
+        \matrix[nodes={draw,ball}]{
+            \node[filter4act neuron] (F4-5) {-0.1}; &
+            \node[filter4act neuron] (F4-6) {0.3}; \\
+            \node[filter4act neuron] (F4-7) {0.4}; &
+            \node[filter4act neuron] (F4-8) {-0.3}; \\
+            };
+    \end{scope}    
+    
+
+	\begin{scope}[yshift=3.7cm,xshift=4cm]
+        \matrix[nodes={ball}]{
+            \node[filter1act neuron] (H1-1) {0.6}; &
+            \node[filter2act neuron] (H1-2) {0.5}; \\
+            \node[filter3act neuron] (H1-3) {0.9}; &
+            \node[filter4act neuron] (H1-4) {0.4}; \\
+            };
+    \end{scope}  
+   \begin{scope}[yshift=0.7cm,xshift=4cm]
+        \matrix[nodes={ball}]{
+            \node[filter1act neuron] (H2-1) {0.7}; &
+            \node[filter2act neuron] (H2-2) {-0.1}; \\
+            \node[filter3act neuron] (H2-3) {0.4}; &
+            \node[filter4act neuron] (H2-4) {0}; \\
+            };
+    \end{scope}  
+   
+    
+    
+%    % Draw the output layer node
+%    \begin{scope}[xshift=7.5cm,yshift=0.5cm]
+%        \matrix[nodes={draw,ball}]{
+%            \node[neuron] (O-1) {}; \\
+%            \node[neuron] (O-2) {}; \\
+%            \node[neuron] (O-3) {}; \\
+%            \node[neuron] (O-4) {}; \\
+%            \node[neuron] (O-5) {}; \\
+%            \node[neuron] (O-6) {}; \\
+%            \node[act neuron, pin={[pin edge={->}]right:It is a 7!}] (O-7) {}; \\
+%            \node[neuron] (O-8) {}; \\
+%            \node[neuron] (O-9) {}; \\
+%            };
+%    \end{scope}  
+
+
+    % Draw the first hidden layer nodes
+    %\foreach \name / \y in {1,...,5}
+    %    \path[yshift=0.5cm]
+    %        node[hidden neuron] (H1-\name) at (\layersep,-\y cm) {};
+            
+    % Draw the second hidden layer nodes
+    %\foreach \name / \y in {1,...,3}
+    %    \path[yshift=0.5cm]
+    %        node[hidden neuron] (H2-\name) at (2*\layersep,-\y cm) {};        
+
+    % Draw the output layer node
+    %\foreach \name / \y in {1,...,2}
+   % 	\path[yshift=0.5cm]
+    %		node[output neuron,pin={[pin edge={->}]right:Output \#\y}] (O-\name) at (3*\layersep,-\y) {};
+
+    % Connect every node in the input layer with every node in the
+    % first hidden layer.
+%    \foreach \source in {1,...,4}
+%            \path[color=green!50] (F1-\source) edge (H1-1);
+%            
+%     \foreach \source in {1,...,4}
+%            \path[color=blue!50] (F2-\source) edge (H1-2);
+%            
+%     \foreach \source in {1,...,4}
+%            \path[color=red!50] (F3-\source) edge (H1-3);
+%            
+%     \foreach \source in {1,...,4}
+%            \path[color=yellow!50] (F4-\source) edge (H1-4);
+%            
+%            
+%     \foreach \source in {5,...,9}
+%            \path[color=green!50] (F1-\source) edge (H2-1);
+%            
+%     \foreach \source in {1,...,4}
+%            \path[color=blue!50] (F2-\source) edge (H2-2);
+%            
+%     \foreach \source in {1,...,4}
+%            \path[color=red!50] (F3-\source) edge (H2-3);
+%            
+%     \foreach \source in {1,...,4}
+%            \path[color=yellow!50] (F4-\source) edge (H2-4);
+%            
+    % Connect every node in the first hidden layer with every node in the
+    % second hidden layer.
+    %\foreach \source in {1,...,5}
+    %    \foreach \dest in {1,...,3}
+    %        \path (H1-\source) edge (H2-\dest);
+
+    % Connect every node in the second hidden layer with the output layer
+%    \foreach \source in {1,...,4}
+%    	\foreach \dest in {1,...,9}
+%    	{
+%        	\path (H1-\source) edge (O-\dest);
+%       		\path (H2-\source) edge (O-\dest);
+%       		}
+%       	\path (F4-2) edge (H2-1);
+%       	\path (F4-6) edge (H1-1);
+\draw[->] (2.5,0.7) --(3,0.7)
+\draw[->] (2.5,3.77) --(3,3.77)
+    %   	\path (H1-1) -- (O-3);
+    %   	\path (H1-1) -- (O-4);
+    %   	\path (H1-1) -- (O-5);
+    %   	\path (H1-1) -- (O-6);
+    %   	\path (H1-1) -- (O-7);
+    %   	\path (H1-1) -- (O-8);
+    %   	\path (H1-1) -- (O-9);
+
+    % Annotate the layers
+   
+%    \node[annot,above of=O-1, node distance=0.75cm] (o1) {Output layer};
+%    \node[annot,above of=H2-1, node distance=1.9cm]  (h1) {Hidden layer};
+%    \node[annot,above of=H1-4, node distance=3cm] (h2) {Max pooling layer};
+%    \node[annot,above of=F1-2, node distance=1.9cm]  (i1) {Input layer};
+\end{tikzpicture}
+
+
+
+
+
+
+
+
+
+
+\begin{tikzpicture}[shorten >=1pt,->,draw=black!50, node distance=\layersep]
+    \tikzstyle{every pin edge}=[<-,shorten <=1pt]
+    \tikzstyle{neuron}=[circle,fill=black,minimum size=17pt,inner sep=0pt]
+	\tikzstyle{act neuron}=[neuron, fill=white!50];    
+    
+    \tikzstyle{filter1act neuron}=[neuron, fill=white, draw=green!50, ultra thick];
+    \tikzstyle{filter1deact neuron}=[neuron, draw=green!50, ultra thick];
+    \tikzstyle{filter1 neuron}=[neuron, fill=green!50];
+    \tikzstyle{filter2act neuron}=[neuron, fill=white, draw=blue!50, ultra thick];
+    \tikzstyle{filter2deact neuron}=[neuron, draw=blue!50, ultra thick];
+    \tikzstyle{filter2 neuron}=[neuron, fill=blue!50];
+    \tikzstyle{filter3act neuron}=[neuron, fill=white, draw=red!50, ultra thick];
+    \tikzstyle{filter3deact neuron}=[neuron, draw=red!50, ultra thick];
+    \tikzstyle{filter3 neuron}=[neuron, fill=red!50];
+    \tikzstyle{filter4act neuron}=[neuron, fill=white, draw=yellow!50, ultra thick];
+    \tikzstyle{filter4deact neuron}=[neuron, draw=yellow!50, ultra thick];
+    \tikzstyle{filter4 neuron}=[neuron, fill=yellow!50];
+    
+    \tikzstyle{annot} = [text width=15em, text centered]
+
+    % Draw the first filter
+    %\foreach \name / \y in {1,...,4}
+    % This is the same as writing \foreach \name / \y in {1/1,2/2,3/3,4/4}
+    
+	\begin{scope}[]
+        \matrix[nodes={draw,ball}]{
+            \node[filter1act neuron] (F1-1) {0.8}; &
+            \node[filter1act neuron] (F1-2) {0.4}; \\
+            \node[filter1act neuron] (F1-3) {-0.3}; &
+            \node[filter1act neuron] (F1-4) {-0.5}; \\
+            };
+    \end{scope}    
+    \begin{scope}[yshift=1.4cm]
+        \matrix[nodes={draw,ball}]{
+            \node[filter2act neuron] (F2-1) {-0.1}; &
+            \node[filter2act neuron] (F2-2) {-0.2}; \\
+            \node[filter2act neuron] (F2-3) {-0.4}; &
+            \node[filter2act neuron] (F2-4) {-0.1}; \\
+            };
+    \end{scope}    
+    
+
+	\begin{scope}[yshift=0cm,xshift=2cm]
+        \matrix[nodes={ball}]{
+            \node[filter1act neuron] (H1-1) {0.1}; \\
+            };
+    \end{scope}  
+   \begin{scope}[yshift=1.4cm,xshift=2cm]
+        \matrix[nodes={ball}]{
+            \node[filter2act neuron] (H2-1) {-0.2}; \\
+            };
+    \end{scope}  
+   
+    
+    
+%    % Draw the output layer node
+%    \begin{scope}[xshift=7.5cm,yshift=0.5cm]
+%        \matrix[nodes={draw,ball}]{
+%            \node[neuron] (O-1) {}; \\
+%            \node[neuron] (O-2) {}; \\
+%            \node[neuron] (O-3) {}; \\
+%            \node[neuron] (O-4) {}; \\
+%            \node[neuron] (O-5) {}; \\
+%            \node[neuron] (O-6) {}; \\
+%            \node[act neuron, pin={[pin edge={->}]right:It is a 7!}] (O-7) {}; \\
+%            \node[neuron] (O-8) {}; \\
+%            \node[neuron] (O-9) {}; \\
+%            };
+%    \end{scope}  
+
+
+    % Draw the first hidden layer nodes
+    %\foreach \name / \y in {1,...,5}
+    %    \path[yshift=0.5cm]
+    %        node[hidden neuron] (H1-\name) at (\layersep,-\y cm) {};
+            
+    % Draw the second hidden layer nodes
+    %\foreach \name / \y in {1,...,3}
+    %    \path[yshift=0.5cm]
+    %        node[hidden neuron] (H2-\name) at (2*\layersep,-\y cm) {};        
+
+    % Draw the output layer node
+    %\foreach \name / \y in {1,...,2}
+   % 	\path[yshift=0.5cm]
+    %		node[output neuron,pin={[pin edge={->}]right:Output \#\y}] (O-\name) at (3*\layersep,-\y) {};
+
+    % Connect every node in the input layer with every node in the
+    % first hidden layer.
+%    \foreach \source in {1,...,4}
+%            \path[color=green!50] (F1-\source) edge (H1-1);
+%            
+%     \foreach \source in {1,...,4}
+%            \path[color=blue!50] (F2-\source) edge (H1-2);
+%            
+%     \foreach \source in {1,...,4}
+%            \path[color=red!50] (F3-\source) edge (H1-3);
+%            
+%     \foreach \source in {1,...,4}
+%            \path[color=yellow!50] (F4-\source) edge (H1-4);
+%            
+%            
+%     \foreach \source in {5,...,9}
+%            \path[color=green!50] (F1-\source) edge (H2-1);
+%            
+%     \foreach \source in {1,...,4}
+%            \path[color=blue!50] (F2-\source) edge (H2-2);
+%            
+%     \foreach \source in {1,...,4}
+%            \path[color=red!50] (F3-\source) edge (H2-3);
+%            
+%     \foreach \source in {1,...,4}
+%            \path[color=yellow!50] (F4-\source) edge (H2-4);
+%            
+    % Connect every node in the first hidden layer with every node in the
+    % second hidden layer.
+    %\foreach \source in {1,...,5}
+    %    \foreach \dest in {1,...,3}
+    %        \path (H1-\source) edge (H2-\dest);
+
+    % Connect every node in the second hidden layer with the output layer
+%    \foreach \source in {1,...,4}
+%    	\foreach \dest in {1,...,9}
+%    	{
+%        	\path (H1-\source) edge (O-\dest);
+%       		\path (H2-\source) edge (O-\dest);
+%       		}
+%       	\path (F4-2) edge (H2-1);
+%       	\path (F4-6) edge (H1-1);
+\draw[->] (1,0) --(1.4,0)
+\draw[->] (1,1.4) --(1.4,1.4)
+    %   	\path (H1-1) -- (O-3);
+    %   	\path (H1-1) -- (O-4);
+    %   	\path (H1-1) -- (O-5);
+    %   	\path (H1-1) -- (O-6);
+    %   	\path (H1-1) -- (O-7);
+    %   	\path (H1-1) -- (O-8);
+    %   	\path (H1-1) -- (O-9);
+
+    % Annotate the layers
+   
+%    \node[annot,above of=O-1, node distance=0.75cm] (o1) {Output layer};
+%    \node[annot,above of=H2-1, node distance=1.9cm]  (h1) {Hidden layer};
+%    \node[annot,above of=H1-4, node distance=3cm] (h2) {Max pooling layer};
+%    \node[annot,above of=F1-2, node distance=1.9cm]  (i1) {Input layer};
+\end{tikzpicture}
+
+\end{document}
