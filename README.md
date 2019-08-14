@@ -1,4 +1,4 @@
-# Logo Capstone Project
+# Logo Classification Capstone Project
 
 ## Installation Instructions
 
