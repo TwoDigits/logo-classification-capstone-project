@@ -392,12 +392,10 @@ This model has in total 15,757 parameters that are all trainable. We compile the
 
 After training and loading the model with the best weights, we compute the accuracy on the test images:
 \begin{lstlisting}[language=Python]
-brand_predictions = [np.argmax(model.predict(np.expand_dims(tensor, axis=0))) for tensor in test_tensors]
-
-test_accuracy = 100*np.sum(np.array(brand_predictions)==np.argmax(test_targets, axis=1))/len(brand_predictions)
-print('Test accuracy: %.4f%%' % test_accuracy)
+print('\n', 'Test accuracy of the model from scratch:', model_from_scratch.evaluate(test_tensors, test_targets, verbose=0)[1]*100,'%.')
 \end{lstlisting}
-After training for 20 epochs, this results in "Test accuracy: 22.9852\%". Finally, continuing to train for 2000 epochs leads to "Test accuracy: 32.608\%". However, the weights with the best validation loss of 2.97862 are already achieved in epoch 557.
+After training for 20 epochs, this results in "Test accuracy of the model from scratch: 16.76 \%". Finally, continuing to train for 600 further epochs leads to a test accuracy of 33.99 \% where the validation loss improved for the last time in epoch 594 to 2.95990. 
+
 In the next section, we describe how we fine-tune our first model. 
 \subsubsection*{A Custom Model on top of the VGG16 model \cite{DBLP:journals/corr/SimonyanZ14a} in Keras}
 Now we build a custom Keras CNN model on top of the well-known VGG16 architecture: 
@@ -452,7 +450,7 @@ predictions (Dense)           &(None, 1000)              &4097000
 \end{longtable}
 This model has a large number of 138,357,544 parameters that are all trainable.
 
-On top of this VGG16 model, we add some custom layers leading to the following architecture:
+On top of this VGG16 model, we add some custom layers as follows:
 \begin{longtable}{ccc}%[htb!]
 \caption{Our custom Architecture on top of the above VGG16 model.}\\
     \hline
@@ -497,8 +495,10 @@ dropout\_1 (Dropout)          &(None, 64)                &0         \\
 dense\_2 (Dense)              &(None, 109)               &7085      
 \label{table:vgg_custom}
 \end{longtable}
+\footnotetext{GlobalAveragePooling2D}
+
 Since we only set our custom layers as trainable, out of the 15,016,749 total parameters, only  302,061 are trainable.
-We train this model for 50 epochs but the validation loss does not improve anymore after 11 epochs. In fact, our model is overfitting as the accuracy on the trainings set keeps increasing up to 47.09\% in epoch 50. Accuracy on the validation set is rather decreasing to 28.83\% in epoch 50. Finally, on the test set we get an accuracy of 30.9650\%, which is similar to our first model from scratch.
+After training for 20 epochs, this results in a very good test accuracy of 36.80 \%". However, when continuing to train the custom model for 600 further epochs, the training loss kept decreasing but the validation loss increased. This indicates overfitting, and since after 20 epochs still no weights with an improved validation loss were achieved, we then stopped the training.
 
 
 \subsubsection*{A custom Faster R-CNN with Tensorflow's Object Detection API \cite{DBLP:journals/corr/HuangRSZKFFWSG016}}
@@ -689,25 +689,131 @@ python object_detection/export_inference_graph.py \
 By opening \path{Logo Capstone Project/adjusted_object_detection_tutorial.ipynb} in a jupyter notebook, adjusting the paths and executing the cells we can explore the results on the sample images.
 
 Unfortunately, neither when evaluating nor when making predictions with the frozen model any logos are detected (see \url{https://github.com/tensorflow/models/issues/6748}). 
+To overcome this problem, we trained with only four logo classes instead of the total 821 classes but still no objects were detected. We also tried different conda environments: with Python 2.7, 3.6 or 3.7, on Windows 10, Ubuntu 18.04, Ubuntu 18.10 and even training on Google Cloud as described \href{https://github.com/tensorflow/models/blob/master/research/object_detection/g3doc/running_on_cloud.md}{here}. Also using   \path{tensorflow/models/research/object_detection/legacy/train.py} and  \path{eval.py} instead of  \path{model_main.py} for training and evaluating did not lead to any detections. At first, we used a label map that was created by scratch but the detections did not improve with an automatically created label map. Furthermore, different pipeline configs did not lead to object detections either.
 %In this section, the process for which metrics, algorithms, and techniques that you implemented for the given data will need to be clearly documented. It should be abundantly clear how the implementation was carried out, and discussion should be made regarding any complications that occurred during this process. Questions to ask yourself when writing this section:
 %
 %Is it made clear how the algorithms and techniques were implemented with the given datasets or input data?
 %Were there any complications with the original metrics or techniques that required changing prior to acquiring a solution?
 %Was there any part of the coding process (e.g., writing complicated functions) that should be documented?
 \subsection*{Refinement}
-\subsubsection*{Refinements for our first CNN model from scratch}
-As a first step, we use Keras Data Augmentation to 
+
+As a first step for all our Keras models, we use Keras Data Augmentation to augment the training data. This is important as many logo classes do only contain few images.
+\begin{lstlisting}[basicstyle=\fontsize{7.5}{8}\ttfamily,language=Python]
+from keras.preprocessing.image import ImageDataGenerator
+datagen_train = ImageDataGenerator(
+    width_shift_range=0.1,  # randomly shift images horizontally (10% of total width)
+    height_shift_range=0.1,  # randomly shift images vertically (10% of total height)
+    horizontal_flip=True, # randomly flip images horizontally
+    vertical_flip=True, # randomly flip images vertically
+    rotation_range=90) #randomly rotate images by up to 90 degrees
+datagen_valid = ImageDataGenerator(
+    width_shift_range=0.1,  # randomly shift images horizontally (10% of total width)
+    height_shift_range=0.1,  # randomly shift images vertically (10% of total height)
+    horizontal_flip=True, # randomly flip images horizontally
+    vertical_flip=True, # randomly flip images vertically
+    rotation_range=90) #randomly rotate images by up to 90 degrees
+
+datagen_train.fit(train_tensors)
+datagen_valid.fit(val_tensors)
+\end{lstlisting}
+We visualize how one augmented image looks for 12 images from the training set:
+\begin{figure}[h!]
+\includegraphics[width=\textwidth]{original_images.jpg}
+%\label{originalImages}
+%\end{figure}
+%\begin{figure}[h!]
+\includegraphics[width=\textwidth]{augmented_images.jpg}
+\label{augmentedImages}
+\end{figure}
+
 %In this section, you will need to discuss the process of improvement you made upon the algorithms and techniques you used in your implementation. For example, adjusting parameters for certain models to acquire improved solutions would fall under the refinement category. Your initial and final solutions should be reported, as well as any significant intermediate results as necessary. Questions to ask yourself when writing this section:
 %
 %Has an initial solution been found and clearly reported?
 %Is the process of improvement clearly documented, such as what techniques were used?
 %Are intermediate and final solutions clearly reported as the process is improved?
-\subsubsection*{Refinements for our Custom Model on top of the VGG16 model}
+\vspace{-1em}
+At first, we state that the test accuracy is 28.79 \% after continuing to train our model from scratch from \autoref{table:modelFromScratch} on the training set with augmented images for 50 epochs. The validation accuracy at epoch 50 is slightly higher than the one of epoch 50 when we trained only on the original images --  but of course the results are not really comparable as we started with pre-trained weights. 
+
+Similarly, we report that the test accuracy is 28.10 \% after continuing to train our custom model from \autoref{table:vgg_custom} on the training set with augmented images for 20 epochs. However, here we actually stopped training after 20 epochs as accuracy on the training set stays constantly around 17 \% and neither does training loss improve. 
+
+Since without augmented images the custom model overfits and with augmented images does not learn, we decide to finetune the model from \autoref{table:modelFromScratch}. 
+
+To achieve a higher complexity, we add further layers to this model as follows:
+\begin{longtable}{ccc}%[htb!]
+%\centering
+\caption{Architecture of an extended CNN from scratch.}\\
+    \hline
+    Layer (type) & Output Shape & Param \# \\
+    \hline
+    \endfirsthead
+    \multicolumn{3}{c}
+    {\tablename\ \thetable\ -- \textit{Continued from previous page}} \\
+%		\toprule
+%\hline
+%    Layer (type) & Output Shape & Param \# \\
+%    \hline
+\endhead
+%    \hline 
+    \multicolumn{3}{r}{\textit{Continued on next page}} \\
+    \endfoot
+%		\midrule
+\hline\endlastfoot
+conv2d\_1\_input (InputLayer)   &     (None, 224, 224, 3)     &    0        \\
+conv2d\_1 (Conv2D)              &     (None, 223, 223, 32)    &   416       \\
+max\_pooling2d\_1 (MaxPooling2) &     (None, 111, 111, 32)    &    0        \\
+conv2d\_2 (Conv2D)              &     (None, 110, 110, 64)    &   8256      \\
+max\_pooling2d\_2 (MaxPooling2) &     (None, 55, 55, 64)      &    0        \\
+conv2d\_4 (Conv2D)              &     (None, 53, 53, 32)      &   18464     \\
+max\_pooling2d\_4 (MaxPooling2) &     (None, 26, 26, 32)      &    0        \\ 
+conv2d\_5 (Conv2D)              &     (None, 25, 25, 64)      &   8256      \\
+max\_pooling2d\_5 (MaxPooling2) &     (None, 8, 8, 64)        &    0        \\ 
+dropout\_2 (Dropout)            &     (None, 8, 8, 64)        &    0        \\ 
+conv2d\_6 (Conv2D)              &     (None, 7, 7, 32)        &    8224     \\ 
+max\_pooling2d\_6 (MaxPooling2) &     (None, 3, 3, 32)        &    0        \\ 
+conv2d\_7 (Conv2D)              &     (None, 2, 2, 64)        &    8256     \\ 
+global\_average\_pooling2d\_3 (GAP2D\footnotemark)&(None, 64) &    0        \\ 
+dropout\_3 (Dropout)            &     (None, 64)              &    0        \\ 
+dense\_3 (Dense)                &     (None, 109)             &  7085       %\\
+%		\bottomrule
+%		\end{multicolumn}\\
+		\label{table:extendedModelFromScratch}
+\end{longtable}
+\footnotetext{GlobalAveragePooling2D}
+This model has 58,957 parameters that are all trainable.
+
+After training for 50 epochs, this extended model reaches an accuracy of 26.03 \% on the test images.
+
+Since Scikit-learn's GridSearchCV hangs after the fourth step when trying to fine-tune the parameters optimizer, activation function and batch size, we test some parameter combinations by hand.
+
+We start by choosing optimizer "Adam" instead of "RMSprop", and a batch size of~1 instead of 32. The following epochs both training and validation loss increases while training and validation accuracy decreases. We note that this is similar to what happens when we train the custom model with the augmented images.
+
+In the case of the custom model, we increase the batch size to 128, keep optimizer "RMSprop" and continue to train for 20 further epochs, which leads to an accuracy of 30.91 \% on the test set.
+
+In the case of the extended model from scratch, we increase batch size to 64, keep otimizer "Adam" and continue to train for 30 further epochs, which leads to an accuracy of 29.85 \% on the test set.
+
+Next, for the extendend model from scratch we choose a batch size to 64, otimizer "adagrad" and continue to train for 30 further epochs, which leads to an accuracy of 29.80 \% on the test set.
+Finally, after 100 epochs we achieve a test accuracy of 30.91 \%.
+
+Summing up, the test accuracies of the models are still very similar and the best accuracy seems to be reached when training for a longer time. 
+
+Since the results are very similar, for theoretical reasons we decide to choose the extended model from scratch with optimizer Adam. 
+More precisely, the authers \cite{DBLP:journals/corr/KingmaB14} designed "Adam" to combine the advantages of two optimizers: AdaGrad \cite{duchi2011adaptive} that works well with sparse gradients, and RMSProp \cite{tieleman2012lecture}.
+However, when we continue to train this model for further 600 epochs, the weights with the best validation loss do not get updated after epoch 138 anymore so we interrupt training after 408 epochs. Loading the best weights from  epoch 138 results in a test accuracy of 31.18 \%.
+
 \section{Results}
 %TODO
 %(approx. 2-3 pages)
 
 \subsection*{Model Evaluation and Validation}
+%
+As most models performed similarly, we choose the extended model from scratch from \autoref{table:extendedModelFromScratch} as its architecture has a medium level of complexity, and the extended model did not overfit like the custom model on top of the VGG16 model.
+
+Trained on the augmented images, the extended model from scratch shows litte sensitivity to changing the optimizer and batch size. From the training statistics, we get the impression that training it for more epochs would not lead to better results.
+\begin{figure}[h!]
+\includegraphics[width=\textwidth]{training_statistics.jpg}
+%\caption[Bildbeschreibung]{\url{https://www.iosb.fraunhofer.de/servlet/is/78045/}}
+\label{trainingStatistics}
+\end{figure}
 %In this section, the final model and any supporting qualities should be evaluated in detail. It should be clear how the final model was derived and why this model was chosen. In addition, some type of analysis should be used to validate the robustness of this model and its solution, such as manipulating the input data or environment to see how the model’s solution is affected (this is called sensitivity analysis). Questions to ask yourself when writing this section:
 %
 %Is the final model reasonable and aligning with solution expectations? Are the final parameters of the model appropriate?
@@ -715,6 +821,11 @@ As a first step, we use Keras Data Augmentation to
 %Is the model robust enough for the problem? Do small perturbations (changes) in training data or the input space greatly affect the results?
 %Can results found from the model be trusted?
 \subsection*{Justification}
+Unfortunately, we did not see other research results for logo classification with metric accuracy to compare these to our results.
+However, given that the dataset had many logo classes with only few images, we think that we cannot expect a high overall accuracy. 
+Still, we would like to reach an accuracy of at least 50 \% but we do not know which parameters of the different models from the previous sections, or which other CNN architectures could lead to a test accuracy higher than 40 \%.
+
+On the other hand, our final model is robust and classifying small logos in larger images is not an easy task so our final result with a test accuracy of 30.91 \% is adequate.
 %In this section, your model’s final solution and its results should be compared to the benchmark you established earlier in the project using some type of statistical analysis. You should also justify whether these results and the solution are significant enough to have solved the problem posed in the project. Questions to ask yourself when writing this section:
 %
 %Are the final results found stronger than the benchmark result reported earlier?
@@ -725,12 +836,61 @@ As a first step, we use Keras Data Augmentation to
 %(approx. 1-2 pages)
 
 \subsection*{Free-Form Visualization}
+In this subsection, we visualize some logo classification results on ten test images:
+\begin{figure}[h!]
+\includegraphics[width=\textwidth]{prediction_of_test_file_100.png}
+\label{prediction1}
+\end{figure}
+\begin{figure}[h!]
+\includegraphics[width=\textwidth]{prediction_of_test_file_101.png}
+\label{prediction1}
+\end{figure}
+\begin{figure}[h!]
+\includegraphics[width=\textwidth]{prediction_of_test_file_102.png}
+\label{prediction1}
+\end{figure}
+\begin{figure}[h!]
+\includegraphics[width=\textwidth]{prediction_of_test_file_103.png}
+\label{prediction1}
+\end{figure}
+\begin{figure}[h!]
+\includegraphics[width=\textwidth]{prediction_of_test_file_104.png}
+\label{prediction1}
+\end{figure}
+\begin{figure}[h!]
+\includegraphics[width=\textwidth]{prediction_of_test_file_105.png}
+\label{prediction1}
+\end{figure}\\
+\begin{figure}[h!]
+\includegraphics[width=\textwidth]{prediction_of_test_file_106.png}
+\label{prediction1}
+\end{figure}\\
+\begin{figure}[h!]
+\includegraphics[width=\textwidth]{prediction_of_test_file_107.png}
+\label{prediction1}
+\end{figure}\\
+\begin{figure}[h!]
+\includegraphics[width=\textwidth]{prediction_of_test_file_108.png}
+\label{prediction1}
+\end{figure}\\
+\begin{figure}[h!]
+\includegraphics[width=\textwidth]{prediction_of_test_file_109.png}
+We note that some logo classes like Volkswagen seem to have a better accuracy than the others.
+\label{prediction1}
+\end{figure}
 %In this section, you will need to provide some form of visualization that emphasizes an important quality about the project. It is much more free-form, but should reasonably support a significant result or characteristic about the problem that you want to discuss. Questions to ask yourself when writing this section:
 %
 %Have you visualized a relevant or important quality about the problem, dataset, input data, or results?
 %Is the visualization thoroughly analyzed and discussed?
 %If a plot is provided, are the axes, title, and datum clearly defined?
-%\subsection*{Reflection}
+\subsection*{Reflection}
+There were several obstacles when training a CNN to classify or detect logos.
+At first, the local hardware was not sufficient so often the training process freezes or progresses only slowly. 
+Also uploading the large dataset to Amazon Web Services or Google Cloud's bucket took very long.
+Furthermore, when training a Faster R-CNN with Tensorflow's Object Detection API the error log was not sufficiently detailed to identify why there are no detections.
+
+In addition to these technical limitations, further experience with CNNs is needed for adjusting the right parameters of the models. In the end, the very first two model architectures from \autoref{table:modelFromScratch} and \autoref{table:vgg_custom} already reach the best accuracy.
+
 %In this section, you will summarize the entire end-to-end problem solution and discuss one or two particular aspects of the project you found interesting or difficult. You are expected to reflect on the project as a whole to show that you have a firm understanding of the entire process employed in your work. Questions to ask yourself when writing this section:
 %
 %Have you thoroughly summarized the entire process you used for this project?
@@ -738,6 +898,16 @@ As a first step, we use Keras Data Augmentation to
 %Were there any difficult aspects of the project?
 %Does the final model and solution fit your expectations for the problem, and should it be used in a general setting to solve these types of problems?
 \subsection*{Improvement}
+As a first crucial improvement, one could use Scikit-learn's from MultiLabelBinarizer to label the images with potentially multiple logo classes from the corresponding XML files. This would lead to 821 classes instead of 109 but the logo images may be more accurately classified.
+How to train a CNN with multiple label classification is described \href{https://www.pyimagesearch.com/2018/05/07/multi-label-classification-with-keras/}{here}.
+
+The accuracy may also be improved by (additionaly / pre-)training with the ROI images of the Logos in the Wild dataset, which are generated by the Python script \path{create\_clean\_dataset.py}. We did not choose this option as our goal is to classify logos in any image. By construction, CNNs are relatively translation invariant so that our goal seems to be within reach.
+
+Moreover, due to time limits we did not train our models very long. More epochs could also lead to higher accuracy and to choosing a different model than we did.
+
+Similarly, there are many more reasonable parameter combinations to explore than we did in this short time. For instance, using different activation functions, various filter sizes or decreasing learning rates.
+
+Last, of course training an object detection model may lead to better results like the one mentioned in our benchmark section. We do not know why we could not detect any logos with our Faster R-CNN but it makes sense to still further investigate this.
 %In this section, you will need to provide discussion as to how one aspect of the implementation you designed could be improved. As an example, consider ways your implementation can be made more general, and what would need to be modified. You do not need to make this improvement, but the potential solutions resulting from these changes are considered and compared/contrasted to your current solution. Questions to ask yourself when writing this section:
 %
 %Are there further improvements that could be made on the algorithms or techniques you used in this project?
@@ -772,7 +942,9 @@ As a first step, we use Keras Data Augmentation to
 %
 %ssh -i "BasicE2.pem" ec2-user@ec2-52-59-207-104.eu-central-1.compute.amazonaws.com -L 8889:127.0.0.1:8889
 
-ssh -i "IrelandKey.pem" ubuntu@ec2-34-241-125-193.eu-west-1.compute.amazonaws.com -L 8889:127.0.0.1:8889
+ssh -i "IrelandKey.pem" ubuntu@ec2-34-254-91-106.eu-west-1.compute.amazonaws.com -L 8889:127.0.0.1:8888
+
+~/anaconda3/envs/tensorflow_p36/lib/python3.6/site-packages/tensorflow/models/research
 
 rsync -av -progress -e "ssh -i IrelandKey.pem" /data/Machine_Learning/Machine_Learning_Engineer/capstone_project/LogosInTheWild-v2/data/voc_format ubuntu@ec2-34-241-125-193.eu-west-1.compute.amazonaws.com:~/capstone_project/LogosInTheWild-v2/data/voc_format
 
@@ -790,6 +962,9 @@ rsync -azvv -e  ssh -i ~/.ssh/google_compute_engine /data/Machine_Learning/Machi
 %scp -r -i "BasicE2.pem" /data/Machine_Learning/Machine_Learning_Engineer/capstone_project/LogosInTheWild-v2/ ec2-user@ec2-52-59-207-104.eu-central-1.compute.amazonaws.com :capstone_project/LogosInTheWild-v2/ 
 
 
+scp -r ~/capstone_project/saved_keras_models/ ann-kristinlocalhost:/data/Machine_Learning/Machine_Learning_Engineer/capstone_project/saved_keras_models
+
+
 %\begin{verbatim}
 cd /mnt/c/ProgramData/anaconda3/envs/tensorflow/models/research
 source ~/.bashrc
@@ -797,20 +972,23 @@ export PYTHONPATH=$PYTHONPATH:`pwd`:`pwd`/slim
 PIPELINE_CONFIG_PATH=/mnt/c/environment/Machine_Learning/Machine_Learning_Engineer/capstone_project/LogosInTheWild-v2/models/model/faster_rcnn_inception_logos.config
 MODEL_DIR=/mnt/c/environment/Machine_Learning/Machine_Learning_Engineer/capstone_project/LogosInTheWild-v2/models/model/
 NUM_TRAIN_STEPS=20000
+NUM_EVAL_STEPS=20
 SAMPLE_1_OF_N_EVAL_EXAMPLES=1
 TRAIN_DIR=/mnt/c/environment/Machine_Learning/Machine_Learning_Engineer/capstone_project/LogosInTheWild-v2/models/model/train
 EVAL_DIR=/mnt/c/environment/Machine_Learning/Machine_Learning_Engineer/capstone_project/LogosInTheWild-v2/models/model/eval
-python object_detection/model_main.py --pipeline_config_path=${PIPELINE_CONFIG_PATH} --model_dir=${MODEL_DIR} --num_train_steps=${NUM_TRAIN_STEPS} --sample_1_of_n_eval_examples=$SAMPLE_1_OF_N_EVAL_EXAMPLES --alsologtostderr
+python object_detection/model_main.py --pipeline_config_path=${PIPELINE_CONFIG_PATH} --model_dir=${MODEL_DIR} --num_train_steps=${NUM_TRAIN_STEPS}  
+   --num_eval_steps=NUM_EVAL_STEPS --alsologtostderr
 
 cd ~/anaconda3/envs/tensorflow_cpu/lib/python3.6/site-packages/tensorflow/models/research
 export PYTHONPATH=$PYTHONPATH:`pwd`:`pwd`/slim
 PIPELINE_CONFIG_PATH=/data/Machine_Learning/Machine_Learning_Engineer/capstone_project/LogosInTheWild-v2/models/model/faster_rcnn_inception_logos-locally-on-ubuntu.config
 MODEL_DIR=/data/Machine_Learning/Machine_Learning_Engineer/capstone_project/LogosInTheWild-v2/models/model/
 NUM_TRAIN_STEPS=20000
+NUM_EVAL_STEPS=20000
 SAMPLE_1_OF_N_EVAL_EXAMPLES=1508
 TRAIN_DIR=/data/Machine_Learning/Machine_Learning_Engineer/capstone_project/LogosInTheWild-v2/models/model/train
 EVAL_DIR=/data/Machine_Learning/Machine_Learning_Engineer/capstone_project/LogosInTheWild-v2/models/model/eval
-python object_detection/model_main.py --pipeline_config_path=${PIPELINE_CONFIG_PATH} --model_dir=${MODEL_DIR} --num_train_steps=${NUM_TRAIN_STEPS} --sample_1_of_n_eval_examples=$SAMPLE_1_OF_N_EVAL_EXAMPLES --alsologtostderr
+python object_detection/model_main.py --pipeline_config_path=${PIPELINE_CONFIG_PATH} --model_dir=${MODEL_DIR} --num_train_steps=${NUM_TRAIN_STEPS} --num_eval_steps=${NUM_EVAL_STEPS} --alsologtostderr
 
 
 
@@ -820,13 +998,13 @@ python object_detection/legacy/train.py --logtostderr --train_dir=${TRAIN_DIR} -
  python object_detection/legacy/eval.py  --logtostderr   --pipeline_config_path=${PIPELINE_CONFIG_PATH} --checkpoint_dir=${MODEL_DIR}  --eval_dir=${EVAL_DIR}
 
 YOUR_CLOUD_BUCKET=gs://logo-bucket-europe-west1//
-PATH_TO_LOCAL_YAML_FILE=/mnt/c/environment/Machine_Learning/Machine_Learning_Engineer/capstone_project/LogosInTheWild-v2/standard_gpu.yaml
+PATH_TO_LOCAL_YAML_FILE=/data/Machine_Learning/Machine_Learning_Engineer/capstone_project/standard_gpu.yaml
 GS_MODEL_DIR=logo-bucket-europe-west1/LogosInTheWild-v2/models/model
 GS_TRAIN_DIR=logo-bucket-europe-west1/LogosInTheWild-v2/models/model/train
 GS_EVAL_DIR=logo-bucket-europe-west1/LogosInTheWild-v2/models/model/eval
 GS_PIPELINE_CONFIG_PATH=logo-bucket-europe-west1/LogosInTheWild-v2/models/model/faster_rcnn_inception_logos-europe-west1.config
 # From tensorflow/models/research/
-gcloud ml-engine jobs submit training object_detection_`date +%m_%d_%Y_%H_%M_%S` --runtime-version 1.13 --job-dir=gs://${GS_MODEL_DIR} --packages dist/object_detection-0.1.tar.gz,slim/dist/slim-0.1.tar.gz,/tmp/pycocotools/pycocotools-2.0.tar.gz --module-name object_detection.model_main --region europe-west1 --config ${PATH_TO_LOCAL_YAML_FILE} -- --model_dir=gs://${GS_MODEL_DIR} --pipeline_config_path=gs://${GS_PIPELINE_CONFIG_PATH} 
+gcloud ai-platform jobs submit training object_detection_`date +%m_%d_%Y_%H_%M_%S` --runtime-version 1.13 --job-dir=gs://${GS_MODEL_DIR} --packages dist/object_detection-0.1.tar.gz,slim/dist/slim-0.1.tar.gz,/tmp/pycocotools/pycocotools-2.0.tar.gz --module-name object_detection.model_main --region europe-west1 --config ${PATH_TO_LOCAL_YAML_FILE} -- --model_dir=gs://${GS_MODEL_DIR} --pipeline_config_path=gs://${GS_PIPELINE_CONFIG_PATH} 
 
 
 gcloud ml-engine jobs submit training object_detection_`date +%m_%d_%Y_%H_%M_%S` --runtime-version 1.13 --job-dir=gs://${GS_TRAIN_DIR} --packages dist/object_detection-0.1.tar.gz,slim/dist/slim-0.1.tar.gz,/tmp/pycocotools/pycocotools-2.0.tar.gz --module-name object_detection.legacy.train --region europe-west1 --config ${PATH_TO_LOCAL_YAML_FILE} -- --train_dir=gs://${GS_TRAIN_DIR} --pipeline_config_path=gs://${GS_PIPELINE_CONFIG_PATH}
@@ -877,3 +1055,4 @@ Connection to 34.76.173.78 closed.
 ssh -i .ssh/google_compute_engine ajuschka@34.76.173.78 -L 8899:localhost:8888
 
 
+tf.logging.set_verbosity(tf.logging.INFO)

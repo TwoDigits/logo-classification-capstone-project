@@ -223,8 +223,18 @@ writer_val = tf.python_io.TFRecordWriter(output_val_path)
 
 
 
-with open(os.path.join(FLAGS.output_path, "brands.txt"), newline = '') as brands: 
-    brands_reader = csv.reader(brands, delimiter='\n')
+with open(os.path.join(FLAGS.output_path, "brands.txt"), newline = '')with open(os.path.join(FLAGS.output_path, "brands.txt"), newline = '') as urls: 
+    brands_reader = csv.reader(urls, delimiter='\n')
+    index=0
+    with open(FLAGS.label_map_path, 'wb') as handle:
+        for brand in brands_reader:
+            index=index+1
+            print(index,brand[0])
+            handle.write(str.encode('item {\n','utf8'))
+            handle.write(str.encode('  id: '+str(index)+'\n','utf8'))
+            handle.write(str.encode('  name: \''+brand[0]+'\'\n','utf8'))
+            handle.write(str.encode('}'+'\n\n','utf8')): 
+    brands_reader = csv.reader(urls, delimiter='\n')
     index=0
     with open(FLAGS.label_map_path, 'wb') as handle:
         for brand in brands_reader:

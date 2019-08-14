@@ -1,0 +1,109 @@
+\newcommand{\etalchar}[1]{$^{#1}$}
+\begin{thebibliography}{EVGW{\etalchar{+}}10}
+
+\bibitem[BBMS17]{BIANCO201723}
+Simone Bianco, Marco Buzzelli, Davide Mazzini, and Raimondo Schettini.
+\newblock Deep learning for logo recognition.
+\newblock {\em Neurocomputing}, 245:23 -- 30, 2017.
+
+\bibitem[BL15]{DBLP:conf/iclr/2015}
+Yoshua Bengio and Yann LeCun, editors.
+\newblock {\em 3rd International Conference on Learning Representations, {ICLR}
+  2015, San Diego, CA, USA, May 7-9, 2015, Conference Track Proceedings}, 2015.
+
+\bibitem[BLF{\etalchar{+}}16]{Bao:2016:RCL:3007669.3007728}
+Yu~Bao, Haojie Li, Xin Fan, Risheng Liu, and Qi~Jia.
+\newblock Region-based cnn for logo detection.
+\newblock In {\em Proceedings of the International Conference on Internet
+  Multimedia Computing and Service}, ICIMCS'16, pages 319--322, New York, NY,
+  USA, 2016. ACM.
+
+\bibitem[C{\etalchar{+}}15]{chollet2015keras}
+Fran\c{c}ois Chollet et~al.
+\newblock Keras.
+\newblock \url{https://keras.io}, 2015.
+
+\bibitem[DHS11]{duchi2011adaptive}
+John Duchi, Elad Hazan, and Yoram Singer.
+\newblock Adaptive subgradient methods for online learning and stochastic
+  optimization.
+\newblock {\em Journal of Machine Learning Research}, 12(Jul):2121--2159, 2011.
+
+\bibitem[EVGW{\etalchar{+}}10]{everingham2010pascal}
+Mark Everingham, Luc Van~Gool, Christopher~KI Williams, John Winn, and Andrew
+  Zisserman.
+\newblock The pascal visual object classes (voc) challenge.
+\newblock {\em International journal of computer vision}, 88(2):303--338, 2010.
+
+\bibitem[HRS{\etalchar{+}}16]{DBLP:journals/corr/HuangRSZKFFWSG016}
+Jonathan Huang, Vivek Rathod, Chen Sun, Menglong Zhu, Anoop Korattikara,
+  Alireza Fathi, Ian Fischer, Zbigniew Wojna, Yang Song, Sergio Guadarrama, and
+  Kevin Murphy.
+\newblock Speed/accuracy trade-offs for modern convolutional object detectors.
+\newblock {\em CoRR}, abs/1611.10012, 2016.
+
+\bibitem[ISGK15]{DBLP:journals/corr/IandolaSGK15}
+Forrest~N. Iandola, Anting Shen, Peter Gao, and Kurt Keutzer.
+\newblock Deeplogo: Hitting logo recognition with the deep neural network
+  hammer.
+\newblock {\em CoRR}, abs/1510.02131, 2015.
+
+\bibitem[KB15]{DBLP:journals/corr/KingmaB14}
+Diederik~P. Kingma and Jimmy Ba.
+\newblock Adam: {A} method for stochastic optimization.
+\newblock In Bengio and LeCun \cite{DBLP:conf/iclr/2015}.
+
+\bibitem[ker]{kerasapplications}
+{K}eras {D}ocumentation.
+\newblock \url{https://keras.io/applications/}.
+\newblock Online; accessed 2019-03-17.
+
+\bibitem[KPT{\etalchar{+}}11]{flickrlogos27}
+Y.~Kalantidis, LG. Pueyo, M.~Trevisiol, R.~van Zwol, and Y.~Avrithis.
+\newblock Scalable triangulation-based logo recognition.
+\newblock In {\em in Proceedings of ACM International Conference on Multimedia
+  Retrieval (ICMR 2011)}, Trento, Italy, April 2011.
+
+\bibitem[RHGS15]{DBLP:journals/corr/RenHG015}
+Shaoqing Ren, Kaiming He, Ross~B. Girshick, and Jian Sun.
+\newblock Faster {R-CNN:} towards real-time object detection with region
+  proposal networks.
+\newblock {\em CoRR}, abs/1506.01497, 2015.
+
+\bibitem[RPLvZ11]{flickrlogos32}
+Stefan Romberg, Lluis~Garcia Pueyo, Rainer Lienhart, and Roelof van Zwol.
+\newblock Scalable logo recognition in real-world images.
+\newblock In {\em Proceedings of the 1st ACM International Conference on
+  Multimedia Retrieval}, ICMR '11, pages 25:1--25:8, New York, NY, USA, 2011.
+  ACM.
+
+\bibitem[SZ15]{DBLP:journals/corr/SimonyanZ14a}
+Karen Simonyan and Andrew Zisserman.
+\newblock Very deep convolutional networks for large-scale image recognition.
+\newblock In Bengio and LeCun \cite{DBLP:conf/iclr/2015}.
+
+\bibitem[SZG16]{DBLP:journals/corr/SuZG16}
+Hang Su, Xiatian Zhu, and Shaogang Gong.
+\newblock Deep learning logo detection with data expansion by synthesising
+  context.
+\newblock {\em CoRR}, abs/1612.09322, 2016.
+
+\bibitem[SZG18]{DBLP:journals/corr/abs-1807-01964}
+Hang Su, Xiatian Zhu, and Shaogang Gong.
+\newblock Open logo detection challenge.
+\newblock {\em CoRR}, abs/1807.01964, 2018.
+
+\bibitem[TH12]{tieleman2012lecture}
+Tijmen Tieleman and Geoffrey Hinton.
+\newblock Lecture 6.5-rmsprop, coursera: Neural networks for machine learning.
+\newblock {\em University of Toronto, Technical Report}, 2012.
+
+\bibitem[THMB18]{logosinthewild}
+Andras T{\"u}zk{\"o}, Christian Herrmann, Daniel Manger, and J{\"u}rgen
+  Beyerer.
+\newblock {O}pen {S}et {L}ogo {D}etection and {R}etrieval.
+\newblock In {\em Proceedings of the 13th International Joint Conference on
+  Computer Vision, Imaging and Computer Graphics Theory and Applications:
+  VISAPP}, 2018.
+
+\end{thebibliography}

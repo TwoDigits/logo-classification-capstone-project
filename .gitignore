@@ -1,6 +1,13 @@
-LogosInTheWild-v2
-datasets_and__models/
+LogosInTheWild-v2/*
+datasets_and__models/*
+old_saved_keras_models/*
 *.zip
 *.gz
 *.tar.gz
 *.tar
+faster_rcnn_resnet101_fgvc_2018_07_19/*
+*tar.gz*
+*.pb
+*ckpt.data*
+*.hdf5
+*Copy*
